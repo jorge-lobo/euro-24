@@ -40,10 +40,10 @@
             android:name=".ui.matches.MatchesActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splash.SplashScreenActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.splash.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

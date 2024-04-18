@@ -1,7 +1,155 @@
 <resources>
     <string name="app_name">Euro24</string>
 
+    <!-- BottomNav -->
+    <string name="button_home">Home</string>
+    <string name="button_matches">Matches</string>
+    <string name="button_teams">Teams</string>
+    <string name="button_cities">Cities</string>
+    <string name="button_historic">Historic</string>
 
+    <!-- Main Titles -->
+    <string name="title_schedule">Schedule</string>
+    <string name="title_teams">Teams</string>
+    <string name="title_host_cities">Host Cities</string>
+    <string name="title_past_winners">Past Winners</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_connection_issue">Connection Issue!</string>
+    <string name="dialog_title_edit_match">Edit Match</string>
+    <string name="dialog_button_enable_wi_fi">Enable Wi-Fi</string>
+    <string name="dialog_button_save">Save</string>
+    <string name="dialog_message_connection">Attention!\nThis app requires an active internet connection to function properly.\nPlease connect to Wi-Fi or enable mobile data to continue.</string>
+
+    <!-- MainActivity Messages -->
+    <string name="main_days_to_go">Days\nTo Go</string>
+    <string name="main_no_matches">There are no matches scheduled!</string>
+    <string name="main_winner">Winner:</string>
+
+    <!-- MatchesActivity -->
+    <string name="matches_group_stage">Group Stage</string>
+    <string name="matches_knockout">Knockout</string>
+    <string name="matches_round_of_16">Round of 16</string>
+    <string name="matches_quarter_finals">Quarter-Finals</string>
+    <string name="matches_semi_finals">Semi-Finals</string>
+    <string name="matches_final">Final</string>
+    <string name="matches_after_extra_time">after extra time</string>
+    <string name="matches_after_penalties">after penalties</string>
+
+    <!-- Groups -->
+    <string name="group_a">Group A</string>
+    <string name="group_b">Group B</string>
+    <string name="group_c">Group C</string>
+    <string name="group_d">Group D</string>
+    <string name="group_e">Group E</string>
+    <string name="group_f">Group F</string>
+
+    <!-- Classification Table -->
+    <string name="table_position">#</string>
+    <string name="table_team">Team</string>
+    <string name="table_played">P</string>
+    <string name="table_wins">W</string>
+    <string name="table_draws">D</string>
+    <string name="table_loses">L</string>
+    <string name="table_goals">Goals</string>
+    <string name="table_goal_difference">Gd</string>
+    <string name="table_points">Pts</string>
+    <string name="table_1">1</string>
+    <string name="table_2">2</string>
+    <string name="table_3">3</string>
+    <string name="table_4">4</string>
+
+    <!-- Calendar -->
+    <string name="calendar_june">June</string>
+    <string name="calendar_july">July</string>
+    <string name="calendar_sunday">Sun</string>
+    <string name="calendar_monday">Mon</string>
+    <string name="calendar_tuesday">Tue</string>
+    <string name="calendar_wednesday">Wed</string>
+    <string name="calendar_thursday">Thu</string>
+    <string name="calendar_friday">Fri</string>
+    <string name="calendar_saturday">Sat</string>
+
+    <!-- TeamDetail -->
+    <string name="team_button_info">Info</string>
+    <string name="team_button_quad">Squad</string>
+    <string name="team_button_matches">Matches</string>
+    <string name="team_subtitle_statistics">Euro\'s statistics</string>
+    <string name="team_label_fifa_code">FIFA code</string>
+    <string name="team_label_kit_brand">Kit brand</string>
+    <string name="team_label_number_appearances">Number of appearances</string>
+    <string name="team_label_past_appearances">Past appearances</string>
+    <string name="team_label_number_titles">Number of titles</string>
+    <string name="team_label_best_result">Best result</string>
+    <string name="team_label_date_qualification">Date of qualification</string>
+    <string name="team_label_qualified_as">Qualified as</string>
+    <string name="team_squad_forwards">Forwards</string>
+    <string name="team_squad_midfielders">Midfielders</string>
+    <string name="team_squad_defenders">Defenders</string>
+    <string name="team_squad_goalkeepers">Goalkeepers</string>
+    <string name="team_squad_head_manager">Head Manager</string>
+    <string name="team_squad_captain">c</string>
+
+    <!-- Player Detail -->
+    <string name="player_subtitle_career">Nation Team career</string>
+    <string name="player_label_height">Height</string>
+    <string name="player_label_weight">Weight</string>
+    <string name="player_label_foot">Foot</string>
+    <string name="player_label_number">Number</string>
+    <string name="player_label_position">Position</string>
+    <string name="player_label_caps">Caps</string>
+    <string name="player_label_goals">Goals</string>
+    <string name="player_label_debut">Debut</string>
+
+    <!-- VenueDetail -->
+    <string name="venue_label_state">State</string>
+    <string name="venue_label_population">Population</string>
+    <string name="venue_label_elevation">Elevation</string>
+    <string name="venue_label_capacity">Capacity</string>
+    <string name="venue_label_fixtures">Fixtures</string>
+
+    <!-- Historic -->
+    <string name="historic_label_year">Year</string>
+    <string name="historic_label_winner">Winner</string>
+    <string name="historic_label_runner_up">Runner-up</string>
+    
+    <!-- Host Cities -->
+    <string name="host_berlin">Berlin</string>
+    <string name="host_cologne">Cologne</string>
+    <string name="host_dortmund">Dortmund</string>
+    <string name="host_dusseldorf">Düsseldorf</string>
+    <string name="host_frankfurt">Frankfurt</string>
+    <string name="host_gelsenkirchen">Gelsenkirchen</string>
+    <string name="host_hamburg">Hamburg</string>
+    <string name="host_leipzig">Leipzig</string>
+    <string name="host_munich">Munich</string>
+    <string name="host_stuttgart">Stuttgart</string>
+
+    <!-- Teams -->
+    <string name="team_alb">Albania</string>
+    <string name="team_aut">Austria</string>
+    <string name="team_bel">Belgium</string>
+    <string name="team_cro">Croatia</string>
+    <string name="team_cze">Czechia</string>
+    <string name="team_den">Denmark</string>
+    <string name="team_eng">England</string>
+    <string name="team_fra">France</string>
+    <string name="team_geo">Georgia</string>
+    <string name="team_ger">Germany</string>
+    <string name="team_hun">Hungary</string>
+    <string name="team_ita">Italy</string>
+    <string name="team_ned">Netherlands</string>
+    <string name="team_pol">Poland</string>
+    <string name="team_por">Portugal</string>
+    <string name="team_rou">Romania</string>
+    <string name="team_sco">Scotland</string>
+    <string name="team_srb">Serbia</string>
+    <string name="team_svk">Slovakia</string>
+    <string name="team_svn">Slovenia</string>
+    <string name="team_esp">Spain</string>
+    <string name="team_sui">Switzerland</string>
+    <string name="team_tur">Türkiye</string>
+    <string name="team_ukr">Ukraine</string>
 
     <!-- Server error -->
     <string name="dialog_error_title">Error</string>
