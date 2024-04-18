@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white50">#80FFFFFF</color>
+    <color name="anthracite">#0C1114</color>
+    <color name="anthracite50">#800C1114</color>
+    <color name="quick_silver">#9EA3A6</color>
+    <color name="charcoal50">#8037444D</color>
+    <color name="orange">#FF6600</color>
+    <color name="pumpkin">#BF3900</color>
+
+
 </resources>

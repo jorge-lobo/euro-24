@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Euro24</string>
+
+
+
+    <!-- Server error -->
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_message_unknown">Internal error, contact the support</string>
+    <string name="dialog_button_okay">OK</string>
+
+    <string name="error_generic_message">Try the operation again!</string>
+    <string name="error_network_error">There is no connection to the server. Check if the wi-fi is active!</string>
+    <string name="error_network_server_timeout">Server timeout, try later!</string>
+    <string name="error_server_internal">Internal error, contact the support!</string>
+    <string name="error_invalid_url">Invalid URL</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">An error has occurred, contact the administrator.</string>
+    <string name="error_internal_server">An internal server error has occurred, contact the administrator.</string>
+    <string name="error_session_timed_out">Your session has expired, please start a new one.</string>
+
 </resources>
