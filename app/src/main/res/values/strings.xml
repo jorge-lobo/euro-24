@@ -167,4 +167,7 @@
     <string name="error_internal_server">An internal server error has occurred, contact the administrator.</string>
     <string name="error_session_timed_out">Your session has expired, please start a new one.</string>
 
+    <!-- Description images-->
+    <string name="description_logo_full">Euro 24 official logo</string>
+
 </resources>

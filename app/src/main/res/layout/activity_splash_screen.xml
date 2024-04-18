@@ -5,6 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_splash"
     tools:context=".ui.splash.SplashScreenActivity">
+
+    <ImageView
+        android:id="@+id/logo_splash"
+        android:layout_width="@dimen/logo_full_w"
+        android:layout_height="@dimen/logo_full_h"
+        android:contentDescription="@string/description_logo_full"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
