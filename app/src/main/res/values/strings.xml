@@ -112,7 +112,7 @@
     <string name="historic_label_year">Year</string>
     <string name="historic_label_winner">Winner</string>
     <string name="historic_label_runner_up">Runner-up</string>
-    
+
     <!-- Host Cities -->
     <string name="host_berlin">Berlin</string>
     <string name="host_cologne">Cologne</string>
@@ -169,5 +169,9 @@
 
     <!-- Description images-->
     <string name="description_logo_full">Euro 24 official logo</string>
+    <string name="description_logo_word_mark">Euro 24 word mark</string>
+    <string name="description_image_background">Image background</string>
+    <string name="description_button_icon">Icon button</string>
+    <string name="description_icon">Icon image</string>
 
 </resources>

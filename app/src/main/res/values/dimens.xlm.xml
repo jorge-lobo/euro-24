@@ -2,77 +2,77 @@
 <resources>
 
     <!-- Text Sizes -->
-    <dimen name="common_title">10sp</dimen>
-    <dimen name="common_date">6sp</dimen>
-    <dimen name="common_subtitle">6sp</dimen>
-    <dimen name="common_label">6sp</dimen>
+    <dimen name="common_title">40sp</dimen>
+    <dimen name="common_date">24sp</dimen>
+    <dimen name="common_subtitle">24sp</dimen>
+    <dimen name="common_label">24sp</dimen>
 
-    <dimen name="bottom_nav_text">4sp</dimen>
-    <dimen name="dialog_button_text">10sp</dimen>
-    <dimen name="toggle_button_upper_text">6sp</dimen>
-    <dimen name="toggle_button_lower_text">3sp</dimen>
-    <dimen name="dropdown_title">6sp</dimen>
-    <dimen name="dropdown_item">3sp</dimen>
+    <dimen name="bottom_nav_text">16sp</dimen>
+    <dimen name="dialog_button_text">40sp</dimen>
+    <dimen name="toggle_button_upper_text">24sp</dimen>
+    <dimen name="toggle_button_lower_text">12sp</dimen>
+    <dimen name="dropdown_title">24sp</dimen>
+    <dimen name="dropdown_item">12sp</dimen>
 
-    <dimen name="internet_connection_title">8sp</dimen>
-    <dimen name="internet_connection_message">5sp</dimen>
-    <dimen name="edit_match_team_name">6sp</dimen>
-    <dimen name="edit_match_score">10sp</dimen>
+    <dimen name="internet_connection_title">32sp</dimen>
+    <dimen name="internet_connection_message">20sp</dimen>
+    <dimen name="edit_match_team_name">24sp</dimen>
+    <dimen name="edit_match_score">40sp</dimen>
 
-    <dimen name="main_countdown_days">48sp</dimen>
-    <dimen name="main_countdown_text">16sp</dimen>
-    <dimen name="main_no_matches_message">12sp</dimen>
-    <dimen name="main_winner_label">8sp</dimen>
-    <dimen name="main_winner_name">16sp</dimen>
+    <dimen name="main_countdown_days">192sp</dimen>
+    <dimen name="main_countdown_text">64sp</dimen>
+    <dimen name="main_no_matches_message">48sp</dimen>
+    <dimen name="main_winner_label">32sp</dimen>
+    <dimen name="main_winner_name">64sp</dimen>
 
-    <dimen name="group_table_text">4sp</dimen>
+    <dimen name="group_table_text">16sp</dimen>
 
-    <dimen name="calendar_mouth">8sp</dimen>
-    <dimen name="calendar_weekday">6sp</dimen>
-    <dimen name="calendar_day">6sp</dimen>
+    <dimen name="calendar_mouth">32sp</dimen>
+    <dimen name="calendar_weekday">24sp</dimen>
+    <dimen name="calendar_day">24sp</dimen>
 
-    <dimen name="team_grid_name">4sp</dimen>
+    <dimen name="team_grid_name">16sp</dimen>
 
-    <dimen name="team_nickname_og">7sp</dimen>
-    <dimen name="team_nickname_eng">4sp</dimen>
-    <dimen name="team_detail">4sp</dimen>
+    <dimen name="team_nickname_og">28sp</dimen>
+    <dimen name="team_nickname_eng">16sp</dimen>
+    <dimen name="team_detail">16sp</dimen>
 
-    <dimen name="player_name">8sp</dimen>
-    <dimen name="player_number">16sp</dimen>
-    <dimen name="player_detail">6sp</dimen>
-    <dimen name="player_club">8sp</dimen>
-    <dimen name="player_league">4sp</dimen>
+    <dimen name="player_name">32sp</dimen>
+    <dimen name="player_number">64sp</dimen>
+    <dimen name="player_detail">24sp</dimen>
+    <dimen name="player_club">32sp</dimen>
+    <dimen name="player_league">16sp</dimen>
 
-    <dimen name="host_city_name">7sp</dimen>
+    <dimen name="host_city_name">28sp</dimen>
 
-    <dimen name="venue_city_name_eng">12sp</dimen>
-    <dimen name="venue_city_name_og">6sp</dimen>
-    <dimen name="venue_detail">6sp</dimen>
-    <dimen name="venue_stadium_name">10sp</dimen>
-    <dimen name="venue_stadium_alternative">6sp</dimen>
+    <dimen name="venue_city_name_eng">48sp</dimen>
+    <dimen name="venue_city_name_og">32sp</dimen>
+    <dimen name="venue_detail">32sp</dimen>
+    <dimen name="venue_stadium_name">40sp</dimen>
+    <dimen name="venue_stadium_alternative">24sp</dimen>
 
-    <dimen name="history_year">6sp</dimen>
-    <dimen name="history_host">3sp</dimen>
-    <dimen name="history_winner">6sp</dimen>
-    <dimen name="history_runner_up">5sp</dimen>
+    <dimen name="history_year">24sp</dimen>
+    <dimen name="history_host">12sp</dimen>
+    <dimen name="history_winner">24sp</dimen>
+    <dimen name="history_runner_up">20sp</dimen>
 
-    <dimen name="match_large_city">4sp</dimen>
-    <dimen name="match_large_team_name">6sp</dimen>
-    <dimen name="match_large_time">6sp</dimen>
-    <dimen name="match_large_date">4sp</dimen>
-    <dimen name="match_large_score">10sp</dimen>
-    <dimen name="match_large_extra">2sp</dimen>
+    <dimen name="match_large_city">16sp</dimen>
+    <dimen name="match_large_team_name">24sp</dimen>
+    <dimen name="match_large_time">24sp</dimen>
+    <dimen name="match_large_date">16sp</dimen>
+    <dimen name="match_large_score">40sp</dimen>
+    <dimen name="match_large_extra">8sp</dimen>
 
-    <dimen name="match_narrow_info">2sp</dimen>
-    <dimen name="match_narrow_team_name">4sp</dimen>
-    <dimen name="match_narrow_time">3sp</dimen>
-    <dimen name="match_narrow_date">3sp</dimen>
-    <dimen name="match_narrow_score">6sp</dimen>
-    <dimen name="match_narrow_extra">2sp</dimen>
+    <dimen name="match_narrow_info">8sp</dimen>
+    <dimen name="match_narrow_team_name">16sp</dimen>
+    <dimen name="match_narrow_time">12sp</dimen>
+    <dimen name="match_narrow_date">12sp</dimen>
+    <dimen name="match_narrow_score">24sp</dimen>
+    <dimen name="match_narrow_extra">8sp</dimen>
 
-    <dimen name="player_card_name">6sp</dimen>
-    <dimen name="player_card_captain">10sp</dimen>
-    <dimen name="player_card_number">10sp</dimen>
+    <dimen name="player_card_name">24sp</dimen>
+    <dimen name="player_card_captain">40sp</dimen>
+    <dimen name="player_card_number">40sp</dimen>
 
     <!-- Icons -->
     <dimen name="icon_small">16dp</dimen>
@@ -90,6 +90,7 @@
     <dimen name="flag_giant_h">120dp</dimen>
 
     <!-- Corner Radius -->
+    <dimen name="radius_none">0dp</dimen>
     <dimen name="radius_extra_small">4dp</dimen>
     <dimen name="radius_small">8dp</dimen>
     <dimen name="radius_medium">16dp</dimen>
@@ -111,7 +112,7 @@
 
     <!-- Graphics -->
     <dimen name="bottom_nav_h">68dp</dimen>
-    <dimen name="dialog_h">448dp</dimen>
+    <dimen name="dialog_h">480dp</dimen>
     <dimen name="dropdown_close_h">32dp</dimen>
     <dimen name="dropdown_open_h">168dp</dimen>
     <dimen name="match_card_large_h">128dp</dimen>

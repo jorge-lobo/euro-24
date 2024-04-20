@@ -9,10 +9,30 @@ import com.example.euro24.R
 abstract class BaseFragment : Fragment() {
     private lateinit var mViewModel: BaseViewModel
 
-    @Deprecated("Deprecated in Java")
+   /* @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // Show error message
+        context?.let { observerContext ->
+            mViewModel.errorMessage.observe(
+                viewLifecycleOwner
+            ) { message ->
+                if (message != null) {
+                    displayErrorMessage(observerContext, message)
+                } else {
+                    displayErrorMessage(observerContext, getString(R.string.error_internal_server))
+                }
+            }
+        }
+    }*/
+
+    protected fun setupBaseViewModel(viewModel: BaseViewModel) {
+        mViewModel = viewModel
+        observeErrorMessage()
+    }
+
+    private fun observeErrorMessage() {
         // Show error message
         context?.let { observerContext ->
             mViewModel.errorMessage.observe(

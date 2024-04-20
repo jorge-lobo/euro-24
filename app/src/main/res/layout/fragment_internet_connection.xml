@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.internetConnection.InternetConnectionFragment">
+
+    <RelativeLayout
+        android:id="@+id/dialog_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/dialog_background"
+            layout="@layout/common_dialog_base" />
+
+        <ImageView
+            android:id="@+id/icon_no_connection"
+            android:layout_width="@dimen/icon_big"
+            android:layout_height="@dimen/icon_big"
+            android:layout_alignStart="@id/dialog_background"
+            android:layout_alignTop="@+id/dialog_background"
+            android:layout_alignEnd="@id/dialog_background"
+            android:layout_marginTop="72dp"
+            android:contentDescription="@string/description_icon"
+            android:src="@drawable/icon_no_wifi"
+            app:tint="@color/dialog_icon_no_wifi" />
+
+        <TextView
+            android:id="@+id/text_internet_connection_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon_no_connection"
+            android:layout_alignStart="@id/dialog_background"
+            android:layout_alignEnd="@id/dialog_background"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/dialog_title_connection_issue"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/internet_connection_title" />
+
+        <TextView
+            android:id="@+id/text_internet_connection_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_internet_connection_title"
+            android:layout_alignStart="@id/dialog_background"
+            android:layout_alignEnd="@id/dialog_background"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:fontFamily="@font/teko_regular"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/margin_big"
+            android:text="@string/dialog_message_connection"
+            android:textColor="@color/dialog_text"
+            android:textSize="@dimen/internet_connection_message" />
+
+    </RelativeLayout>
+
+</layout>
