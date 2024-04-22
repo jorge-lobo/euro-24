@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.preTournament.PreTournamentFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.main.preTournament.PreTournamentViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/pre_tournament_container">
+
+        <TextView
+            android:id="@+id/text_counting_number_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@id/text_counting_message"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            tools:text="52"
+            android:textColor="@color/main_activity_text"
+            android:textSize="@dimen/main_countdown_days" />
+
+        <TextView
+            android:id="@+id/text_counting_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textAllCaps="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="80dp"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:text="@string/main_days_to_go"
+            android:lineSpacingMultiplier="0.7"
+            android:textColor="@color/main_activity_text"
+            android:textSize="@dimen/main_countdown_text" />
+
+    </RelativeLayout>
+
+</layout>

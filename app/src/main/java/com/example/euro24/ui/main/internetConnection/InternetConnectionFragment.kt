@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentInternetConnectionBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.main.MainViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -23,6 +25,7 @@ import com.example.euro24.ui.common.BaseFragment
 class InternetConnectionFragment : BaseFragment() {
 
     private lateinit var binding: FragmentInternetConnectionBinding
+    private val mMainViewModel: MainViewModel by viewModels()
 
     private lateinit var btnEnableWiFi: Button
     private lateinit var btnClose: ImageButton
@@ -73,6 +76,10 @@ class InternetConnectionFragment : BaseFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
             .remove(this)
             .commit()
+        with(mMainViewModel) {
+            getCurrentDate()
+            checkDateCondition()
+        }
     }
 
 }

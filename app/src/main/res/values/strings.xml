@@ -24,7 +24,7 @@
     <!-- MainActivity Messages -->
     <string name="main_days_to_go">Days\nTo Go</string>
     <string name="main_no_matches">There are no matches scheduled!</string>
-    <string name="main_winner">Winner:</string>
+    <string name="main_champion">Champion:</string>
 
     <!-- MatchesActivity -->
     <string name="matches_group_stage">Group Stage</string>
@@ -173,5 +173,6 @@
     <string name="description_image_background">Image background</string>
     <string name="description_button_icon">Icon button</string>
     <string name="description_icon">Icon image</string>
+    <string name="description_flag">Nation Flag</string>
 
 </resources>
