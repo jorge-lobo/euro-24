@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentInternetConnectionBinding
 import com.example.euro24.ui.common.BaseFragment

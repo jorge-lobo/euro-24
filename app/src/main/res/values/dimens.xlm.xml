@@ -58,10 +58,13 @@
 
     <dimen name="match_large_city">16sp</dimen>
     <dimen name="match_large_team_name">24sp</dimen>
-    <dimen name="match_large_time">24sp</dimen>
-    <dimen name="match_large_date">16sp</dimen>
+    <dimen name="match_large_time">20sp</dimen>
+    <dimen name="match_large_date">12sp</dimen>
     <dimen name="match_large_score">40sp</dimen>
-    <dimen name="match_large_extra">8sp</dimen>
+    <dimen name="match_large_extra">16sp</dimen>
+    <dimen name="match_large_tv_w">24sp</dimen>
+    <dimen name="match_large_tv_h">16sp</dimen>
+    <dimen name="match_large_tv_logo">12sp</dimen>
 
     <dimen name="match_narrow_info">8sp</dimen>
     <dimen name="match_narrow_team_name">16sp</dimen>

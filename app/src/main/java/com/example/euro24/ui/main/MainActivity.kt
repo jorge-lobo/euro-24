@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.euro24.R
 import com.example.euro24.databinding.ActivityMainBinding
+import com.example.euro24.ui.main.duringTournament.DuringTournamentFragment
 import com.example.euro24.ui.main.internetConnection.InternetConnectionFragment
 import com.example.euro24.ui.main.postTournament.PostTournamentFragment
 import com.example.euro24.ui.main.preTournament.PreTournamentFragment
@@ -37,14 +38,9 @@ class MainActivity : AppCompatActivity() {
                 if (!isInitialConnectionChecked) {
                     isInitialConnectionChecked = true
                     if (isConnected) {
-                        /*Utils.showToast(this@MainActivity, "Internet connectivity is OK!")*/
                         getCurrentDate()
                         checkDateCondition()
                     } else {
-                        /*Utils.showToast(
-                            this@MainActivity,
-                            "Warning!\nThere's no Internet connection!"
-                        )*/
                         openInternetConnectionDialog()
                     }
                 }
@@ -81,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDuringTournamentFragment() {
-        val duringTournamentFragment = PreTournamentFragment()
+        val duringTournamentFragment = DuringTournamentFragment()
         supportFragmentManager.beginTransaction()
             .add(R.id.tournament_fragment_container, duringTournamentFragment)
             .commit()

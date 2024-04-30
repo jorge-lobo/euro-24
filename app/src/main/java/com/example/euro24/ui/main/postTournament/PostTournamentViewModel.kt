@@ -3,7 +3,6 @@ package com.example.euro24.ui.main.postTournament
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.euro24.data.matches.Match
 import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.ui.common.BaseViewModel
 

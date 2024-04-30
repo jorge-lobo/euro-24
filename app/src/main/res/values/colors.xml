@@ -30,4 +30,9 @@
     <color name="button_corner_bg">@color/charcoal50</color>
     <color name="button_corner_icon">@color/white</color>
 
+    <!-- Match Cards -->
+    <color name="match_card_background">@color/charcoal50</color>
+    <color name="match_card_tv_background">@color/white</color>
+    <color name="match_card_text">@color/white</color>
+
 </resources>

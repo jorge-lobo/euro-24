@@ -51,7 +51,7 @@ class PostTournamentFragment : BaseFragment() {
         imageChampionFlag = binding.imageChampionFlag
 
         // Only for testing
-        imageChampionFlag.setImageResource(R.drawable.flag_por)
+        imageChampionFlag.setImageResource(R.drawable.flag_portugal)
         // Only for testing
     }
 

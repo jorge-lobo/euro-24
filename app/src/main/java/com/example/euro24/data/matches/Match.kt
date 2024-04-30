@@ -19,5 +19,6 @@ data class Match(
     @SerializedName("resultTeam2") var resultTeam2: Int? = null,
     @SerializedName("extraTimeTeam1") var extraTimeTeam1: String? = null,
     @SerializedName("extraTimeTeam2") var extraTimeTeam2: String? = null,
-    @SerializedName("penaltiesTeam1") var penaltiesTeam1: String? = null
+    @SerializedName("penaltiesTeam1") var penaltiesTeam1: String? = null,
+    @SerializedName("penaltiesTeam2") var penaltiesTeam2: String? = null
 )

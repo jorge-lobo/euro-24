@@ -6,9 +6,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import androidx.lifecycle.MutableLiveData
 import com.example.euro24.ui.common.BaseViewModel
-import com.example.euro24.utils.Utils
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.example.euro24.utils.DateUtils
 
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
@@ -42,14 +40,13 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun getCurrentDate(): String {
-        val formatter = SimpleDateFormat("EEEE, d MMMM yyyy", Locale.ENGLISH)
-        return formatter.format(Utils.currentDate)
+        return DateUtils.formatDateLong(DateUtils.currentDate)
     }
 
     fun checkDateCondition() {
         when {
-            Utils.currentDate.before(Utils.datePreTournament) -> dateCondition.postValue(DateCondition.PRE_TOURNAMENT)
-            Utils.currentDate.after(Utils.datePostTournament) -> dateCondition.postValue(DateCondition.POST_TOURNAMENT)
+            DateUtils.currentDate.before(DateUtils.datePreTournament) -> dateCondition.postValue(DateCondition.PRE_TOURNAMENT)
+            DateUtils.currentDate.after(DateUtils.datePostTournament) -> dateCondition.postValue(DateCondition.POST_TOURNAMENT)
             else -> dateCondition.postValue(DateCondition.DURING_TOURNAMENT)
         }
     }
