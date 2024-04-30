@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.postTournament.PostTournamentFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.main.duringTournament.DuringTournamentViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/during_tournament_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_no_matches_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center"
+            android:paddingHorizontal="64dp"
+            android:text="@string/main_no_matches"
+            android:textColor="@color/main_activity_text"
+            android:textSize="@dimen/main_no_matches_message"
+            android:visibility="@{viewModel.noDataAvailable ? View.VISIBLE : View.INVISIBLE}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_match_cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/rv_match_card_large" />
+
+    </RelativeLayout>
+
+</layout>
