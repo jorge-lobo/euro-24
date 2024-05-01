@@ -81,6 +81,7 @@
     <dimen name="icon_small">16dp</dimen>
     <dimen name="icon_medium">24dp</dimen>
     <dimen name="icon_big">64dp</dimen>
+    <dimen name="icon_bottom_nav">32dp</dimen>
 
     <!-- Flags -->
     <dimen name="flag_small_w">32dp</dimen>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.main.MainActivity">
 
@@ -34,7 +33,8 @@
             android:id="@+id/word_mark"
             layout="@layout/common_header_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/actual_date_text"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/word_mark"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_normal"
             android:fontFamily="@font/teko_semi_bold"
             android:gravity="center_horizontal"
             android:textColor="@color/main_activity_text"
@@ -60,14 +60,21 @@
 
         <RelativeLayout
             android:id="@+id/tournament_fragment_container"
-            android:layout_below="@id/actual_date_text"
             android:layout_width="match_parent"
-            android:layout_marginBottom="64dp"
             android:layout_height="match_parent"
+            android:layout_above="@id/bottom_nav_fragment"
+            android:layout_below="@id/actual_date_text"
             android:layout_marginHorizontal="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
             android:gravity="center">
 
         </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottom_nav_fragment"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

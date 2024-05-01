@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <style name="BottomNavigationText">
+        <item name="android:textSize">@dimen/bottom_nav_text</item>
+        <item name="android:fontFamily">@font/teko_regular</item>
+    </style>
+
+</resources>

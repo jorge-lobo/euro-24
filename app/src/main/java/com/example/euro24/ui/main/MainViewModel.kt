@@ -4,6 +4,7 @@ import android.app.Application
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import androidx.lifecycle.MutableLiveData
 import com.example.euro24.ui.common.BaseViewModel
 import com.example.euro24.utils.DateUtils
@@ -11,16 +12,6 @@ import com.example.euro24.utils.DateUtils
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
     private val connectivityManager = application.getSystemService(ConnectivityManager::class.java)
-
-    enum class DateCondition {
-        PRE_TOURNAMENT,
-        DURING_TOURNAMENT,
-        POST_TOURNAMENT
-    }
-
-    val dateCondition = MutableLiveData<DateCondition>()
-    val internetConnection = MutableLiveData<Boolean>()
-
     private val networkCallback = object : ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
             internetConnection.postValue(true)
@@ -28,6 +19,35 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
 
         override fun onLost(network: Network) {
             internetConnection.postValue(false)
+        }
+    }
+
+    val dateCondition = MutableLiveData<DateCondition>()
+    val internetConnection = MutableLiveData<Boolean>()
+
+    var isNetworkCallbackRegistered = false
+
+    enum class DateCondition {
+        PRE_TOURNAMENT,
+        DURING_TOURNAMENT,
+        POST_TOURNAMENT
+    }
+
+    init {
+        registerNetworkCallback()
+    }
+    private fun registerNetworkCallback() {
+        val networkRequest = NetworkRequest.Builder()
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .build()
+        connectivityManager?.registerNetworkCallback(networkRequest, networkCallback)
+        isNetworkCallbackRegistered = true
+    }
+
+    private fun unregisterNetworkCallback() {
+        if (isNetworkCallbackRegistered) {
+            connectivityManager?.unregisterNetworkCallback(networkCallback)
+            isNetworkCallbackRegistered = false
         }
     }
 
@@ -39,21 +59,27 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         internetConnection.postValue(isConnected)
     }
 
+    fun setInternetConnection(isConnected: Boolean) {
+        internetConnection.postValue(isConnected)
+    }
+
     fun getCurrentDate(): String {
         return DateUtils.formatDateLong(DateUtils.currentDate)
     }
 
     fun checkDateCondition() {
-        when {
-            DateUtils.currentDate.before(DateUtils.datePreTournament) -> dateCondition.postValue(DateCondition.PRE_TOURNAMENT)
-            DateUtils.currentDate.after(DateUtils.datePostTournament) -> dateCondition.postValue(DateCondition.POST_TOURNAMENT)
-            else -> dateCondition.postValue(DateCondition.DURING_TOURNAMENT)
-        }
+        dateCondition.postValue(
+            when {
+                DateUtils.currentDate.before(DateUtils.datePreTournament) -> DateCondition.PRE_TOURNAMENT
+                DateUtils.currentDate.after(DateUtils.datePostTournament) -> DateCondition.POST_TOURNAMENT
+                else -> DateCondition.DURING_TOURNAMENT
+            }
+        )
     }
 
     override fun onCleared() {
         super.onCleared()
-        connectivityManager.unregisterNetworkCallback(networkCallback)
+        unregisterNetworkCallback()
     }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
