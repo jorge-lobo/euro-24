@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:checked="false"
+        android:icon="@drawable/nav_icon_house"
+        android:title="@string/button_home" />
+    <item
+        android:id="@+id/nav_matches"
+        android:checked="false"
+        android:icon="@drawable/nav_icon_matches"
+        android:title="@string/button_matches" />
+    <item
+        android:id="@+id/nav_teams"
+        android:checked="true"
+        android:icon="@drawable/nav_icon_teams"
+        android:title="@string/button_teams" />
+    <item
+        android:id="@+id/nav_cities"
+        android:checked="false"
+        android:icon="@drawable/nav_icon_cities"
+        android:title="@string/button_cities" />
+    <item
+        android:id="@+id/nav_historic"
+        android:checked="false"
+        android:icon="@drawable/nav_icon_historic"
+        android:title="@string/button_historic" />
+
+</menu>

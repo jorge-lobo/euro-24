@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.bottomNav.BottomNavFragment">
+
+    <!--<data>
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.bottomNav.BottomNavFragment" />
+
+        <import type="android.view.View" />
+    </data>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_nav_h"
+            android:layout_gravity="bottom"
+            android:background="@drawable/background_bottom_nav"
+            android:visibility="visible"
+            app:itemIconSize="@dimen/icon_bottom_nav"
+            app:itemIconTint="@color/bottom_nav_color_selector"
+            app:itemTextAppearanceActive="@style/BottomNavigationText"
+            app:itemTextAppearanceInactive="@style/BottomNavigationText"
+            app:itemTextColor="@color/bottom_nav_color_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav_menu" />
+
+    </LinearLayout>
+
+</layout>
