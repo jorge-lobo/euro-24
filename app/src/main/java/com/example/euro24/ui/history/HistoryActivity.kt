@@ -1,21 +1,29 @@
 package com.example.euro24.ui.history
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.euro24.R
+import com.example.euro24.databinding.ActivityHistoryBinding
+import com.example.euro24.ui.bottomNav.BottomNavFragment
 
 class HistoryActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHistoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_history)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupBottomNav()
+
+    }
+
+
+    private fun setupBottomNav() {
+        val bottomNavFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.bottom_nav_fragment, bottomNavFragment)
+            .commit()
     }
 }

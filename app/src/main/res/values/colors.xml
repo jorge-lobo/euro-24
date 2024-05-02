@@ -11,11 +11,17 @@
     <color name="orange">#FF6600</color>
     <color name="pumpkin">#BF3900</color>
 
+    <!-- Common -->
+    <color name="common_background_color">@color/anthracite</color>
+    <color name="common_text_title">@color/white</color>
+    <color name="common_container_large_white_bg">@color/white</color>
+
     <!-- Header Logo -->
     <color name="common_header_logo">@color/white</color>
     <color name="venue_detail_header_logo">@color/anthracite50</color>
 
     <color name="main_activity_text">@color/white</color>
+
 
     <!-- Dialog -->
     <color name="dialog_background">@color/charcoal50</color>
