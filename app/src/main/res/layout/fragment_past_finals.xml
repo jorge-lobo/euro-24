@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.pastFinals.PastFinalsViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/margin_normal"
+        tools:background="@color/common_background_color"
+        tools:context=".ui.pastFinals.PastFinalsFragment">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/title_past_winners"
+            android:textAllCaps="true"
+            android:textColor="@color/common_text_title"
+            android:textSize="@dimen/common_title" />
+
+        <RelativeLayout
+            android:id="@+id/rv_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_title">
+
+            <include
+                android:id="@+id/rv_container_background"
+                layout="@layout/common_container_large_white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/container_labels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_big"
+                android:layout_marginTop="@dimen/margin_small">
+
+                <TextView
+                    android:id="@+id/label_year"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:text="@string/historic_label_year"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/historic_labels"
+                    android:textSize="@dimen/common_label" />
+
+                <TextView
+                    android:id="@+id/label_winner"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="100dp"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:text="@string/historic_label_winner"
+                    android:textAllCaps="true"
+                    android:textColor="@color/historic_labels"
+                    android:textSize="@dimen/common_label" />
+
+                <TextView
+                    android:id="@+id/label_runner_up"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:text="@string/historic_label_runner_up"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="@color/historic_labels"
+                    android:textSize="@dimen/common_label"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_past_finals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/container_labels"
+                android:layout_marginHorizontal="@dimen/margin_big" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -20,7 +20,12 @@
     <color name="common_header_logo">@color/white</color>
     <color name="venue_detail_header_logo">@color/anthracite50</color>
 
-    <color name="main_activity_text">@color/white</color>
+    <!-- Home Fragment -->
+    <color name="home_fragment_text">@color/white</color>
+
+    <!-- Historic Fragment -->
+    <color name="historic_labels">@color/anthracite</color>
+    <color name="historic_rv">@color/anthracite</color>
 
 
     <!-- Dialog -->

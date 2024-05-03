@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.preTournament.PreTournamentFragment">
+    tools:context=".ui.home.preTournament.PreTournamentFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.euro24.ui.main.preTournament.PreTournamentViewModel" />
+            type="com.example.euro24.ui.home.preTournament.PreTournamentViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -27,7 +27,7 @@
             android:fontFamily="@font/teko_semi_bold"
             android:gravity="center_horizontal"
             tools:text="52"
-            android:textColor="@color/main_activity_text"
+            android:textColor="@color/home_fragment_text"
             android:textSize="@dimen/main_countdown_days" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_alignParentBottom="true"
             android:text="@string/main_days_to_go"
             android:lineSpacingMultiplier="0.7"
-            android:textColor="@color/main_activity_text"
+            android:textColor="@color/home_fragment_text"
             android:textSize="@dimen/main_countdown_text" />
 
     </RelativeLayout>

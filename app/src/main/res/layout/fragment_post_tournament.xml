@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.postTournament.PostTournamentFragment">
+    tools:context=".ui.home.postTournament.PostTournamentFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.example.euro24.ui.main.postTournament.PostTournamentViewModel" />
+            type="com.example.euro24.ui.home.postTournament.PostTournamentViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -29,7 +29,7 @@
             android:gravity="center_horizontal"
             android:text="@string/main_champion"
             android:textAllCaps="true"
-            android:textColor="@color/main_activity_text"
+            android:textColor="@color/home_fragment_text"
             android:textSize="@dimen/main_winner_label" />
 
         <ImageView
@@ -54,7 +54,7 @@
             android:fontFamily="@font/teko_semi_bold"
             android:gravity="center_horizontal"
             android:textAllCaps="true"
-            android:textColor="@color/main_activity_text"
+            android:textColor="@color/home_fragment_text"
             android:textSize="@dimen/main_winner_name"
             tools:text="Team Name" />
 
