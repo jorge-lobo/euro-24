@@ -1,7 +1,6 @@
 package com.example.euro24.ui.common
 
 import android.content.Context
-import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.euro24.R
@@ -9,23 +8,23 @@ import com.example.euro24.R
 abstract class BaseFragment : Fragment() {
     private lateinit var mViewModel: BaseViewModel
 
-   /* @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    /* @Deprecated("Deprecated in Java")
+     override fun onActivityCreated(savedInstanceState: Bundle?) {
+         super.onActivityCreated(savedInstanceState)
 
-        // Show error message
-        context?.let { observerContext ->
-            mViewModel.errorMessage.observe(
-                viewLifecycleOwner
-            ) { message ->
-                if (message != null) {
-                    displayErrorMessage(observerContext, message)
-                } else {
-                    displayErrorMessage(observerContext, getString(R.string.error_internal_server))
-                }
-            }
-        }
-    }*/
+         // Show error message
+         context?.let { observerContext ->
+             mViewModel.errorMessage.observe(
+                 viewLifecycleOwner
+             ) { message ->
+                 if (message != null) {
+                     displayErrorMessage(observerContext, message)
+                 } else {
+                     displayErrorMessage(observerContext, getString(R.string.error_internal_server))
+                 }
+             }
+         }
+     }*/
 
     protected fun setupBaseViewModel(viewModel: BaseViewModel) {
         mViewModel = viewModel

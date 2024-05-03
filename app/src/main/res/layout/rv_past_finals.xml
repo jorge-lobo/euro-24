@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pastFinal"
+            type="com.example.euro24.data.pastFinals.PastFinal" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/table_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_normal">
+
+        <RelativeLayout
+            android:id="@+id/item_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/column_left"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/item_text_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@{pastFinal.year.toString()}"
+                    android:textColor="@color/historic_rv"
+                    android:textSize="@dimen/history_year"
+                    tools:text="1960" />
+
+                <TextView
+                    android:id="@+id/item_text_host"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingMultiplier="0.8"
+                    android:text="@{pastFinal.host}"
+                    android:textColor="@color/historic_rv"
+                    android:textSize="@dimen/history_host"
+                    tools:text="Belgium\nNetherlands" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/item_text_winner"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="55dp"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{pastFinal.winners}"
+                android:textColor="@color/historic_rv"
+                android:textSize="@dimen/history_winner"
+                tools:text="Czechoslovakia" />
+
+            <TextView
+                android:id="@+id/item_text_runner_up"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/item_text_winner"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{pastFinal.runnersUp}"
+                android:textColor="@color/historic_rv"
+                android:textSize="@dimen/history_runner_up"
+                tools:text="West Germany" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

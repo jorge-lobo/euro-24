@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.euro24.databinding.ActivitySplashScreenBinding
-import com.example.euro24.ui.main.MainActivity
+import com.example.euro24.ui.bottomNav.BottomNavActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -20,7 +20,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(2000)
-            startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashScreenActivity, BottomNavActivity::class.java))
             finish()
         }
     }

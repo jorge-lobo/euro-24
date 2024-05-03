@@ -1,0 +1,116 @@
+{
+  "pastFinals": [
+    {
+      "id": 1,
+      "year": 1960,
+      "host": "France",
+      "winners": "Soviet Union",
+      "runnersUp": "Yugoslavia"
+    },
+    {
+      "id": 2,
+      "year": 1964,
+      "host": "Spain",
+      "winners": "Spain",
+      "runnersUp": "Soviet Union"
+    },
+    {
+      "id": 3,
+      "year": 1968,
+      "host": "Italy",
+      "winners": "Italy",
+      "runnersUp": "Yugoslavia"
+    },
+    {
+      "id": 4,
+      "year": 1972,
+      "host": "Belgium",
+      "winners": "West Germany",
+      "runnersUp": "Soviet Union"
+    },
+    {
+      "id": 5,
+      "year": 1976,
+      "host": "Yugoslavia",
+      "winners": "Czechoslovakia",
+      "runnersUp": "West Germany"
+    },
+    {
+      "id": 6,
+      "year": 1980,
+      "host": "Italy",
+      "winners": "West Germany",
+      "runnersUp": "Belgium"
+    },
+    {
+      "id": 7,
+      "year": 1984,
+      "host": "France",
+      "winners": "France",
+      "runnersUp": "Spain"
+    },
+    {
+      "id": 8,
+      "year": 1988,
+      "host": "West Germany",
+      "winners": "Netherlands",
+      "runnersUp": "Soviet Union"
+    },
+    {
+      "id": 9,
+      "year": 1992,
+      "host": "Sweden",
+      "winners": "Denmark",
+      "runnersUp": "Germany"
+    },
+    {
+      "id": 10,
+      "year": 1996,
+      "host": "England",
+      "winners": "Germany",
+      "runnersUp": "Czech Republic"
+    },
+    {
+      "id": 11,
+      "year": 2000,
+      "host": "Belgium\nNetherlands",
+      "winners": "France",
+      "runnersUp": "Italy"
+    },
+    {
+      "id": 12,
+      "year": 2004,
+      "host": "Portugal",
+      "winners": "Greece",
+      "runnersUp": "Portugal"
+    },
+    {
+      "id": 13,
+      "year": 2008,
+      "host": "Austria\nSwitzerland",
+      "winners": "Spain",
+      "runnersUp": "Germany"
+    },
+    {
+      "id": 14,
+      "year": 2012,
+      "host": "Poland\nUkraine",
+      "winners": "Spain",
+      "runnersUp": "Italy"
+    },
+    {
+      "id": 15,
+      "year": 2016,
+      "host": "France",
+      "winners": "Portugal",
+      "runnersUp": "France"
+    },
+    {
+      "id": 16,
+      "year": 2020,
+      "host": "Europe",
+      "winners": "Italy",
+      "runnersUp": "England"
+    }
+  ]
+}
