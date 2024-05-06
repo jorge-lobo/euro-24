@@ -43,7 +43,7 @@
     <dimen name="player_club">32sp</dimen>
     <dimen name="player_league">16sp</dimen>
 
-    <dimen name="host_city_name">28sp</dimen>
+    <dimen name="host_city_name">24sp</dimen>
 
     <dimen name="venue_city_name_eng">48sp</dimen>
     <dimen name="venue_city_name_og">32sp</dimen>

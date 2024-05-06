@@ -23,10 +23,9 @@
     <!-- Home Fragment -->
     <color name="home_fragment_text">@color/white</color>
 
-    <!-- Historic Fragment -->
+    <!-- Past Finals Fragment -->
     <color name="historic_labels">@color/anthracite</color>
     <color name="historic_rv">@color/anthracite</color>
-
 
     <!-- Dialog -->
     <color name="dialog_background">@color/charcoal50</color>
@@ -45,7 +44,11 @@
     <color name="match_card_background">@color/charcoal50</color>
     <color name="match_card_tv_background">@color/white</color>
     <color name="match_card_text">@color/white</color>
-    
+
+    <!-- Host City Cards -->
+    <color name="host_city_card_banner">@color/charcoal50</color>
+    <color name="host_city_card_text">@color/white</color>
+
     <!-- BottomNav -->
     <color name="bottomNav_background">@color/charcoal50</color>
     <color name="bottomNav_button_default">@color/quick_silver</color>
