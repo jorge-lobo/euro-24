@@ -18,6 +18,19 @@
         android:src="@drawable/background_main" />
 
     <include
+        android:id="@+id/word_mark"
+        layout="@layout/common_header_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <FrameLayout
+        android:id="@+id/venue_detail_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <include
         android:id="@+id/button_back"
         layout="@layout/common_button_back"
         android:layout_width="wrap_content"
@@ -29,19 +42,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <include
-        android:id="@+id/word_mark"
-        layout="@layout/common_header_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_nav"
-        android:layout_below="@id/word_mark" />
+        android:layout_below="@id/word_mark"
+        android:visibility="visible" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

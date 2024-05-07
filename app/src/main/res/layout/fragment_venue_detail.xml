@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <!--<data>
@@ -12,15 +13,281 @@
 
     </data>-->
 
-    <RelativeLayout
-        android:id="@+id/fullscreen"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:paddingTop="@dimen/margin_normal"
+        android:layout_height="wrap_content"
         tools:background="@color/common_background_color"
         tools:context=".ui.hostCities.venueDetail.VenueDetailFragment">
 
+        <RelativeLayout
+            android:id="@+id/fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="84dp">
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/image_host_city_banner"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:contentDescription="@string/description_image_host_city"
+                android:scaleType="fitStart"
+                android:src="@drawable/default_image" />
+
+            <include
+                android:id="@+id/word_mark_venue_detail"
+                layout="@layout/common_header_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+            <RelativeLayout
+                android:id="@+id/container_white"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/image_host_city_banner"
+                android:layout_marginTop="-52dp"
+                android:background="@drawable/background_container_large_white">
+
+                <TextView
+                    android:id="@+id/text_city_name_english"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/venue_detail_white_container_text"
+                    android:textSize="@dimen/venue_city_name_eng"
+                    tools:text="Munich" />
+
+                <TextView
+                    android:id="@+id/text_city_name_german"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_city_name_english"
+                    android:layout_marginTop="-16dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/venue_detail_white_container_text"
+                    android:textSize="@dimen/venue_city_name_og"
+                    tools:text="München" />
+
+                <RelativeLayout
+                    android:id="@+id/container_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_city_name_german"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_big">
+
+                    <ImageView
+                        android:id="@+id/icon_state"
+                        android:layout_width="@dimen/icon_medium"
+                        android:layout_height="@dimen/icon_medium"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:contentDescription="@string/description_icon"
+                        android:src="@drawable/icon_state"
+                        app:tint="@color/venue_detail_white_container_text" />
+
+                    <TextView
+                        android:id="@+id/text_label_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/text_detail_state"
+                        android:layout_marginStart="@dimen/margin_big"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/venue_label_state"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <TextView
+                        android:id="@+id/text_detail_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/venue_detail"
+                        tools:text="Bavaria" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/container_population"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/container_state"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_big">
+
+                    <ImageView
+                        android:id="@+id/icon_population"
+                        android:layout_width="@dimen/icon_medium"
+                        android:layout_height="@dimen/icon_medium"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:contentDescription="@string/description_icon"
+                        android:src="@drawable/icon_population"
+                        app:tint="@color/venue_detail_white_container_text" />
+
+                    <TextView
+                        android:id="@+id/text_label_population"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/text_detail_population"
+                        android:layout_marginStart="@dimen/margin_big"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/venue_label_population"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <TextView
+                        android:id="@+id/text_detail_population"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/venue_detail"
+                        tools:text="1 512 491" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/container_elevation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/container_population"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_big">
+
+                    <ImageView
+                        android:id="@+id/icon_elevation"
+                        android:layout_width="@dimen/icon_medium"
+                        android:layout_height="@dimen/icon_medium"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:contentDescription="@string/description_icon"
+                        android:src="@drawable/icon_elevation"
+                        app:tint="@color/venue_detail_white_container_text" />
+
+                    <TextView
+                        android:id="@+id/text_label_elevation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/text_detail_elevation"
+                        android:layout_marginStart="@dimen/margin_big"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/venue_label_elevation"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <TextView
+                        android:id="@+id/text_detail_elevation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/venue_detail_white_container_text"
+                        android:textSize="@dimen/venue_detail"
+                        tools:text="520 m" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/image_stadium"
+                android:layout_width="match_parent"
+                android:layout_height="256dp"
+                android:layout_below="@id/container_orange"
+                android:layout_marginTop="-32dp"
+                android:contentDescription="@string/description_image_host_city"
+                android:scaleType="fitStart"
+                android:src="@drawable/default_image" />
+
+            <RelativeLayout
+                android:id="@+id/container_orange"
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:layout_below="@id/container_white"
+                android:layout_marginTop="-50dp"
+                android:background="@drawable/background_container_large_orange">
+
+                <TextView
+                    android:id="@+id/text_stadium_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/venue_detail_orange_container_text"
+                    android:textSize="@dimen/venue_stadium_name"
+                    tools:text="Allianz Arena" />
+
+                <TextView
+                    android:id="@+id/text_stadium_alias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_stadium_name"
+                    android:layout_marginTop="-16dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/venue_detail_orange_container_text"
+                    android:textSize="@dimen/venue_stadium_alternative"
+                    tools:text="Fußball Arena München" />
+
+                <RelativeLayout
+                    android:id="@+id/container_capacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_stadium_alias"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_big">
+
+                    <TextView
+                        android:id="@+id/text_label_capacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/text_detail_capacity"
+                        android:layout_marginStart="@dimen/margin_big"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/venue_label_capacity"
+                        android:textColor="@color/venue_detail_orange_container_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <TextView
+                        android:id="@+id/text_detail_capacity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/venue_detail_orange_container_text"
+                        android:textSize="@dimen/venue_detail"
+                        tools:text="70 000" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_fixtures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_stadium"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:fontFamily="@font/teko_semi_bold"
+                android:text="@string/venue_label_fixtures"
+                android:textColor="@color/venue_detail_default_container_text"
+                android:textSize="@dimen/venue_detail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_venue_matches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 </layout>

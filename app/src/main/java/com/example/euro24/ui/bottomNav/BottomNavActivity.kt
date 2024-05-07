@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.euro24.R
 import com.example.euro24.databinding.ActivityBottomNavBinding
@@ -11,6 +12,7 @@ import com.example.euro24.ui.pastFinals.PastFinalsFragment
 import com.example.euro24.ui.home.HomeFragment
 import com.example.euro24.ui.home.internetConnection.InternetConnectionFragment
 import com.example.euro24.ui.hostCities.HostCitiesFragment
+import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 import com.example.euro24.ui.matches.MatchesFragment
 import com.example.euro24.ui.matches.calendar.CalendarFragment
 import com.example.euro24.ui.teams.TeamsFragment
@@ -71,7 +73,7 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
                 true
             }
 
-            buttonBack.buttonBack.setOnClickListener {
+            buttonBack.buttonBackIcon.setOnClickListener {
                 onBackPressedAction()
             }
 
@@ -90,6 +92,9 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
                 .replace(R.id.fragment_container, lastFragment)
                 .commit()
             updateBottomNavState(lastFragment)
+
+            hideVenueDetailFragmentContainer()
+
         } else {
             finish()
         }
@@ -106,10 +111,18 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
             }
             .commit()
 
+        hideVenueDetailFragmentContainer()
         updateUIVisibility(fragment)
 
         if (!isSelectingItemManually) {
             updateBottomNavState(fragment)
+        }
+    }
+
+    private fun hideVenueDetailFragmentContainer() {
+        binding.apply {
+            fragmentContainer.visibility = View.VISIBLE
+            venueDetailFragmentContainer.visibility = View.INVISIBLE
         }
     }
 
@@ -128,7 +141,7 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
         binding.apply {
             imageBackground.visibility =
                 if (fragment is HomeFragment) View.VISIBLE else View.INVISIBLE
-            buttonBack.buttonBack.visibility =
+            buttonBack.buttonBackIcon.visibility =
                 if (fragment is HomeFragment) View.INVISIBLE else View.VISIBLE
             buttonCalendar.buttonCalendar.visibility =
                 if (fragment is MatchesFragment) View.VISIBLE else View.INVISIBLE

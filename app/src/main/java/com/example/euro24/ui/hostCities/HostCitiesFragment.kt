@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
@@ -43,9 +46,11 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
     override fun onItemClick(venue: Venue) {
         val fragment = VenueDetailFragment.newInstance(venue)
         parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .replace(R.id.venue_detail_fragment_container, fragment)
             .addToBackStack(null)
             .commit()
+
+        showVenueDetailFragmentContainer()
     }
 
     private fun setupObservers() {
@@ -55,6 +60,21 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
                 val adapter = HostCityGridAdapter(requireContext(), sortedVenueList, this)
                 binding.gridHostCities.adapter = adapter
             }
+        }
+    }
+
+    private fun showVenueDetailFragmentContainer() {
+        with(requireActivity()) {
+            findViewById<FrameLayout>(R.id.fragment_container).visibility = View.INVISIBLE
+            findViewById<FrameLayout>(R.id.venue_detail_fragment_container).visibility =
+                View.VISIBLE
+
+            findViewById<ImageView>(R.id.header_logo).setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.venue_detail_header_logo
+                )
+            )
         }
     }
 
