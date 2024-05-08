@@ -44,7 +44,7 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
     }
 
     override fun onItemClick(venue: Venue) {
-        val fragment = VenueDetailFragment.newInstance(venue)
+        val fragment = VenueDetailFragment.newInstance(venue.id ?: 0)
         parentFragmentManager.beginTransaction()
             .replace(R.id.venue_detail_fragment_container, fragment)
             .addToBackStack(null)

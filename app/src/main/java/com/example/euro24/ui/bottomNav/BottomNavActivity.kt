@@ -123,6 +123,13 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
         binding.apply {
             fragmentContainer.visibility = View.VISIBLE
             venueDetailFragmentContainer.visibility = View.INVISIBLE
+
+            wordMark.headerLogo.setColorFilter(
+                ContextCompat.getColor(
+                    this@BottomNavActivity,
+                    R.color.common_header_logo
+                )
+            )
         }
     }
 

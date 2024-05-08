@@ -47,7 +47,7 @@
 
     <dimen name="venue_city_name_eng">48sp</dimen>
     <dimen name="venue_city_name_og">32sp</dimen>
-    <dimen name="venue_detail">28sp</dimen>
+    <dimen name="venue_detail">24sp</dimen>
     <dimen name="venue_stadium_name">40sp</dimen>
     <dimen name="venue_stadium_alternative">24sp</dimen>
 

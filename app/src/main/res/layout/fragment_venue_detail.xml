@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--<data>
+    <data>
 
         <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="com.example.euro24.ui.hostCities." />
+            type="com.example.euro24.ui.hostCities.venueDetail.VenueDetailViewModel" />
 
-    </data>-->
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:layout_alignParentTop="true"
                 android:contentDescription="@string/description_image_host_city"
                 android:scaleType="fitStart"
-                android:src="@drawable/default_image" />
+                tools:src="@drawable/default_image" />
 
             <include
                 android:id="@+id/word_mark_venue_detail"
@@ -58,6 +58,7 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.hostCityNameEnglish}"
                     android:textColor="@color/venue_detail_white_container_text"
                     android:textSize="@dimen/venue_city_name_eng"
                     tools:text="Munich" />
@@ -70,6 +71,7 @@
                     android:layout_marginTop="-16dp"
                     android:fontFamily="@font/teko_regular"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.hostCityNameGerman}"
                     android:textColor="@color/venue_detail_white_container_text"
                     android:textSize="@dimen/venue_city_name_og"
                     tools:text="München" />
@@ -86,7 +88,7 @@
                         android:id="@+id/icon_state"
                         android:layout_width="@dimen/icon_medium"
                         android:layout_height="@dimen/icon_medium"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="4dp"
                         android:contentDescription="@string/description_icon"
                         android:src="@drawable/icon_state"
                         app:tint="@color/venue_detail_white_container_text" />
@@ -108,6 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="128dp"
                         android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.hostCityState}"
                         android:textColor="@color/venue_detail_white_container_text"
                         android:textSize="@dimen/venue_detail"
                         tools:text="Bavaria" />
@@ -126,7 +129,7 @@
                         android:id="@+id/icon_population"
                         android:layout_width="@dimen/icon_medium"
                         android:layout_height="@dimen/icon_medium"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="4dp"
                         android:contentDescription="@string/description_icon"
                         android:src="@drawable/icon_population"
                         app:tint="@color/venue_detail_white_container_text" />
@@ -148,6 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="128dp"
                         android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.hostCityPopulation}"
                         android:textColor="@color/venue_detail_white_container_text"
                         android:textSize="@dimen/venue_detail"
                         tools:text="1 512 491" />
@@ -166,7 +170,7 @@
                         android:id="@+id/icon_elevation"
                         android:layout_width="@dimen/icon_medium"
                         android:layout_height="@dimen/icon_medium"
-                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginTop="4dp"
                         android:contentDescription="@string/description_icon"
                         android:src="@drawable/icon_elevation"
                         app:tint="@color/venue_detail_white_container_text" />
@@ -188,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="128dp"
                         android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.hostCityElevation}"
                         android:textColor="@color/venue_detail_white_container_text"
                         android:textSize="@dimen/venue_detail"
                         tools:text="520 m" />
@@ -204,7 +209,7 @@
                 android:layout_marginTop="-32dp"
                 android:contentDescription="@string/description_image_host_city"
                 android:scaleType="fitStart"
-                android:src="@drawable/default_image" />
+                tools:src="@drawable/default_image" />
 
             <RelativeLayout
                 android:id="@+id/container_orange"
@@ -222,6 +227,7 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.stadiumName}"
                     android:textColor="@color/venue_detail_orange_container_text"
                     android:textSize="@dimen/venue_stadium_name"
                     tools:text="Allianz Arena" />
@@ -234,6 +240,7 @@
                     android:layout_marginTop="-16dp"
                     android:fontFamily="@font/teko_regular"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.stadiumAlias}"
                     android:textColor="@color/venue_detail_orange_container_text"
                     android:textSize="@dimen/venue_stadium_alternative"
                     tools:text="Fußball Arena München" />
@@ -263,6 +270,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="128dp"
                         android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.stadiumCapacity}"
                         android:textColor="@color/venue_detail_orange_container_text"
                         android:textSize="@dimen/venue_detail"
                         tools:text="70 000" />
@@ -285,7 +293,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_venue_matches"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_fixtures" />
 
         </RelativeLayout>
 
