@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.data.venues.Venue
 import com.example.euro24.databinding.FragmentHostCitiesBinding
+import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 
@@ -47,7 +49,6 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
         val fragment = VenueDetailFragment.newInstance(venue.id ?: 0)
         parentFragmentManager.beginTransaction()
             .replace(R.id.venue_detail_fragment_container, fragment)
-            .addToBackStack(null)
             .commit()
 
         showVenueDetailFragmentContainer()
@@ -68,6 +69,7 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
             findViewById<FrameLayout>(R.id.fragment_container).visibility = View.INVISIBLE
             findViewById<FrameLayout>(R.id.venue_detail_fragment_container).visibility =
                 View.VISIBLE
+            findViewById<ImageButton>(R.id.button_back_icon).visibility = View.VISIBLE
 
             findViewById<ImageView>(R.id.header_logo).setColorFilter(
                 ContextCompat.getColor(

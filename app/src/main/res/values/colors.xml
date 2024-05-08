@@ -19,7 +19,7 @@
 
     <!-- Header Logo -->
     <color name="common_header_logo">@color/white</color>
-    <color name="venue_detail_header_logo">@color/anthracite50</color>
+    <color name="venue_detail_header_logo">@color/quick_silver</color>
 
     <!-- Home Fragment -->
     <color name="home_fragment_text">@color/white</color>
