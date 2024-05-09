@@ -1,60 +1,83 @@
 package com.example.euro24.ui.hostCities
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
+import com.example.euro24.data.venues.Venue
+import com.example.euro24.databinding.FragmentHostCitiesBinding
+import com.example.euro24.ui.bottomNav.BottomNavActivity
+import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HostCitiesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HostCitiesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHostCitiesBinding
+    private val mHostCitiesViewModel by lazy { ViewModelProvider(this)[HostCitiesViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_host_cities, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_host_cities,
+            container,
+            false
+        )
+        binding.viewModel = mHostCitiesViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HostCitiesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HostCitiesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mHostCitiesViewModel.loadVenues()
+        setupObservers()
     }
+
+    override fun onItemClick(venue: Venue) {
+        val fragment = VenueDetailFragment.newInstance(venue.id ?: 0)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.venue_detail_fragment_container, fragment)
+            .commit()
+
+        showVenueDetailFragmentContainer()
+    }
+
+    private fun setupObservers() {
+        mHostCitiesViewModel.venues.observe(viewLifecycleOwner) { venues ->
+            venues?.let {
+                val sortedVenueList = it.sortedBy { venue -> venue.cityEN }
+                val adapter = HostCityGridAdapter(requireContext(), sortedVenueList, this)
+                binding.gridHostCities.adapter = adapter
+            }
+        }
+    }
+
+    private fun showVenueDetailFragmentContainer() {
+        with(requireActivity()) {
+            findViewById<FrameLayout>(R.id.fragment_container).visibility = View.INVISIBLE
+            findViewById<FrameLayout>(R.id.venue_detail_fragment_container).visibility =
+                View.VISIBLE
+            findViewById<ImageButton>(R.id.button_back_icon).visibility = View.VISIBLE
+
+            findViewById<ImageView>(R.id.header_logo).setColorFilter(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.venue_detail_header_logo
+                )
+            )
+        }
+    }
+
 }

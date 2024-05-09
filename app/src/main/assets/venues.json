@@ -1,0 +1,185 @@
+{
+  "venues": [
+    {
+      "id": 1,
+      "cityEN": "Berlin",
+      "cityDE": "Berlin",
+      "state": "Berlin",
+      "stadiumName": "Olympiastadion",
+      "stadiumAlias": "Olympiastadion Berlin",
+      "capacity": 74461,
+      "matchesId": [
+        3,
+        19,
+        31,
+        38,
+        47,
+        51
+      ],
+      "population": 3850809,
+      "elevation": 34
+    },
+    {
+      "id": 2,
+      "cityEN": "Munich",
+      "cityDE": "München",
+      "state": "Bavaria",
+      "stadiumName": "Allianz Arena",
+      "stadiumAlias": "Fußball Arena München",
+      "capacity": 70076,
+      "matchesId": [
+        1,
+        10,
+        18,
+        30,
+        43,
+        49
+      ],
+      "population": 1512491,
+      "elevation": 520
+    },
+    {
+      "id": 3,
+      "cityEN": "Dortmund",
+      "cityDE": "Dortmund",
+      "state": "North Rhine-Westphalia",
+      "stadiumName": "Signal Iduna Park",
+      "stadiumAlias": "BVB Stadion Dortmund",
+      "capacity": 65849,
+      "matchesId": [
+        4,
+        11,
+        23,
+        32,
+        37,
+        50
+      ],
+      "population": 586852,
+      "elevation": 86
+    },
+    {
+      "id": 4,
+      "cityEN": "Stuttgart",
+      "cityDE": "Stuttgart",
+      "state": "Baden-Württemberg",
+      "stadiumName": "MHPArena",
+      "stadiumAlias": "Stuttgart Arena",
+      "capacity": 54906,
+      "matchesId": [
+        6,
+        14,
+        26,
+        34,
+        45
+      ],
+      "population": 626275,
+      "elevation": 245
+    },
+    {
+      "id": 5,
+      "cityEN": "Gelsenkirchen",
+      "cityDE": "Gelsenkirchen",
+      "state": "North Rhine-Westphalia",
+      "stadiumName": "Veltins-Arena",
+      "stadiumAlias": "Arena AufSchalke",
+      "capacity": 54740,
+      "matchesId": [
+        5,
+        16,
+        35,
+        40
+      ],
+      "population": 260126,
+      "elevation": 60
+    },
+    {
+      "id": 6,
+      "cityEN": "Frankfurt",
+      "cityDE": "Frankfurt am Main",
+      "state": "Hesse",
+      "stadiumName": "Deutsche Bank Park",
+      "stadiumAlias": "Waldstadion",
+      "capacity": 54697,
+      "matchesId": [
+        9,
+        17,
+        25,
+        33,
+        41
+      ],
+      "population": 773068,
+      "elevation": 112
+    },
+    {
+      "id": 7,
+      "cityEN": "Hamburg",
+      "cityDE": "Hamburg",
+      "state": "Hamburg",
+      "stadiumName": "Volksparkstadion",
+      "stadiumAlias": "Hamburg Arena",
+      "capacity": 52245,
+      "matchesId": [
+        7,
+        15,
+        24,
+        36,
+        46
+      ],
+      "population": 1945532,
+      "elevation": 6
+    },
+    {
+      "id": 8,
+      "cityEN": "Düsseldorf",
+      "cityDE": "Düsseldorf",
+      "state": "North Rhine-Westphalia",
+      "stadiumName": "Merkur Spiel-Arena",
+      "stadiumAlias": "Düsseldorf Arena",
+      "capacity": 51031,
+      "matchesId": [
+        8,
+        21,
+        27,
+        42,
+        48
+      ],
+      "population": 619477,
+      "elevation": 38
+    },
+    {
+      "id": 9,
+      "cityEN": "Cologne",
+      "cityDE": "Köln",
+      "state": "North Rhine-Westphalia",
+      "stadiumName": "RheinEnergieStadion",
+      "stadiumAlias": "Stadion Köln",
+      "capacity": 49827,
+      "matchesId": [
+        2,
+        13,
+        22,
+        29,
+        39
+      ],
+      "population": 1073096,
+      "elevation": 37
+    },
+    {
+      "id": 10,
+      "cityEN": "Leipzig",
+      "cityDE": "Leipzig",
+      "state": "Saxony",
+      "stadiumName": "Red Bull Arena",
+      "stadiumAlias": "RB Arena",
+      "capacity": 42959,
+      "matchesId": [
+        12,
+        20,
+        28,
+        44
+      ],
+      "population": 601866,
+      "elevation": 113
+    }
+  ]
+}

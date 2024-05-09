@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hostCity"
+            type="com.example.euro24.data.venues.Venue" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/host_city_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/host_city_card_container"
+            android:layout_width="@dimen/host_city_card_w"
+            android:layout_height="@dimen/host_city_card_h"
+            android:background="@drawable/background_host_city_card"
+            app:layout_constraintEnd_toEndOf="@id/host_city_card"
+            app:layout_constraintStart_toStartOf="@id/host_city_card"
+            app:layout_constraintTop_toTopOf="@+id/host_city_card">
+
+            <ImageView
+                android:id="@+id/image_host_city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/description_image_host_city"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_image" />
+
+            <RelativeLayout
+                android:id="@+id/host_city_name_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/host_city_card_banner_h"
+                android:background="@drawable/background_host_city_banner">
+
+                <TextView
+                    android:id="@+id/text_host_city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:textColor="@color/host_city_card_text"
+                    android:textSize="@dimen/host_city_name"
+                    tools:text="@string/host_gelsenkirchen" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -43,11 +43,11 @@
     <dimen name="player_club">32sp</dimen>
     <dimen name="player_league">16sp</dimen>
 
-    <dimen name="host_city_name">28sp</dimen>
+    <dimen name="host_city_name">24sp</dimen>
 
     <dimen name="venue_city_name_eng">48sp</dimen>
     <dimen name="venue_city_name_og">32sp</dimen>
-    <dimen name="venue_detail">32sp</dimen>
+    <dimen name="venue_detail">24sp</dimen>
     <dimen name="venue_stadium_name">40sp</dimen>
     <dimen name="venue_stadium_alternative">24sp</dimen>
 
@@ -146,8 +146,10 @@
     <dimen name="stadium_image_h">256dp</dimen>
 
     <!-- Margins -->
+    <dimen name="margin_extra_small">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
     <dimen name="margin_big">32dp</dimen>
 
 </resources>

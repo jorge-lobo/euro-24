@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.euro24.R
 import com.example.euro24.databinding.ActivityBottomNavBinding
 import com.example.euro24.ui.pastFinals.PastFinalsFragment
 import com.example.euro24.ui.home.HomeFragment
 import com.example.euro24.ui.home.internetConnection.InternetConnectionFragment
 import com.example.euro24.ui.hostCities.HostCitiesFragment
+import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 import com.example.euro24.ui.matches.MatchesFragment
 import com.example.euro24.ui.matches.calendar.CalendarFragment
+import com.example.euro24.ui.player.PlayerFragment
 import com.example.euro24.ui.teams.TeamsFragment
 import java.util.Stack
 
@@ -71,7 +75,7 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
                 true
             }
 
-            buttonBack.buttonBack.setOnClickListener {
+            buttonBack.buttonBackIcon.setOnClickListener {
                 onBackPressedAction()
             }
 
@@ -82,16 +86,16 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
     }
 
     private fun onBackPressedAction() {
-        if (fragmentStack.size > 1) {
-            fragmentStack.pop()
-            val lastFragment = fragmentStack.peek()
-            openFragment(lastFragment, addToBackStack = false)
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, lastFragment)
-                .commit()
-            updateBottomNavState(lastFragment)
+        if (binding.venueDetailFragmentContainer.visibility == View.VISIBLE) {
+            supportFragmentManager.popBackStackImmediate(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
+            openFragment(HostCitiesFragment())
+            hideVenueDetailFragmentContainer()
+            return
         } else {
-            finish()
+            openFragment(HomeFragment())
         }
     }
 
@@ -106,10 +110,25 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
             }
             .commit()
 
+        hideVenueDetailFragmentContainer()
         updateUIVisibility(fragment)
 
         if (!isSelectingItemManually) {
             updateBottomNavState(fragment)
+        }
+    }
+
+    private fun hideVenueDetailFragmentContainer() {
+        binding.apply {
+            fragmentContainer.visibility = View.VISIBLE
+            venueDetailFragmentContainer.visibility = View.INVISIBLE
+
+            wordMark.headerLogo.setColorFilter(
+                ContextCompat.getColor(
+                    this@BottomNavActivity,
+                    R.color.common_header_logo
+                )
+            )
         }
     }
 
@@ -128,8 +147,8 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
         binding.apply {
             imageBackground.visibility =
                 if (fragment is HomeFragment) View.VISIBLE else View.INVISIBLE
-            buttonBack.buttonBack.visibility =
-                if (fragment is HomeFragment) View.INVISIBLE else View.VISIBLE
+            buttonBack.buttonBackIcon.visibility =
+                if (fragment is VenueDetailFragment) View.VISIBLE else View.INVISIBLE
             buttonCalendar.buttonCalendar.visibility =
                 if (fragment is MatchesFragment) View.VISIBLE else View.INVISIBLE
         }

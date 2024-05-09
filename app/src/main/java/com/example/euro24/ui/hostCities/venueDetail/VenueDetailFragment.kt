@@ -1,60 +1,98 @@
 package com.example.euro24.ui.hostCities.venueDetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
+import com.example.euro24.databinding.FragmentVenueDetailBinding
+import com.example.euro24.ui.common.BaseFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class VenueDetailFragment : BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [VenueDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class VenueDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentVenueDetailBinding
+    private val mVenueDetailViewModel by lazy { ViewModelProvider(this)[VenueDetailViewModel::class.java] }
+    private val venueMatchesAdapter = VenueMatchesAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    companion object {
+        private const val ARG_VENUE_ID = "venue_id"
+
+        fun newInstance(venueId: Int): VenueDetailFragment {
+            val fragment = VenueDetailFragment()
+            val args = Bundle()
+            args.putInt(ARG_VENUE_ID, venueId)
+            fragment.arguments = args
+            return fragment
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_venue_detail, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_venue_detail,
+            container,
+            false
+        )
+
+        binding.viewModel = mVenueDetailViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        setupViews()
+        setupRecyclerView()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment VenueDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            VenueDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val venueId = arguments?.getInt(ARG_VENUE_ID) ?: 0
+        mVenueDetailViewModel.initialize(venueId)
+
+        setupObservers()
+    }
+
+    private fun setupViews() {
+        val logoColor = R.color.venue_detail_header_logo
+        binding.wordMarkVenueDetail.headerLogo.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                logoColor
+            )
+        )
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvVenueMatches.apply {
+            adapter = venueMatchesAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun setupObservers() {
+        with(mVenueDetailViewModel) {
+            hostCityImageResourceId.observe(viewLifecycleOwner) { resourceId ->
+                binding.imageHostCityBanner.setImageResource(resourceId)
+            }
+
+            stadiumImageResourceId.observe(viewLifecycleOwner) { resourceId ->
+                binding.imageStadium.setImageResource(resourceId)
+            }
+
+            sortedMatches.observe(viewLifecycleOwner) { matches ->
+                matches?.let {
+                    val matchCardNarrowItems = matches.map { VenueMatchesBindingItem(it) }
+                    venueMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }
+        }
     }
+
 }
