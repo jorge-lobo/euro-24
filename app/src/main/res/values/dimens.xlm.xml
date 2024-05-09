@@ -146,8 +146,10 @@
     <dimen name="stadium_image_h">256dp</dimen>
 
     <!-- Margins -->
+    <dimen name="margin_extra_small">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
     <dimen name="margin_big">32dp</dimen>
 
 </resources>
