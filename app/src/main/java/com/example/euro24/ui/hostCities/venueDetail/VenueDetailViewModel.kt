@@ -5,6 +5,8 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.euro24.R
+import com.example.euro24.data.matches.Match
+import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.data.venues.VenueRepository
 import com.example.euro24.ui.common.BaseViewModel
 import com.example.euro24.utils.ImagesResourceMap
@@ -16,6 +18,7 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
     LifecycleObserver {
 
     private val venueRepository: VenueRepository = VenueRepository(application)
+    private val matchRepository: MatchRepository = MatchRepository(application)
 
     var hostCityNameEnglish = MutableLiveData<String>().apply { value = "" }
     var hostCityNameGerman = MutableLiveData<String>().apply { value = "" }
@@ -28,8 +31,12 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
     var hostCityImageResourceId = MutableLiveData<Int>().apply { value = 0 }
     var stadiumImageResourceId = MutableLiveData<Int>().apply { value = 0 }
 
+    private var matches = MutableLiveData<List<Match>?>()
+    val sortedMatches = MutableLiveData<List<Match>?>()
+
     fun initialize(venueId: Int) {
         getVenueDetails(venueId)
+        getVenueFixtures(venueId)
     }
 
     private fun getVenueDetails(venueId: Int) {
@@ -65,6 +72,30 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
                 isLoading.value = false
             }
         }
+    }
+
+    private fun getVenueFixtures(venueId: Int) {
+        isLoading.value = true
+
+        noDataAvailable.value = false
+
+        viewModelScope.launch {
+            try {
+                val result = matchRepository.getMatches().filter { it.venueId == venueId }
+                handleMatchesResult(result)
+            } catch (e: Exception) {
+                onError(e.message)
+            } finally {
+                isLoading.value = false
+                isRefreshing.value = false
+            }
+        }
+    }
+
+    private fun handleMatchesResult(result: List<Match>) {
+        matches.value = result.sortedBy { it.id }
+        sortedMatches.value = matches.value
+        noDataAvailable.value = result.isEmpty()
     }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {

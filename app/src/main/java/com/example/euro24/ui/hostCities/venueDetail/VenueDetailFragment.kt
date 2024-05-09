@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentVenueDetailBinding
 import com.example.euro24.ui.common.BaseFragment
@@ -15,7 +16,7 @@ class VenueDetailFragment : BaseFragment() {
 
     private lateinit var binding: FragmentVenueDetailBinding
     private val mVenueDetailViewModel by lazy { ViewModelProvider(this)[VenueDetailViewModel::class.java] }
-
+    private val venueMatchesAdapter = VenueMatchesAdapter()
 
     companion object {
         private const val ARG_VENUE_ID = "venue_id"
@@ -44,6 +45,7 @@ class VenueDetailFragment : BaseFragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         setupViews()
+        setupRecyclerView()
 
         return binding.root
     }
@@ -67,6 +69,13 @@ class VenueDetailFragment : BaseFragment() {
         )
     }
 
+    private fun setupRecyclerView() {
+        binding.rvVenueMatches.apply {
+            adapter = venueMatchesAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
     private fun setupObservers() {
         with(mVenueDetailViewModel) {
             hostCityImageResourceId.observe(viewLifecycleOwner) { resourceId ->
@@ -75,6 +84,13 @@ class VenueDetailFragment : BaseFragment() {
 
             stadiumImageResourceId.observe(viewLifecycleOwner) { resourceId ->
                 binding.imageStadium.setImageResource(resourceId)
+            }
+
+            sortedMatches.observe(viewLifecycleOwner) { matches ->
+                matches?.let {
+                    val matchCardNarrowItems = matches.map { VenueMatchesBindingItem(it) }
+                    venueMatchesAdapter.submitList(matchCardNarrowItems)
+                }
             }
         }
     }

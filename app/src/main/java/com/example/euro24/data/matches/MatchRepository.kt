@@ -44,11 +44,6 @@ class MatchRepository(private val context: Context) {
         return foundMatch?.copy()
     }
 
-    fun getMatchByVenue(venueId: Int): Match? {
-        val foundMatch = matches.find { it.venueId == venueId }
-        return foundMatch?.copy()
-    }
-
     fun getMatchByStage(phase: String): Match? {
         val foundMatch = matches.find { it.phase == phase }
         return foundMatch?.copy()
