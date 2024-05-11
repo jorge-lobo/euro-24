@@ -41,6 +41,8 @@ class TeamDetailFragment : BaseFragment() {
         binding.viewModel = mTeamDetailViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        openFragment(TeamInfoFragment())
+
         return binding.root
     }
 
@@ -69,7 +71,7 @@ class TeamDetailFragment : BaseFragment() {
     }
 
     private fun setupListeners() {
-        binding.buttonsContainer.setOnCheckedChangeListener { group, checkedId ->
+        binding.buttonsContainer.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_team_info -> openFragment(TeamInfoFragment())
                 R.id.rb_team_matches -> openFragment(TeamMatchesFragment())
@@ -79,6 +81,10 @@ class TeamDetailFragment : BaseFragment() {
     }
 
     private fun openFragment(fragment: Fragment) {
+        val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
+        fragment.arguments = Bundle().apply {
+            putInt(ARG_TEAM_ID, teamId)
+        }
         childFragmentManager.beginTransaction()
             .replace(R.id.team_detail_fragment_container, fragment)
             .commit()

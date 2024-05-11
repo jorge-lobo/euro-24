@@ -81,4 +81,9 @@ dependencies {
     implementation("com.mikepenz:fastadapter-extensions-ui:${latestFastAdapterRelease}") // pre-defined ui components
     implementation("com.mikepenz:fastadapter-extensions-utils:${latestFastAdapterRelease}") // needs the `expandable`, `drag` and `scroll` extension.
     implementation("androidx.databinding:databinding-common:8.3.1")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
 }

@@ -81,7 +81,7 @@
     <string name="team_label_fifa_code">FIFA code</string>
     <string name="team_label_kit_brand">Kit brand</string>
     <string name="team_label_number_appearances">Number of appearances</string>
-    <string name="team_label_past_appearances">Past appearances</string>
+    <string name="team_label_previous_appearances">Previous appearances</string>
     <string name="team_label_number_titles">Number of titles</string>
     <string name="team_label_best_result">Best result</string>
     <string name="team_label_date_qualification">Date of qualification</string>
@@ -175,9 +175,11 @@
     <string name="description_logo_word_mark">Euro 24 word mark</string>
     <string name="description_image_background">Image background</string>
     <string name="description_image_host_city">Host City Image</string>
+    <string name="description_image_team">Team Image</string>
     <string name="description_button_icon">Icon button</string>
     <string name="description_icon">Icon image</string>
     <string name="description_flag">Nation Flag</string>
+    <string name="description_team_crest">Team Crest</string>
     <string name="description_tv_icon">TV icon</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

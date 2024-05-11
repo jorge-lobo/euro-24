@@ -140,7 +140,7 @@
     <dimen name="host_city_card_banner_h">32dp</dimen>
 
     <!-- Images -->
-    <dimen name="team_crest">64dp</dimen>
+    <dimen name="team_crest">80dp</dimen>
     <dimen name="team_image_h">240dp</dimen>
     <dimen name="club_crest">48dp</dimen>
     <dimen name="city_image_h">240dp</dimen>
