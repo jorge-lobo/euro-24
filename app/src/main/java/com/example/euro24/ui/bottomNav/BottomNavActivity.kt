@@ -6,7 +6,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.euro24.R
 import com.example.euro24.databinding.ActivityBottomNavBinding
 import com.example.euro24.ui.pastFinals.PastFinalsFragment
@@ -16,8 +15,8 @@ import com.example.euro24.ui.hostCities.HostCitiesFragment
 import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 import com.example.euro24.ui.matches.MatchesFragment
 import com.example.euro24.ui.matches.calendar.CalendarFragment
-import com.example.euro24.ui.player.PlayerFragment
 import com.example.euro24.ui.teams.TeamsFragment
+import com.example.euro24.ui.teams.teamDetail.TeamDetailFragment
 import java.util.Stack
 
 class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFragmentListener,
@@ -86,14 +85,14 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
     }
 
     private fun onBackPressedAction() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+
         if (binding.venueDetailFragmentContainer.visibility == View.VISIBLE) {
-            supportFragmentManager.popBackStackImmediate(
-                null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
-            )
             openFragment(HostCitiesFragment())
             hideVenueDetailFragmentContainer()
             return
+        } else if (currentFragment is TeamDetailFragment) {
+            openFragment(TeamsFragment())
         } else {
             openFragment(HomeFragment())
         }

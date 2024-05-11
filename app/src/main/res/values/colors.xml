@@ -24,6 +24,14 @@
     <!-- Home Fragment -->
     <color name="home_fragment_text">@color/white</color>
 
+    <!-- Team Detail Fragment -->
+    <color name="team_btn_text_normal">@color/white</color>
+    <color name="team_btn_text_active">@color/orange</color>
+    <color name="team_default_background_text">@color/white</color>
+    <color name="team_white_box_text">@color/anthracite</color>
+    <color name="team_orange_box_text">@color/white</color>
+    <color name="team_name_container">@color/charcoal50</color>
+
     <!-- Past Finals Fragment -->
     <color name="historic_labels">@color/anthracite</color>
     <color name="historic_rv">@color/anthracite</color>
@@ -57,6 +65,12 @@
 
     <!-- Team Cards -->
     <color name="team_card_text">@color/white</color>
+
+    <!-- Player Cards -->
+    <color name="player_card_text">@color/white</color>
+    <color name="player_card_captain">@color/orange</color>
+    <color name="player_card_background">@color/charcoal50</color>
+    <color name="player_card_number_box">@color/orange</color>
 
     <!-- BottomNav -->
     <color name="bottomNav_background">@color/charcoal50</color>

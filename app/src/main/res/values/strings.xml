@@ -75,7 +75,7 @@
 
     <!-- TeamDetail -->
     <string name="team_button_info">Info</string>
-    <string name="team_button_quad">Squad</string>
+    <string name="team_button_squad">Squad</string>
     <string name="team_button_matches">Matches</string>
     <string name="team_subtitle_statistics">Euro\'s statistics</string>
     <string name="team_label_fifa_code">FIFA code</string>

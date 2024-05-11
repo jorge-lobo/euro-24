@@ -33,6 +33,7 @@
 
     <dimen name="team_grid_name">16sp</dimen>
 
+    <dimen name="team_name">44sp</dimen>
     <dimen name="team_nickname_og">28sp</dimen>
     <dimen name="team_nickname_eng">16sp</dimen>
     <dimen name="team_detail">16sp</dimen>
