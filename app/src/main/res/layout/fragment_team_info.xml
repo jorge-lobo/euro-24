@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.euro24.ui.teams.teamDetail.TeamInfoViewModel" />
+            type="com.example.euro24.ui.teams.teamDetail.teamInfo.TeamInfoViewModel" />
 
     </data>
 
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:background="@color/common_background_color"
-        tools:context=".ui.teams.teamDetail.TeamInfoFragment">
+        tools:context=".ui.teams.teamDetail.teamInfo.TeamInfoFragment">
 
         <RelativeLayout
             android:id="@+id/body_container"

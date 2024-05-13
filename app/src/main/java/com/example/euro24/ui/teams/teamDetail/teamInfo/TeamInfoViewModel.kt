@@ -1,4 +1,4 @@
-package com.example.euro24.ui.teams.teamDetail
+package com.example.euro24.ui.teams.teamDetail.teamInfo
 
 import android.app.Application
 import androidx.lifecycle.LifecycleObserver

@@ -10,6 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentTeamDetailBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.teams.teamDetail.teamInfo.TeamInfoFragment
+import com.example.euro24.ui.teams.teamDetail.teamMatches.TeamMatchesFragment
+import com.example.euro24.ui.teams.teamDetail.teamSquad.TeamSquadFragment
 
 class TeamDetailFragment : BaseFragment() {
 

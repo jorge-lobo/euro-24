@@ -60,7 +60,7 @@
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/teko_regular"
                     android:gravity="end"
-                    android:text="@{match.venueId.toString()}"
+                    android:text="@{match.city}"
                     android:textColor="@color/match_card_text"
                     android:textSize="@dimen/match_narrow_info"
                     android:visibility="visible"
