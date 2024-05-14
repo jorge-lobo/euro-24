@@ -1,0 +1,220 @@
+{
+  "managers": [
+    {
+      "id": 1,
+      "team": "Germany",
+      "name": "Julian Nagelsmann",
+      "dob": "23/07/1987",
+      "nationality": "Germany",
+      "placeBirth": "Landsberg am Lech",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.07/35007232.png"
+    },
+    {
+      "id": 2,
+      "team": "Scotland",
+      "name": "Steve Clarke",
+      "dob": "29/08/1963",
+      "nationality": "Scotland",
+      "placeBirth": "Saltcoats",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/13.11/2015026.png"
+    },
+    {
+      "id": 3,
+      "team": "Hungary",
+      "name": "Marco Rossi",
+      "dob": "09/09/1964",
+      "nationality": "Italy",
+      "placeBirth": "Druento",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/13.11/681184.png"
+    },
+    {
+      "id": 4,
+      "team": "Switzerland",
+      "name": "Murat Yakin",
+      "dob": "15/09/1974",
+      "nationality": "Switzerland",
+      "placeBirth": "Basel",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.15/500145.png"
+    },
+    {
+      "id": 5,
+      "team": "Spain",
+      "name": "Luis de la Fuente",
+      "dob": "21/06/1961",
+      "nationality": "Spain",
+      "placeBirth": "Haro",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.04/812004.png"
+    },
+    {
+      "id": 6,
+      "team": "Croatia",
+      "name": "Zlatko Dalić",
+      "dob": "26/10/1966",
+      "nationality": "Croatia",
+      "placeBirth": "Livno",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.03/107886.png"
+    },
+    {
+      "id": 7,
+      "team": "Italy",
+      "name": "Luciano Spalletti",
+      "dob": "07/03/1959",
+      "nationality": "Italy",
+      "placeBirth": "Certaldo",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.01/705161.png"
+    },
+    {
+      "id": 8,
+      "team": "Albania",
+      "name": "Sylvinho",
+      "dob": "12/04/1974",
+      "nationality": "Brazil",
+      "placeBirth": "São Paulo",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.08/3301201.png"
+    },
+    {
+      "id": 9,
+      "team": "Slovenia",
+      "name": "Matjaž Kek",
+      "dob": "09/09/1961",
+      "nationality": "Slovenia",
+      "placeBirth": "Maribor",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/13.06/2016400.png"
+    },
+    {
+      "id": 11,
+      "team": "Serbia",
+      "name": "Dragan Stojkovic",
+      "dob": "03/03/1965",
+      "nationality": "Serbia",
+      "placeBirth": "Niš",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.04/104316.png"
+    },
+    {
+      "id": 12,
+      "team": "England",
+      "name": "Gareth Southgate",
+      "dob": "03/09/1970",
+      "nationality": "England",
+      "placeBirth": "Waltford",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.03/2005565.png"
+    },
+    {
+      "id": 13,
+      "team": "Denmark",
+      "name": "Kasper Hjulmand",
+      "dob": "09/04/1972",
+      "nationality": "Denmark",
+      "placeBirth": "Gandrup",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.03/27004763.png"
+    },
+    {
+      "id": 13,
+      "team": "Poland",
+      "name": "Michał Probierz",
+      "dob": "24/09/1972",
+      "nationality": "Poland",
+      "placeBirth": "Bytom",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2022.14/710885.png"
+    },
+    {
+      "id": 14,
+      "team": "Netherlands",
+      "name": "Ronald Koeman",
+      "dob": "21/03/1963",
+      "nationality": "Netherlands",
+      "placeBirth": "Zaandam",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/12.18/4200590.png"
+    },
+    {
+      "id": 15,
+      "team": "Austria",
+      "name": "Ralf Rangnick",
+      "dob": "29/06/1958",
+      "nationality": "Germany",
+      "placeBirth": "Backnang",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2022.04/3601106.png"
+    },
+    {
+      "id": 16,
+      "team": "France",
+      "name": "Didier Deschamps",
+      "dob": "15/10/1968",
+      "nationality": "France",
+      "placeBirth": "Bayonne",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.03/8079.png"
+    },
+    {
+      "id": 17,
+      "team": "Belgium",
+      "name": "Domenico Tedesco",
+      "dob": "12/09/1985",
+      "nationality": "Italy",
+      "placeBirth": "Rossano",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.11/92083674.png"
+    },
+    {
+      "id": 18,
+      "team": "Slovakia",
+      "name": "Francesco Calzona",
+      "dob": "24/10/1968",
+      "nationality": "Italy",
+      "placeBirth": "Vibo Valentia",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2024.04/43074460.png"
+    },
+    {
+      "id": 19,
+      "team": "Romania",
+      "name": "Edward Iordănescu",
+      "dob": "16/06/1978",
+      "nationality": "Romania",
+      "placeBirth": "Bucharest",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/13.09/57067017.png"
+    },
+    {
+      "id": 20,
+      "team": "Ukraine",
+      "name": "Serhiy Rebrov",
+      "dob": "03/06/1974",
+      "nationality": "Ukraine",
+      "placeBirth": "Horlivka",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.12/2018842.png"
+    },
+    {
+      "id": 21,
+      "team": "Türkiye",
+      "name": "Vincenzo Montella",
+      "dob": "18/06/1974",
+      "nationality": "Italy",
+      "placeBirth": "Pomigliano d'Arco",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2024.05/12533.png"
+    },
+    {
+      "id": 22,
+      "team": "Georgia",
+      "name": "Willy Sagnol",
+      "dob": "18/03/1977",
+      "nationality": "France",
+      "placeBirth": "Saint-Étienne",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/12.17/403125.png"
+    },
+    {
+      "id": 23,
+      "team": "Portugal",
+      "name": "Roberto Martínez",
+      "dob": "13/07/1973",
+      "nationality": "Spain",
+      "placeBirth": "Balaguer",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2023.03/2017096.png"
+    },
+    {
+      "id": 24,
+      "team": "Czechia",
+      "name": "Ivan Hašek",
+      "dob": "06/09/1963",
+      "nationality": "Czech Republic",
+      "placeBirth": "Městec Králové",
+      "image": "https://sortitoutsidospaces.b-cdn.net/megapacks/cutoutfaces/originals/2022.13/132895.png"
+    }
+  ]
+}

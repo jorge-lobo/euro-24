@@ -125,7 +125,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/margin_small"
                         android:fontFamily="@font/teko_semi_bold"
-                        android:textAllCaps="true"
                         android:text="@{viewModel.teamKitBrand}"
                         android:textColor="@color/team_white_box_text"
                         android:textSize="@dimen/team_detail"

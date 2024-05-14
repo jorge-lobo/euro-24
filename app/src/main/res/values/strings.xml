@@ -176,6 +176,7 @@
     <string name="description_image_background">Image background</string>
     <string name="description_image_host_city">Host City Image</string>
     <string name="description_image_team">Team Image</string>
+    <string name="description_image_player">Player Photo</string>
     <string name="description_button_icon">Icon button</string>
     <string name="description_icon">Icon image</string>
     <string name="description_flag">Nation Flag</string>

@@ -37,8 +37,9 @@
     <dimen name="team_nickname_og">28sp</dimen>
     <dimen name="team_nickname_eng">16sp</dimen>
     <dimen name="team_detail">16sp</dimen>
+    <dimen name="team_label_position">16sp</dimen>
 
-    <dimen name="player_name">32sp</dimen>
+    <dimen name="player_name">28sp</dimen>
     <dimen name="player_number">64sp</dimen>
     <dimen name="player_detail">24sp</dimen>
     <dimen name="player_club">32sp</dimen>
@@ -76,7 +77,7 @@
 
     <dimen name="player_card_name">24sp</dimen>
     <dimen name="player_card_captain">40sp</dimen>
-    <dimen name="player_card_number">40sp</dimen>
+    <dimen name="player_card_number">36sp</dimen>
 
     <!-- Icons -->
     <dimen name="icon_small">16dp</dimen>

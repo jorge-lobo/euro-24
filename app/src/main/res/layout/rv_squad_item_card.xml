@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="player"
+            type="com.example.euro24.data.players.Player" />
+
+        <variable
+            name="manager"
+            type="com.example.euro24.data.managers.Manager" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small">
+
+        <RelativeLayout
+            android:id="@+id/player_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/player_card_h"
+            android:background="@drawable/background_player_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/player_card_photo_container"
+                android:layout_width="@dimen/player_card_photo"
+                android:layout_height="@dimen/player_card_photo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/background_player_photo">
+
+                <ImageView
+                    android:id="@+id/image_player_card_photo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:contentDescription="@string/description_image_player"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/default_face" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/text_player_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignEnd="@id/image_captain"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:layout_toEndOf="@id/player_card_photo_container"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_vertical"
+                android:text="@{player.shortName}"
+                android:textColor="@color/player_card_text"
+                android:textSize="@dimen/player_name"
+                tools:text="Cristiano Ronaldo" />
+
+            <TextView
+                android:id="@+id/text_manager_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignEnd="@id/image_captain"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:layout_toEndOf="@id/player_card_photo_container"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_vertical"
+                android:text="@{manager.name}"
+                android:textColor="@color/player_card_text"
+                android:textSize="@dimen/player_name"
+                android:visibility="invisible"
+                tools:text="CRoberto Martínez" />
+
+            <ImageView
+                android:id="@+id/image_captain"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_toStartOf="@id/player_card_number_container"
+                android:contentDescription="@string/description_icon"
+                android:src="@drawable/icon_captain"
+                tools:visibility="visible"
+                android:visibility="invisible"
+                app:tint="@color/player_card_captain" />
+
+            <FrameLayout
+                android:id="@+id/player_card_number_container"
+                android:layout_width="@dimen/player_card_number_w"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/background_player_card_number_container">
+
+                <TextView
+                    android:id="@+id/text_player_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center"
+                    android:text="@{player.number.toString()}"
+                    android:textColor="@color/player_card_text"
+                    android:textSize="@dimen/player_card_number"
+                    tools:text="25" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
