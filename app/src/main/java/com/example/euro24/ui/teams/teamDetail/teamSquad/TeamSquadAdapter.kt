@@ -42,7 +42,7 @@ class TeamSquadAdapter: RecyclerView.Adapter<TeamSquadAdapter.ViewHolder>() {
             }
 
         override fun onClick(v: View?) {
-            val player = items[adapterPosition].player
+            val player = items[absoluteAdapterPosition].player
             player?.id?.let {
                 val fragment = PlayerFragment.newInstance(it)
                 val transaction = (v?.context as AppCompatActivity).supportFragmentManager.beginTransaction()
