@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.teams.teamDetail.teamSquad.TeamSquadViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_normal">
+
+        <RelativeLayout
+            android:id="@+id/body_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_normal"
+            android:paddingBottom="@dimen/margin_normal"
+            tools:background="@color/common_background_color"
+            tools:context=".ui.teams.teamDetail.teamSquad.TeamSquadFragment">
+
+            <TextView
+                android:id="@+id/label_forwards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/teko_regular"
+                android:text="@string/team_squad_forwards"
+                android:textAllCaps="true"
+                android:textColor="@color/team_default_background_text"
+                android:textSize="@dimen/team_label_position" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_squad_forwards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_forwards"
+                android:layout_marginTop="@dimen/margin_extra_small" />
+
+            <TextView
+                android:id="@+id/label_midfielders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_squad_forwards"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="@font/teko_regular"
+                android:text="@string/team_squad_midfielders"
+                android:textAllCaps="true"
+                android:textColor="@color/team_default_background_text"
+                android:textSize="@dimen/team_label_position" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_squad_midfielders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_midfielders"
+                android:layout_marginTop="@dimen/margin_extra_small" />
+
+            <TextView
+                android:id="@+id/label_defenders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_squad_midfielders"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="@font/teko_regular"
+                android:text="@string/team_squad_defenders"
+                android:textAllCaps="true"
+                android:textColor="@color/team_default_background_text"
+                android:textSize="@dimen/team_label_position" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_squad_defenders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_defenders"
+                android:layout_marginTop="@dimen/margin_extra_small" />
+
+            <TextView
+                android:id="@+id/label_goalkeepers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_squad_defenders"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="@font/teko_regular"
+                android:text="@string/team_squad_goalkeepers"
+                android:textAllCaps="true"
+                android:textColor="@color/team_default_background_text"
+                android:textSize="@dimen/team_label_position" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_squad_goalkeepers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_goalkeepers"
+                android:layout_marginTop="@dimen/margin_extra_small" />
+
+            <TextView
+                android:id="@+id/label_head_manager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_squad_goalkeepers"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="@font/teko_regular"
+                android:text="@string/team_squad_head_manager"
+                android:textAllCaps="true"
+                android:textColor="@color/team_default_background_text"
+                android:textSize="@dimen/team_label_position" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_squad_head_manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_head_manager"
+                android:layout_marginTop="@dimen/margin_extra_small" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.teams.teamDetail.teamMatches.TeamMatchesViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/body_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.teams.teamDetail.teamMatches.TeamMatchesFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_team_matches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal" />
+
+    </RelativeLayout>
+
+</layout>

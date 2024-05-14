@@ -58,6 +58,33 @@ object ImagesResourceMap {
         24 to R.drawable.flag_czechia
     )
 
+    val crestResourceMapById = mapOf(
+        1 to R.drawable.crest_germany,
+        2 to R.drawable.crest_scotland,
+        3 to R.drawable.crest_hungary,
+        4 to R.drawable.crest_switzerland,
+        5 to R.drawable.crest_spain,
+        6 to R.drawable.crest_croatia,
+        7 to R.drawable.crest_italy,
+        8 to R.drawable.crest_albania,
+        9 to R.drawable.crest_slovenia,
+        10 to R.drawable.crest_denmark,
+        11 to R.drawable.crest_serbia,
+        12 to R.drawable.crest_england,
+        13 to R.drawable.crest_poland,
+        14 to R.drawable.crest_netherlands,
+        15 to R.drawable.crest_austria,
+        16 to R.drawable.crest_france,
+        17 to R.drawable.crest_belgium,
+        18 to R.drawable.crest_slovakia,
+        19 to R.drawable.crest_romania,
+        20 to R.drawable.crest_ukraine,
+        21 to R.drawable.crest_turkiye,
+        22 to R.drawable.crest_georgia,
+        23 to R.drawable.crest_portugal,
+        24 to R.drawable.crest_czechia
+    )
+
     val teamImageResourceMapById = mapOf(
         1 to R.drawable.image_team_germany,
         2 to R.drawable.image_team_scotland,

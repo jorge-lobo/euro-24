@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.teams.TeamsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.teams.TeamsViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/margin_normal"
+        tools:background="@color/common_background_color"
+        tools:context=".ui.teams.TeamsFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/title_teams"
+            android:textAllCaps="true"
+            android:textColor="@color/common_text_title"
+            android:textSize="@dimen/common_title" />
+
+        <GridView
+            android:id="@+id/grid_teams"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_title"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:horizontalSpacing="@dimen/margin_small"
+            android:numColumns="4"
+            android:padding="@dimen/margin_normal"
+            android:verticalSpacing="@dimen/margin_normal" />
+
+    </RelativeLayout>
+
+</layout>

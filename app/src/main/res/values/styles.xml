@@ -6,4 +6,8 @@
         <item name="android:fontFamily">@font/teko_regular</item>
     </style>
 
+    <style name="RadioButtonNoButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:button">@null</item>
+    </style>
+
 </resources>

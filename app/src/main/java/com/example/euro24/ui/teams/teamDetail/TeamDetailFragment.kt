@@ -1,60 +1,96 @@
 package com.example.euro24.ui.teams.teamDetail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
+import com.example.euro24.databinding.FragmentTeamDetailBinding
+import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.teams.teamDetail.teamInfo.TeamInfoFragment
+import com.example.euro24.ui.teams.teamDetail.teamMatches.TeamMatchesFragment
+import com.example.euro24.ui.teams.teamDetail.teamSquad.TeamSquadFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class TeamDetailFragment : BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TeamDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TeamDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentTeamDetailBinding
+    private val mTeamDetailViewModel by lazy { ViewModelProvider(this)[TeamDetailViewModel::class.java] }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    companion object {
+        private const val ARG_TEAM_ID = "team_id"
+
+        fun newInstance(teamId: Int): TeamDetailFragment {
+            val fragment = TeamDetailFragment()
+            val args = Bundle()
+            args.putInt(ARG_TEAM_ID, teamId)
+            fragment.arguments = args
+            return fragment
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_team_detail, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_team_detail,
+            container,
+            false
+        )
+        binding.viewModel = mTeamDetailViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        openFragment(TeamInfoFragment())
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TeamDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TeamDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
+        mTeamDetailViewModel.initialize(teamId)
+
+        setupViews()
+        setupObservers()
+        setupListeners()
     }
+
+    private fun setupViews() {
+        activity?.findViewById<View>(R.id.button_back_icon)?.visibility = View.VISIBLE
+    }
+
+    private fun setupObservers() {
+        with(mTeamDetailViewModel) {
+            teamFlagResourceId.observe(viewLifecycleOwner) { resourceId ->
+                binding.imageTeamFlagHeader.setImageResource(resourceId)
+            }
+
+        }
+    }
+
+    private fun setupListeners() {
+        binding.buttonsContainer.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rb_team_info -> openFragment(TeamInfoFragment())
+                R.id.rb_team_matches -> openFragment(TeamMatchesFragment())
+                R.id.rb_team_squad -> openFragment(TeamSquadFragment())
+            }
+        }
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
+        fragment.arguments = Bundle().apply {
+            putInt(ARG_TEAM_ID, teamId)
+        }
+        childFragmentManager.beginTransaction()
+            .replace(R.id.team_detail_fragment_container, fragment)
+            .commit()
+    }
+
 }

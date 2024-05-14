@@ -14,6 +14,7 @@
         <import type="com.example.euro24.utils.DateUtils" />
 
         <import type="java.util.TimeZone" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +61,7 @@
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/teko_regular"
                     android:gravity="end"
-                    android:text="@{match.venueId.toString()}"
+                    android:text="@{match.city}"
                     android:textColor="@color/match_card_text"
                     android:textSize="@dimen/match_narrow_info"
                     android:visibility="visible"
@@ -137,7 +138,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/teko_regular"
                         android:gravity="end"
-                        android:text="@{match.resultTeam1.toString()}"
                         android:textColor="@color/match_card_text"
                         android:textSize="@dimen/match_narrow_score"
                         tools:text="1" />
@@ -158,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/teko_regular"
                         android:gravity="start"
-                        android:text="@{match.resultTeam2.toString()}"
                         android:textColor="@color/match_card_text"
                         android:textSize="@dimen/match_narrow_score"
                         tools:text="0" />

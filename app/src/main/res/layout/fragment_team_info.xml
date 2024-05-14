@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.teams.teamDetail.teamInfo.TeamInfoViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/common_background_color"
+        tools:context=".ui.teams.teamDetail.teamInfo.TeamInfoFragment">
+
+        <RelativeLayout
+            android:id="@+id/body_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="0dp">
+
+            <ImageView
+                android:id="@+id/image_team_photo"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_below="@id/team_white_container"
+                android:layout_marginTop="-32dp"
+                android:contentDescription="@string/description_image_team"
+                android:scaleType="fitStart"
+                tools:src="@drawable/default_image" />
+
+            <RelativeLayout
+                android:id="@+id/team_white_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_container_large_white"
+                android:padding="@dimen/margin_normal">
+
+                <TextView
+                    android:id="@+id/text_team_nickname_og"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/image_team_crest"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@{viewModel.teamNicknameOg}"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:textColor="@color/team_white_box_text"
+                    android:textSize="@dimen/team_nickname_og"
+                    tools:text="A Seleção das Quinas" />
+
+                <TextView
+                    android:id="@+id/text_team_nickname_eng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_team_nickname_og"
+                    android:layout_alignStart="@id/image_team_crest"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="-8dp"
+                    android:text="@{viewModel.teamNicknameEng}"
+                    android:fontFamily="@font/teko_regular"
+                    android:textColor="@color/team_white_box_text"
+                    android:textSize="@dimen/team_nickname_eng"
+                    tools:text="The Team of the Escutcheons" />
+
+                <ImageView
+                    android:id="@+id/image_team_crest"
+                    android:layout_width="@dimen/team_crest"
+                    android:layout_height="@dimen/team_crest"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/description_team_crest"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/default_image" />
+
+                <LinearLayout
+                    android:id="@+id/minor_details_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_team_nickname_eng"
+                    android:layout_alignBaseline="@id/image_team_crest"
+                    android:layout_alignStart="@id/image_team_crest"
+                    android:layout_alignParentStart="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/label_fifa_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_fifa_code"
+                        android:textColor="@color/team_white_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_fifa_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textAllCaps="true"
+                        android:text="@{viewModel.teamFifaCode}"
+                        android:textColor="@color/team_white_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="POR" />
+
+                    <TextView
+                        android:id="@+id/label_kit_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_big"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_kit_brand"
+                        android:textColor="@color/team_white_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_kit_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.teamKitBrand}"
+                        android:textColor="@color/team_white_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="Nike" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/team_orange_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_white_container"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/background_container_large_orange"
+                android:padding="@dimen/margin_normal">
+
+                <TextView
+                    android:id="@+id/label_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:text="@string/team_subtitle_statistics"
+                    android:textColor="@color/team_orange_box_text"
+                    android:textSize="@dimen/common_subtitle" />
+
+                <RelativeLayout
+                    android:id="@+id/number_appearances_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_subtitle"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_number_appearances"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_number_appearances"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_number_appearances"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamNumberAppearances.toString()}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="8" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/previous_appearances_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/number_appearances_container"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_previous_appearances"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_previous_appearances"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_previous_appearances"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamPreviousAppearances}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="1972, 1976, 1980, 1984, 1988, 1992, 1996, 2000, 2004, 2008, 2012, 2016, 2020" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/number_titles_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/previous_appearances_container"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_number_titles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_number_titles"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_number_titles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamNumberTitles.toString()}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="1" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/best_result_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/number_titles_container"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_best_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_best_result"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_best_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamBestResult}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_orange_box_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="Champions" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottom_details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_orange_container"
+                android:paddingHorizontal="@dimen/margin_normal"
+                android:paddingVertical="@dimen/margin_small">
+
+                <RelativeLayout
+                    android:id="@+id/date_qualification_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_date_qualification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_date_qualification"
+                        android:textColor="@color/team_default_background_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_date_qualification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamDateQualification}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_default_background_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="13/10/2023" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/qualified_as_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/date_qualification_container"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true">
+
+                    <TextView
+                        android:id="@+id/label_qualified_as"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/team_label_qualified_as"
+                        android:textColor="@color/team_default_background_text"
+                        android:textSize="@dimen/team_detail" />
+
+                    <TextView
+                        android:id="@+id/text_qualified_as"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="128dp"
+                        android:text="@{viewModel.teamQualifiedAs}"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:textColor="@color/team_default_background_text"
+                        android:textSize="@dimen/team_detail"
+                        tools:text="Group J winner" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</layout>
