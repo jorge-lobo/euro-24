@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentTeamSquadBinding
 import com.example.euro24.ui.common.BaseFragment

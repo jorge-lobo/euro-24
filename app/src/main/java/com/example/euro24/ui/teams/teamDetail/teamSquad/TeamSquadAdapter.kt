@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.euro24.R
 import com.example.euro24.databinding.RvSquadItemCardBinding
+import com.example.euro24.ui.player.PlayerFragment
 
-class TeamSquadAdapter : RecyclerView.Adapter<TeamSquadAdapter.ViewHolder>() {
+class TeamSquadAdapter: RecyclerView.Adapter<TeamSquadAdapter.ViewHolder>() {
 
     private var items: List<TeamSquadBindingItem> = emptyList()
     private val defaultFace = R.drawable.default_face
@@ -33,7 +35,24 @@ class TeamSquadAdapter : RecyclerView.Adapter<TeamSquadAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(private val binding: RvSquadItemCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+            init {
+                binding.root.setOnClickListener(this)
+            }
+
+        override fun onClick(v: View?) {
+            val player = items[adapterPosition].player
+            player?.id?.let {
+                val fragment = PlayerFragment.newInstance(it)
+                val transaction = (v?.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                transaction.apply {
+                    replace(R.id.fragment_container, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+        }
 
         fun bind(item: TeamSquadBindingItem) {
             binding.apply {
