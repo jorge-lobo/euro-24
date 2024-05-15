@@ -21,11 +21,13 @@ class TeamDetailFragment : BaseFragment() {
 
     companion object {
         private const val ARG_TEAM_ID = "team_id"
+        private const val ARG_INITIAL_FRAGMENT_ID = "initial_fragment_id"
 
-        fun newInstance(teamId: Int): TeamDetailFragment {
+        fun newInstance(teamId: Int, initialFragmentId: Int): TeamDetailFragment {
             val fragment = TeamDetailFragment()
             val args = Bundle()
             args.putInt(ARG_TEAM_ID, teamId)
+            args.putInt(ARG_INITIAL_FRAGMENT_ID, initialFragmentId)
             fragment.arguments = args
             return fragment
         }
@@ -53,11 +55,13 @@ class TeamDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
+        val initialFragmentId = arguments?.getInt(ARG_INITIAL_FRAGMENT_ID) ?: R.id.rb_team_info
         mTeamDetailViewModel.initialize(teamId)
 
         setupViews()
         setupObservers()
         setupListeners()
+        openInitialFragment(initialFragmentId)
     }
 
     private fun setupViews() {
@@ -83,14 +87,24 @@ class TeamDetailFragment : BaseFragment() {
         }
     }
 
+    private fun openInitialFragment(initialFragmentId: Int) {
+        val initialFragment = when (initialFragmentId) {
+            R.id.rb_team_info -> TeamInfoFragment()
+            R.id.rb_team_matches -> TeamMatchesFragment()
+            R.id.rb_team_squad -> TeamSquadFragment()
+            else -> TeamInfoFragment()
+        }
+        openFragment(initialFragment)
+    }
+
     private fun openFragment(fragment: Fragment) {
         val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
         fragment.arguments = Bundle().apply {
             putInt(ARG_TEAM_ID, teamId)
         }
+
         childFragmentManager.beginTransaction()
             .replace(R.id.team_detail_fragment_container, fragment)
             .commit()
     }
-
 }

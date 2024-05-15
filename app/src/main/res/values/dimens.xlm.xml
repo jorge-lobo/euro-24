@@ -40,8 +40,10 @@
     <dimen name="team_label_position">16sp</dimen>
 
     <dimen name="player_name">28sp</dimen>
-    <dimen name="player_number">64sp</dimen>
-    <dimen name="player_detail">24sp</dimen>
+    <dimen name="player_full_name">24sp</dimen>
+    <dimen name="player_number">56sp</dimen>
+    <dimen name="player_label">18sp</dimen>
+    <dimen name="player_detail">20sp</dimen>
     <dimen name="player_club">32sp</dimen>
     <dimen name="player_league">16sp</dimen>
 
@@ -133,7 +135,7 @@
     <dimen name="player_banner_w">260dp</dimen>
     <dimen name="player_banner_h">80dp</dimen>
     <dimen name="player_banner_photo">80dp</dimen>
-    <dimen name="player_banner_number_w">52dp</dimen>
+    <dimen name="player_banner_number_w">48dp</dimen>
 
     <!-- Host City Card -->
     <dimen name="host_city_card_w">154dp</dimen>
@@ -143,7 +145,7 @@
     <!-- Images -->
     <dimen name="team_crest">80dp</dimen>
     <dimen name="team_image_h">240dp</dimen>
-    <dimen name="club_crest">48dp</dimen>
+    <dimen name="club_crest">56dp</dimen>
     <dimen name="city_image_h">240dp</dimen>
     <dimen name="stadium_image_h">256dp</dimen>
 

@@ -94,10 +94,11 @@
     <string name="team_squad_captain">c</string>
 
     <!-- Player Detail -->
-    <string name="player_subtitle_career">Nation Team career</string>
+    <string name="player_subtitle_career">National Team career</string>
     <string name="player_label_height">Height</string>
     <string name="player_label_weight">Weight</string>
     <string name="player_label_foot">Foot</string>
+    <string name="player_label_birthplace">Birthplace</string>
     <string name="player_label_number">Number</string>
     <string name="player_label_position">Position</string>
     <string name="player_label_caps">Caps</string>

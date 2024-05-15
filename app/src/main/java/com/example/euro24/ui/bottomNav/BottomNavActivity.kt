@@ -15,12 +15,15 @@ import com.example.euro24.ui.hostCities.HostCitiesFragment
 import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 import com.example.euro24.ui.matches.MatchesFragment
 import com.example.euro24.ui.matches.calendar.CalendarFragment
+import com.example.euro24.ui.player.PlayerFragment
 import com.example.euro24.ui.teams.TeamsFragment
 import com.example.euro24.ui.teams.teamDetail.TeamDetailFragment
 import java.util.Stack
 
-class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFragmentListener,
-    InternetConnectionFragment.InternetConnectionFragmentListener {
+class BottomNavActivity : AppCompatActivity(),
+    HomeFragment.InternetConnectionFragmentListener,
+    InternetConnectionFragment.InternetConnectionFragmentListener,
+    PlayerFragment.OnBackButtonClickListener {
 
     private lateinit var binding: ActivityBottomNavBinding
     private val fragmentStack: Stack<Fragment> = Stack()
@@ -48,6 +51,14 @@ class BottomNavActivity : AppCompatActivity(), HomeFragment.InternetConnectionFr
 
     override fun onInternetConnectionFragmentClosed() {
         binding.bottomNav.visibility = View.VISIBLE
+    }
+
+    override fun onBackButtonClicked(teamId: Int) {
+        val teamDetailFragment = TeamDetailFragment.newInstance(teamId, R.id.rb_team_squad)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, teamDetailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun setupBackButton() {
