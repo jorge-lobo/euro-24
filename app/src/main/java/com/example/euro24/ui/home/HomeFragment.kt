@@ -20,7 +20,6 @@ import com.example.euro24.ui.home.duringTournament.DuringTournamentFragment
 import com.example.euro24.ui.home.internetConnection.InternetConnectionFragment
 import com.example.euro24.ui.home.postTournament.PostTournamentFragment
 import com.example.euro24.ui.home.preTournament.PreTournamentFragment
-import com.example.euro24.utils.Utils
 
 class HomeFragment : BaseFragment(), InternetConnectionFragment.InternetConnectionFragmentListener {
 
@@ -144,9 +143,6 @@ class HomeFragment : BaseFragment(), InternetConnectionFragment.InternetConnecti
                 fragment.setInternetConnectionListener(this@HomeFragment)
                 (requireActivity() as? BottomNavActivity)?.onInternetConnectionFragmentOpened()
             }
-            is PreTournamentFragment -> Utils.showToast(requireContext(), "PreTournamentFragment")
-            is DuringTournamentFragment -> Utils.showToast(requireContext(), "DuringTournamentFragment")
-            is PostTournamentFragment -> Utils.showToast(requireContext(), "PostTournamentFragment")
         }
     }
 }

@@ -1,14 +1,517 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.player.PlayerFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.player.PlayerViewModel" />
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <RelativeLayout
+            android:id="@+id/fullscreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/margin_normal"
+            tools:background="@color/common_background_color"
+            tools:context=".ui.player.PlayerFragment">
+
+            <TextView
+                android:id="@+id/text_player_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.playerName}"
+                android:textAllCaps="true"
+                android:textColor="@color/player_default_background_text"
+                android:textSize="@dimen/player_name"
+                tools:text="Cristiano Ronaldo" />
+
+            <RelativeLayout
+                android:id="@+id/player_banner_container"
+                android:layout_width="@dimen/player_banner_w"
+                android:layout_height="@dimen/player_banner_h"
+                android:layout_below="@id/text_player_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/background_player_banner">
+
+                <ImageView
+                    android:id="@+id/image_player_banner_flag"
+                    android:layout_width="@dimen/flag_big_w"
+                    android:layout_height="@dimen/flag_big_h"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/description_flag"
+                    android:src="@drawable/default_flag" />
+
+                <ImageView
+                    android:id="@+id/image_player_banner_photo"
+                    android:layout_width="@dimen/player_banner_h"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@id/image_player_banner_flag"
+                    android:contentDescription="@string/description_image_player"
+                    android:src="@drawable/default_face" />
+
+                <FrameLayout
+                    android:id="@+id/player_banner_number_container"
+                    android:layout_width="@dimen/player_banner_number_w"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_marginVertical="2dp"
+                    android:background="@drawable/background_player_banner_number_container">
+
+                    <TextView
+                        android:id="@+id/text_player_banner_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/teko_regular"
+                        android:gravity="center"
+                        android:text="@{viewModel.playerNumber.toString()}"
+                        android:textColor="@color/player_card_text"
+                        android:textSize="@dimen/player_number"
+                        tools:text="26" />
+
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/player_white_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/player_banner_container"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="@drawable/background_container_large_white"
+                android:paddingHorizontal="@dimen/margin_normal"
+                android:paddingTop="@dimen/margin_normal"
+                android:paddingBottom="48dp">
+
+                <TextView
+                    android:id="@+id/text_player_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.playerFullName}"
+                    android:textColor="@color/player_white_box_text"
+                    android:textSize="@dimen/player_full_name"
+                    tools:text="João Maria Lobo Alves Palhares Costa Palhinha Gonçalves" />
+
+                <LinearLayout
+                    android:id="@+id/player_bio_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_player_full_name"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/player_birthday_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/text_player_birthday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_regular"
+                            android:gravity="center_horizontal"
+                            android:text="@{viewModel.playerBirthDay}"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_label"
+                            tools:text="25 February 1985" />
+
+                        <TextView
+                            android:id="@+id/text_player_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/text_player_birthday"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:gravity="center_horizontal"
+                            android:text="@{viewModel.playerAge}"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="39 years" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/player_height_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/label_player_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_regular"
+                            android:gravity="center_horizontal"
+                            android:text="@string/player_label_height"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_label" />
+
+                        <TextView
+                            android:id="@+id/text_player_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/label_player_height"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:gravity="center_horizontal"
+                            android:text="@{viewModel.playerHeight}"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="1.88 m" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/player_weight_container"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/label_player_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_regular"
+                            android:gravity="center_horizontal"
+                            android:text="@string/player_label_weight"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_label" />
+
+                        <TextView
+                            android:id="@+id/text_player_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/label_player_weight"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:gravity="center_horizontal"
+                            android:text="@{viewModel.playerWeight}"
+                            android:textColor="@color/player_white_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="85 kg" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/player_birthplace_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/player_bio_container"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal">
+
+                    <TextView
+                        android:id="@+id/label_player_birthplace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/player_label_birthplace"
+                        android:textColor="@color/player_white_box_text"
+                        android:textSize="@dimen/player_label" />
+
+                    <TextView
+                        android:id="@+id/text_player_birthplace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="64dp"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.playerBirthplace}"
+                        android:textColor="@color/player_white_box_text"
+                        android:textSize="@dimen/player_detail"
+                        tools:text="Freixo de Espada à Cinta" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/player_orange_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/player_white_container"
+                android:layout_marginTop="-32dp"
+                android:background="@drawable/background_container_large_orange"
+                android:paddingHorizontal="@dimen/margin_normal"
+                android:paddingVertical="@dimen/margin_normal">
+
+                <TextView
+                    android:id="@+id/subtitle_nt_career"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:text="@string/player_subtitle_career"
+                    android:textColor="@color/player_orange_box_text"
+                    android:textSize="@dimen/common_subtitle" />
+
+                <RelativeLayout
+                    android:id="@+id/career_details_left_column_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_below="@id/subtitle_nt_career"
+                    android:layout_alignParentStart="true">
+
+                    <RelativeLayout
+                        android:id="@+id/player_position_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/label_player_position"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/teko_regular"
+                            android:text="@string/player_label_position"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail" />
+
+                        <TextView
+                            android:id="@+id/text_player_position"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="80dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerPosition}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="Forward" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/player_caps_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/player_position_container">
+
+                        <TextView
+                            android:id="@+id/label_player_caps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/teko_regular"
+                            android:text="@string/player_label_caps"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail" />
+
+                        <TextView
+                            android:id="@+id/text_player_caps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="80dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerCaps.toString()}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="206" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/player_debut_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:layout_below="@id/player_caps_container">
+
+                        <TextView
+                            android:id="@+id/label_player_debut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/teko_regular"
+                            android:text="@string/player_label_debut"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail" />
+
+                        <TextView
+                            android:id="@+id/text_player_debut_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="80dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerDebutDate}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="20/08/2003" />
+
+                        <TextView
+                            android:id="@+id/text_player_debut_opponent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="200dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerDebutOpponent}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="Kazakhstan" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/career_details_right_column_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_below="@id/subtitle_nt_career"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="200dp">
+
+                    <RelativeLayout
+                        android:id="@+id/player_foot_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/label_player_foot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/teko_regular"
+                            android:text="@string/player_label_foot"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail" />
+
+                        <TextView
+                            android:id="@+id/text_player_foot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="80dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerFoot}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="Right" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/player_goals_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/player_foot_container">
+
+                        <TextView
+                            android:id="@+id/label_player_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/teko_regular"
+                            android:text="@string/player_label_goals"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail" />
+
+                        <TextView
+                            android:id="@+id/text_player_goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="80dp"
+                            android:fontFamily="@font/teko_semi_bold"
+                            android:text="@{viewModel.playerGoals.toString()}"
+                            android:textColor="@color/team_orange_box_text"
+                            android:textSize="@dimen/player_detail"
+                            tools:text="56" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/player_club_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/player_orange_container"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:paddingHorizontal="@dimen/margin_normal">
+
+                <ImageView
+                    android:id="@+id/image_club_crest"
+                    android:layout_width="@dimen/club_crest"
+                    android:layout_height="@dimen/club_crest"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:contentDescription="@string/description_team_crest"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/default_image" />
+
+                <RelativeLayout
+                    android:id="@+id/club_info_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_big"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_toEndOf="@id/image_club_crest">
+
+                    <TextView
+                        android:id="@+id/text_player_club_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.playerClubName}"
+                        android:textColor="@color/player_default_background_text"
+                        android:textSize="@dimen/player_club"
+                        tools:text="Manchester United" />
+
+                    <TextView
+                        android:id="@+id/text_player_league_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text_player_club_name"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:text="@{viewModel.playerLeagueName}"
+                        android:textColor="@color/player_default_background_text"
+                        android:textSize="@dimen/player_league"
+                        tools:text="Premierleague" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</layout>

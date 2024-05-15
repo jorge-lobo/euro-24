@@ -41,7 +41,7 @@ class TeamsFragment : BaseFragment(), TeamGridAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(team: Team) {
-        val fragment = TeamDetailFragment.newInstance(team.id ?: 0)
+        val fragment = TeamDetailFragment.newInstance(team.id ?: 0, R.id.rb_team_info)
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
@@ -56,5 +56,4 @@ class TeamsFragment : BaseFragment(), TeamGridAdapter.OnItemClickListener {
             }
         }
     }
-
 }

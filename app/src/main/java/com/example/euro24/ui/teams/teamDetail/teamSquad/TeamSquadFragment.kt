@@ -5,21 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentTeamSquadBinding
 import com.example.euro24.ui.common.BaseFragment
+import java.util.Stack
 
 class TeamSquadFragment : BaseFragment() {
 
     private lateinit var binding: FragmentTeamSquadBinding
     private val mTeamSquadViewModel by lazy { ViewModelProvider(this)[TeamSquadViewModel::class.java] }
-    private val forwardsAdapter = TeamSquadAdapter()
-    private val midfieldersAdapter = TeamSquadAdapter()
-    private val defendersAdapter = TeamSquadAdapter()
-    private val goalkeepersAdapter = TeamSquadAdapter()
-    private val headManagerAdapter = TeamSquadAdapter()
+    private val fragmentStack: Stack<Fragment> = Stack()
+
+    private lateinit var forwardsAdapter: TeamSquadAdapter
+    private lateinit var midfieldersAdapter: TeamSquadAdapter
+    private lateinit var defendersAdapter: TeamSquadAdapter
+    private lateinit var goalkeepersAdapter: TeamSquadAdapter
+    private lateinit var headManagerAdapter: TeamSquadAdapter
 
     companion object {
         private const val ARG_TEAM_ID = "team_id"
@@ -47,8 +51,6 @@ class TeamSquadFragment : BaseFragment() {
         binding.viewModel = mTeamSquadViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        setupRecyclerViews()
-
         return binding.root
     }
 
@@ -59,7 +61,8 @@ class TeamSquadFragment : BaseFragment() {
         mTeamSquadViewModel.initialize(teamId)
 
         setupObservers()
-
+        initializeAdapters()
+        setupRecyclerViews()
     }
 
     private fun setupRecyclerViews() {
@@ -131,4 +134,13 @@ class TeamSquadFragment : BaseFragment() {
         }
     }
 
+    private fun initializeAdapters() {
+        val teamId = requireArguments().getInt(ARG_TEAM_ID)
+
+        forwardsAdapter = TeamSquadAdapter(fragmentStack, teamId)
+        midfieldersAdapter = TeamSquadAdapter(fragmentStack, teamId)
+        defendersAdapter = TeamSquadAdapter(fragmentStack, teamId)
+        goalkeepersAdapter = TeamSquadAdapter(fragmentStack, teamId)
+        headManagerAdapter = TeamSquadAdapter(fragmentStack, teamId)
+    }
 }

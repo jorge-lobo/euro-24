@@ -31,6 +31,13 @@
     <color name="team_white_box_text">@color/anthracite</color>
     <color name="team_orange_box_text">@color/white</color>
     <color name="team_name_container">@color/charcoal50</color>
+    
+    <!-- Player Fragment -->
+    <color name="player_default_background_text">@color/white</color>
+    <color name="player_orange_box_text">@color/white</color>
+    <color name="player_white_box_text">@color/anthracite</color>
+    <color name="player_number_container">@color/orange</color>
+    <color name="player_banner_background">@color/white</color>
 
     <!-- Past Finals Fragment -->
     <color name="historic_labels">@color/anthracite</color>

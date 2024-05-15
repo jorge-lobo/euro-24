@@ -10,7 +10,7 @@ object DateUtils {
 
     @SuppressLint("ConstantLocale")
     val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    val datePreTournament: Date? = formatter.parse("14/03/2024")  // real date: 14/06/2024
+    val datePreTournament: Date? = formatter.parse("14/06/2024")  // real date: 14/06/2024
     val datePostTournament: Date? = formatter.parse("14/07/2024")   // real date: 14/07/2024
 
     @JvmStatic
