@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- dropdown closed -->
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/matches_dropdown_background" />
+            <size android:width="300dp" android:height="@dimen/dropdown_close_h" />
+            <corners android:bottomLeftRadius="@dimen/radius_extra_small" android:bottomRightRadius="@dimen/radius_medium" android:topLeftRadius="@dimen/radius_medium" android:topRightRadius="@dimen/radius_extra_small" />
+        </shape>
+    </item>
+
+    <!-- dropdown open -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/matches_dropdown_background" />
+            <size android:width="300dp" android:height="@dimen/dropdown_open_h" />
+            <corners android:bottomLeftRadius="@dimen/radius_extra_small" android:bottomRightRadius="@dimen/radius_medium" android:topLeftRadius="@dimen/radius_medium" android:topRightRadius="@dimen/radius_extra_small" />
+        </shape>
+    </item>
+
+</selector>

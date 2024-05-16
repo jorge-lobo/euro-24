@@ -24,6 +24,16 @@
     <!-- Home Fragment -->
     <color name="home_fragment_text">@color/white</color>
 
+    <!-- Matches Fragment -->
+    <color name="matches_btn_text_normal">@color/white</color>
+    <color name="matches_btn_text_active">@color/orange</color>
+    <color name="matches_default_background_text">@color/white</color>
+    <color name="matches_white_box_text">@color/anthracite</color>
+    <color name="matches_orange_box_text">@color/white</color>
+    <color name="matches_dropdown_background">@color/orange</color>
+    <color name="matches_dropdown_text">@color/white</color>
+    <color name="matches_dropdown_arrow">@color/white</color>
+
     <!-- Team Detail Fragment -->
     <color name="team_btn_text_normal">@color/white</color>
     <color name="team_btn_text_active">@color/orange</color>
