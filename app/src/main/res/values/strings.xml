@@ -51,9 +51,9 @@
     <string name="table_position">#</string>
     <string name="table_team">Team</string>
     <string name="table_played">P</string>
-    <string name="table_wins">W</string>
-    <string name="table_draws">D</string>
-    <string name="table_loses">L</string>
+    <string name="table_won">W</string>
+    <string name="table_drawn">D</string>
+    <string name="table_lost">L</string>
     <string name="table_goals">Goals</string>
     <string name="table_goal_difference">Gd</string>
     <string name="table_points">Pts</string>
