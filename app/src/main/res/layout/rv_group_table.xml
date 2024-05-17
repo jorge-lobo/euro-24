@@ -172,9 +172,7 @@
                 android:textSize="@dimen/group_table_text"
                 tools:text="0" />
 
-
         </RelativeLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

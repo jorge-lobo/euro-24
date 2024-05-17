@@ -1,60 +1,116 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.euro24.R
+import com.example.euro24.data.groups.Group
+import com.example.euro24.databinding.FragmentMatchesGroupStageBinding
+import com.example.euro24.ui.common.BaseFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MatchesGroupStageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MatchesGroupStageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentMatchesGroupStageBinding
+    private val mMatchesGroupStageViewModel by lazy { ViewModelProvider(this)[MatchesGroupStageViewModel::class.java] }
+    private val groupListAdapter = GroupListAdapter()
+    private var isDropdownOpen = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matches_group_stage, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_matches_group_stage,
+            container,
+            false
+        )
+        binding.viewModel = mMatchesGroupStageViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MatchesGroupStageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MatchesGroupStageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+        setupObservers()
+        setupListeners()
+    }
+
+    override fun onItemClick(group: Group) {
+        updateDropdownUI(group)
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvGroupsList.apply {
+            adapter = groupListAdapter
+            layoutManager = GridLayoutManager(context, 2)
+        }
+        groupListAdapter.setOnItemClickListener(this)
+    }
+
+    private fun setupObservers() {
+        with(mMatchesGroupStageViewModel) {
+            sortedGroups.observe(viewLifecycleOwner) { groups ->
+                groups?.let {
+                    val groupItems = groups.map { GroupListBindingItem(it) }
+                    groupListAdapter.submitList(groupItems)
                 }
             }
+
+            textDropdownTitle.observe(viewLifecycleOwner) { dropdownTitle ->
+                binding.textDropdownTitle.text = dropdownTitle
+            }
+        }
     }
+
+    private fun setupListeners() {
+        binding.imageDropdownArrow.setOnClickListener {
+            setupDropdown()
+        }
+    }
+
+    private fun setupDropdown() {
+        isDropdownOpen = !isDropdownOpen
+
+        val newHeight = if (isDropdownOpen) R.dimen.dropdown_open_h else R.dimen.dropdown_close_h
+        val layoutParams = binding.dropdownContainer.layoutParams
+        layoutParams.height = resources.getDimensionPixelSize(newHeight)
+        with(binding) {
+            dropdownContainer.layoutParams = layoutParams
+            tableContainer.visibility = if (isDropdownOpen) View.GONE else View.VISIBLE
+            imageDropdownArrow.setImageResource(
+                if (isDropdownOpen) R.drawable.icon_arrow_up else R.drawable.icon_arrow_down
+            )
+            rvGroupsList.visibility = if (isDropdownOpen) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun updateDropdownUI(group: Group) {
+        with(binding) {
+            textDropdownTitle.text = group.groupName
+        }
+        closeDropdown()
+    }
+
+    private fun closeDropdown() {
+        isDropdownOpen = false
+
+        val newHeight = R.dimen.dropdown_close_h
+        val layoutParams = binding.dropdownContainer.layoutParams
+        layoutParams.height = resources.getDimensionPixelSize(newHeight)
+        with(binding) {
+            dropdownContainer.layoutParams = layoutParams
+            tableContainer.visibility = View.VISIBLE
+            imageDropdownArrow.setImageResource(R.drawable.icon_arrow_down)
+            rvGroupsList.visibility = View.GONE
+        }
+    }
+
 }

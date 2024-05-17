@@ -12,7 +12,7 @@
     <dimen name="toggle_button_upper_text">24sp</dimen>
     <dimen name="toggle_button_lower_text">12sp</dimen>
     <dimen name="dropdown_title">24sp</dimen>
-    <dimen name="dropdown_item">12sp</dimen>
+    <dimen name="dropdown_item">20sp</dimen>
 
     <dimen name="internet_connection_title">32sp</dimen>
     <dimen name="internet_connection_message">20sp</dimen>
