@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.data.groups.Group
 import com.example.euro24.databinding.FragmentMatchesGroupStageBinding
@@ -17,6 +18,7 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
     private lateinit var binding: FragmentMatchesGroupStageBinding
     private val mMatchesGroupStageViewModel by lazy { ViewModelProvider(this)[MatchesGroupStageViewModel::class.java] }
     private val groupListAdapter = GroupListAdapter()
+    private val groupTableAdapter = GroupTableAdapter()
     private var isDropdownOpen = false
 
     override fun onCreateView(
@@ -38,21 +40,27 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        setupRecyclerViews()
         setupObservers()
         setupListeners()
     }
 
     override fun onItemClick(group: Group) {
         updateDropdownUI(group)
+        mMatchesGroupStageViewModel.loadTeamsForGroup(group)
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerViews() {
         binding.rvGroupsList.apply {
             adapter = groupListAdapter
             layoutManager = GridLayoutManager(context, 2)
         }
         groupListAdapter.setOnItemClickListener(this)
+
+        binding.rvGroupTable.apply {
+            adapter = groupTableAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun setupObservers() {
@@ -66,6 +74,13 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
 
             textDropdownTitle.observe(viewLifecycleOwner) { dropdownTitle ->
                 binding.textDropdownTitle.text = dropdownTitle
+            }
+
+            teamsInSelectedGroup.observe(viewLifecycleOwner) { teams ->
+                val teamItems = teams.mapIndexed { index, team ->
+                    GroupTableBindingItem(index + 1, team)
+                }
+                groupTableAdapter.submitList(teamItems)
             }
         }
     }

@@ -35,7 +35,4 @@ class GroupRepository(private val context: Context) {
         return groups.toList()
     }
 
-    fun getGroupById(groupId: Int): Group? {
-        return groups.find { it.id == groupId }?.copy()
-    }
 }

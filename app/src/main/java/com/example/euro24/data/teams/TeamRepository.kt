@@ -15,7 +15,7 @@ class TeamRepository(private val context: Context) {
     }
 
     private fun loadTeamsFromJson() {
-        val jsonString = JSONLoader(context).loadJSONFromAsset("teams.json")
+        val jsonString = JSONLoader(context).loadJSONFromAsset("teams_test.json")
 
         val jsonObject = JSONParser<JsonObject>().deserialize(
             jsonString,
