@@ -1,4 +1,4 @@
-package com.example.euro24.ui.teams.teamDetail.teamMatches
+package com.example.euro24.ui.matches
 
 import android.view.View
 import android.widget.ImageView
@@ -11,7 +11,7 @@ import com.example.euro24.utils.ImagesResourceMap
 import com.mikepenz.fastadapter.items.AbstractItem
 import java.util.TimeZone
 
-class TeamMatchesBindingItem(val match: Match) : AbstractItem<TeamMatchesBindingItem.ViewHolder>() {
+class MatchNarrowCardBindingItem(val match: Match) : AbstractItem<MatchNarrowCardBindingItem.ViewHolder>() {
 
     private val defaultFlag = R.drawable.default_flag
 

@@ -31,8 +31,6 @@ class MatchesFragment : BaseFragment() {
         binding.viewModel = mMatchesViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        openFragment(MatchesGroupStageFragment())
-
         return binding.root
     }
 
@@ -48,7 +46,10 @@ class MatchesFragment : BaseFragment() {
         with(mMatchesViewModel) {
             dateCondition.observe(viewLifecycleOwner) { condition ->
                 when (condition!!) {
-                    MatchesViewModel.DateCondition.GROUP_STAGE -> openFragment(MatchesGroupStageFragment())
+                    MatchesViewModel.DateCondition.GROUP_STAGE -> openFragment(
+                        MatchesGroupStageFragment()
+                    )
+
                     MatchesViewModel.DateCondition.KNOCKOUT -> openFragment(MatchesKnockoutFragment())
                 }
             }
@@ -65,21 +66,22 @@ class MatchesFragment : BaseFragment() {
     }
 
     private fun openFragment(fragment: Fragment) {
-        childFragmentManager.beginTransaction()
-            .replace(R.id.matches_stage_container, fragment)
-            .commit()
+        if (childFragmentManager.findFragmentById(R.id.matches_stage_container) != fragment) {
+            childFragmentManager.beginTransaction()
+                .replace(R.id.matches_stage_container, fragment)
+                .commit()
 
-        if (fragment is MatchesKnockoutFragment) {
-            with(binding) {
-                rbMatchesKnockout.isChecked = true
-                rbMatchesGroupStage.isChecked = false
-            }
-        } else {
-            with(binding) {
-                rbMatchesKnockout.isChecked = false
-                rbMatchesGroupStage.isChecked = true
+            if (fragment is MatchesKnockoutFragment) {
+                with(binding) {
+                    rbMatchesKnockout.isChecked = true
+                    rbMatchesGroupStage.isChecked = false
+                }
+            } else {
+                with(binding) {
+                    rbMatchesKnockout.isChecked = false
+                    rbMatchesGroupStage.isChecked = true
+                }
             }
         }
     }
-
 }

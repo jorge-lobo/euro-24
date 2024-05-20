@@ -14,15 +14,15 @@ class MatchesViewModel(application: Application) : BaseViewModel(application) {
         KNOCKOUT
     }
 
- fun checkDateCondition() {
-     dateCondition.postValue(
-         when {
-             DateUtils.currentDate.before(DateUtils.dateStartKnockout) -> DateCondition.GROUP_STAGE
-             DateUtils.currentDate.after(DateUtils.dateStartKnockout) -> DateCondition.KNOCKOUT
-             else -> DateCondition.GROUP_STAGE
-         }
-     )
- }
+    fun checkDateCondition() {
+        dateCondition.postValue(
+            when {
+                DateUtils.currentDate.before(DateUtils.dateStartKnockout) -> DateCondition.GROUP_STAGE
+                DateUtils.currentDate.after(DateUtils.dateStartKnockout) -> DateCondition.KNOCKOUT
+                else -> DateCondition.GROUP_STAGE
+            }
+        )
+    }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
         handleError(message, validationErrors)

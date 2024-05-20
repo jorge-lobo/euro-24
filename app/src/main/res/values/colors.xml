@@ -16,6 +16,7 @@
     <color name="common_text_title">@color/white</color>
     <color name="common_container_large_white_bg">@color/white</color>
     <color name="common_container_large_orange_bg">@color/orange</color>
+    <color name="common_progress_bar">@color/orange</color>
 
     <!-- Header Logo -->
     <color name="common_header_logo">@color/white</color>

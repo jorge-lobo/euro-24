@@ -1,6 +1,7 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.example.euro24.R
 import com.example.euro24.data.groups.Group
 import com.example.euro24.databinding.FragmentMatchesGroupStageBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.matches.MatchNarrowCardAdapter
 
 class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickListener {
 
@@ -19,6 +21,7 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
     private val mMatchesGroupStageViewModel by lazy { ViewModelProvider(this)[MatchesGroupStageViewModel::class.java] }
     private val groupListAdapter = GroupListAdapter()
     private val groupTableAdapter = GroupTableAdapter()
+    private var groupMatchesAdapter = MatchNarrowCardAdapter()
     private var isDropdownOpen = false
 
     override fun onCreateView(
@@ -40,14 +43,23 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupProgressBar()
         setupRecyclerViews()
         setupObservers()
         setupListeners()
+
+        if (savedInstanceState == null) {
+            mMatchesGroupStageViewModel.loadInitialGroup()
+        }
     }
 
     override fun onItemClick(group: Group) {
         updateDropdownUI(group)
-        mMatchesGroupStageViewModel.loadTeamsForGroup(group)
+        mMatchesGroupStageViewModel.loadGroupData(group)
+    }
+
+    private fun setupProgressBar() {
+        binding.loading.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerViews() {
@@ -59,6 +71,11 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
 
         binding.rvGroupTable.apply {
             adapter = groupTableAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+
+        binding.rvGroupStageMatches.apply {
+            adapter = groupMatchesAdapter
             layoutManager = LinearLayoutManager(context)
         }
     }
@@ -82,6 +99,18 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
                         GroupTableBindingItem(index + 1, team)
                     }
                     groupTableAdapter.submitList(teamItems)
+                }
+            }
+
+            matchesInSelectedGroup.observe(viewLifecycleOwner) { matches ->
+                matches?.let {
+                    groupMatchesAdapter.submitList(it)
+                }
+            }
+
+            loadComplete.observe(viewLifecycleOwner) { isComplete ->
+                if (isComplete == true) {
+                    showUI()
                 }
             }
         }
@@ -130,4 +159,11 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
         }
     }
 
+    private fun showUI() {
+        with(binding) {
+            whiteContainer.visibility = View.VISIBLE
+            matchesGroupStageContainer.visibility = View.VISIBLE
+            loading.visibility = View.GONE
+        }
+    }
 }

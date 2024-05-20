@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentTeamMatchesBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.matches.MatchNarrowCardAdapter
+import com.example.euro24.ui.matches.MatchNarrowCardBindingItem
 
 class TeamMatchesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentTeamMatchesBinding
     private val mTeamMatchesViewModel by lazy { ViewModelProvider(this)[TeamMatchesViewModel::class.java] }
-    private var teamMatchesAdapter = TeamMatchesAdapter()
+    private var teamMatchesAdapter = MatchNarrowCardAdapter()
 
     companion object {
         private const val ARG_TEAM_ID = "team_id"
@@ -68,7 +70,7 @@ class TeamMatchesFragment : BaseFragment() {
         with(mTeamMatchesViewModel) {
             sortedMatches.observe(viewLifecycleOwner) { matches ->
                 matches?.let {
-                    val matchCardNarrowItems = matches.map { TeamMatchesBindingItem(it) }
+                    val matchCardNarrowItems = matches.map { MatchNarrowCardBindingItem(it) }
                     teamMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }

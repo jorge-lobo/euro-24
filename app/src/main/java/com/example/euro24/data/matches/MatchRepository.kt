@@ -39,18 +39,4 @@ class MatchRepository(private val context: Context) {
         return matches.find { it.id == id }?.copy()
     }
 
-    fun getMatchByDate(date: String): Match? {
-        val foundMatch = matches.find { it.date == date }
-        return foundMatch?.copy()
-    }
-
-    fun getMatchByStage(phase: String): Match? {
-        val foundMatch = matches.find { it.phase == phase }
-        return foundMatch?.copy()
-    }
-
-    fun getMatchByTeam(team1Id: Int, team2Id: Int): Match? {
-        val foundMatch = matches.find { it.team1Id == team1Id || it.team2Id == team2Id }
-        return foundMatch?.copy()
-    }
 }

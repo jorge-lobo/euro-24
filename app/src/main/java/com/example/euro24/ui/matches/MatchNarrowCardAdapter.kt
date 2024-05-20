@@ -1,4 +1,4 @@
-package com.example.euro24.ui.teams.teamDetail.teamMatches
+package com.example.euro24.ui.matches
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
 
-class TeamMatchesAdapter : RecyclerView.Adapter<TeamMatchesAdapter.ViewHolder>() {
+class MatchNarrowCardAdapter : RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
 
-    private var items: List<TeamMatchesBindingItem> = emptyList()
+    private var items: List<MatchNarrowCardBindingItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,14 +27,14 @@ class TeamMatchesAdapter : RecyclerView.Adapter<TeamMatchesAdapter.ViewHolder>()
     override fun getItemCount(): Int = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun submitList(newItems: List<TeamMatchesBindingItem>) {
+    fun submitList(newItems: List<MatchNarrowCardBindingItem>) {
         items = newItems
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val binding: RvMatchCardNarrowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamMatchesBindingItem) {
+        fun bind(item: MatchNarrowCardBindingItem) {
             binding.match = item.match
 
             with(binding) {

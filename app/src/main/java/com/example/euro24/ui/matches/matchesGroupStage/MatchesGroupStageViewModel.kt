@@ -11,25 +11,25 @@ import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.common.BaseViewModel
-import kotlinx.coroutines.Dispatchers
+import com.example.euro24.ui.matches.MatchNarrowCardBindingItem
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MatchesGroupStageViewModel(application: Application) : BaseViewModel(application),
     LifecycleObserver {
 
     private val groupRepository: GroupRepository = GroupRepository(application)
     private val teamRepository: TeamRepository = TeamRepository(application)
-    private val matchesRepository: MatchRepository = MatchRepository(application)
+    private val matchRepository: MatchRepository = MatchRepository(application)
 
-    private val groups = MutableLiveData<List<Group>>()
     val sortedGroups = MutableLiveData<List<Group>>()
     val textDropdownTitle = MutableLiveData<String?>()
     val teamsInSelectedGroup = MutableLiveData<List<Team>>()
+    val matchesInSelectedGroup = MutableLiveData<List<MatchNarrowCardBindingItem>>()
+    val loadComplete = MutableLiveData<Boolean>().apply { value = false }
+    private var initialLoadComplete = false
 
     init {
         getGroups()
-        loadInitialGroup()
     }
 
     private fun getGroups() {
@@ -50,54 +50,64 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun handleGroupsResult(result: List<Group>) {
-        groups.value = result.sortedBy { it.id }
-        sortedGroups.value = groups.value
+        sortedGroups.value = result.sortedBy { it.id }
+        loadInitialGroup()
         noDataAvailable.value = result.isEmpty()
     }
 
-    private fun loadInitialGroup() {
-        val groupA = sortedGroups.value?.find { it.id == 1 }
-        groupA?.let {
-            textDropdownTitle.value = it.groupName
-            loadTeamsForGroup(groupA)
+    fun loadInitialGroup() {
+        if (!initialLoadComplete) {
+            sortedGroups.value?.find { it.id == 1 }?.let { groupA ->
+                textDropdownTitle.value = groupA.groupName
+                loadGroupData(groupA)
+                initialLoadComplete = true
+            }
         }
     }
 
-    fun loadTeamsForGroup(group: Group) {
+    fun loadGroupData(group: Group) {
         viewModelScope.launch {
             val teamList = group.teamsId.mapNotNull { teamRepository.getTeamById(it) }
+            val groupTieBreaker = calculateGroupTieBreakers(teamList)
 
-            // Calculate tiebreaker criteria for each team
-            val groupTieBreaker = teamList.map { team ->
-                val pointsInMatchesBetweenTeams = getPointsInMatchesBetweenTeams(team, teamList)
-                val goalDifferenceInMatchesBetweenTeams =
-                    getGoalDifferenceInMatchesBetweenTeams(team, teamList)
-                val goalsScoredInMatchesBetweenTeams =
-                    getGoalsScoredInMatchesBetweenTeams(team, teamList)
-                GroupTieBreaker(
-                    team,
-                    pointsInMatchesBetweenTeams,
-                    goalDifferenceInMatchesBetweenTeams,
-                    goalsScoredInMatchesBetweenTeams
-                )
-            }
-
-            // Sort teams according to tiebreaker criteria
-            val sortedTeams = groupTieBreaker.sortedWith(
-                compareByDescending<GroupTieBreaker> { it.team.points }
-                    .thenByDescending { it.pointsInMatchesBetweenTeams }
-                    .thenByDescending { it.goalDifferenceInMatchesBetweenTeams }
-                    .thenByDescending { it.goalsScoredInMatchesBetweenTeams }
-                    .thenByDescending { it.team.goalDifference }
-                    .thenByDescending { it.team.goalsFor }
-            ).map { it.team }
+            val sortedTeams = sortTeamsByTieBreaker(groupTieBreaker)
+            val groupMatches = getGroupMatches(group.groupName ?: "")
 
             teamsInSelectedGroup.postValue(sortedTeams)
+            matchesInSelectedGroup.postValue(groupMatches)
+            loadComplete.postValue(true)
         }
+    }
+
+    private fun calculateGroupTieBreakers(teamList: List<Team>): List<GroupTieBreaker> {
+        return teamList.map { team ->
+            GroupTieBreaker(
+                team,
+                getPointsInMatchesBetweenTeams(team, teamList),
+                getGoalDifferenceInMatchesBetweenTeams(team, teamList),
+                getGoalsScoredInMatchesBetweenTeams(team, teamList)
+            )
+        }
+    }
+
+    private fun sortTeamsByTieBreaker(groupTieBreaker: List<GroupTieBreaker>): List<Team> {
+        return groupTieBreaker.sortedWith(
+            compareByDescending<GroupTieBreaker> { it.team.points }
+                .thenByDescending { it.pointsInMatchesBetweenTeams }
+                .thenByDescending { it.goalDifferenceInMatchesBetweenTeams }
+                .thenByDescending { it.goalsScoredInMatchesBetweenTeams }
+                .thenByDescending { it.team.goalDifference }
+                .thenByDescending { it.team.goalsFor }
+        ).map { it.team }
+    }
+
+    private fun getGroupMatches(groupName: String): List<MatchNarrowCardBindingItem> {
+        return matchRepository.getMatches().filter { it.phase == groupName }
+            .map { MatchNarrowCardBindingItem(it) }
     }
 
     private fun getPointsInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchesRepository.getMatches().filter { match ->
+        return matchRepository.getMatches().filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
@@ -111,7 +121,7 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun getGoalDifferenceInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchesRepository.getMatches().filter { match ->
+        return matchRepository.getMatches().filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
@@ -124,7 +134,7 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun getGoalsScoredInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchesRepository.getMatches().filter { match ->
+        return matchRepository.getMatches().filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
