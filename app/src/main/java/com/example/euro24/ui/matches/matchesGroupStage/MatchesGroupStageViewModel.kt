@@ -6,11 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.euro24.data.groups.Group
 import com.example.euro24.data.groups.GroupRepository
+import com.example.euro24.data.groups.GroupTieBreaker
 import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.common.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MatchesGroupStageViewModel(application: Application) : BaseViewModel(application),
     LifecycleObserver {
@@ -63,8 +66,73 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     fun loadTeamsForGroup(group: Group) {
         viewModelScope.launch {
             val teamList = group.teamsId.mapNotNull { teamRepository.getTeamById(it) }
-            val sortedTeams = teamList.sortedByDescending { it.points }
+
+            // Calculate tiebreaker criteria for each team
+            val groupTieBreaker = teamList.map { team ->
+                val pointsInMatchesBetweenTeams = getPointsInMatchesBetweenTeams(team, teamList)
+                val goalDifferenceInMatchesBetweenTeams =
+                    getGoalDifferenceInMatchesBetweenTeams(team, teamList)
+                val goalsScoredInMatchesBetweenTeams =
+                    getGoalsScoredInMatchesBetweenTeams(team, teamList)
+                GroupTieBreaker(
+                    team,
+                    pointsInMatchesBetweenTeams,
+                    goalDifferenceInMatchesBetweenTeams,
+                    goalsScoredInMatchesBetweenTeams
+                )
+            }
+
+            // Sort teams according to tiebreaker criteria
+            val sortedTeams = groupTieBreaker.sortedWith(
+                compareByDescending<GroupTieBreaker> { it.team.points }
+                    .thenByDescending { it.pointsInMatchesBetweenTeams }
+                    .thenByDescending { it.goalDifferenceInMatchesBetweenTeams }
+                    .thenByDescending { it.goalsScoredInMatchesBetweenTeams }
+                    .thenByDescending { it.team.goalDifference }
+                    .thenByDescending { it.team.goalsFor }
+            ).map { it.team }
+
             teamsInSelectedGroup.postValue(sortedTeams)
+        }
+    }
+
+    private fun getPointsInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
+        return matchesRepository.getMatches().filter { match ->
+            (match.team1Id == team.id || match.team2Id == team.id) &&
+                    teams.any { it.id == match.team1Id || it.id == match.team2Id }
+        }.sumOf { match ->
+            when {
+                match.team1Id == team.id && (match.resultTeam1 ?: 0) > (match.resultTeam2 ?: 0) -> 3
+                match.team2Id == team.id && (match.resultTeam2 ?: 0) > (match.resultTeam1 ?: 0) -> 3
+                (match.resultTeam1 ?: 0) == (match.resultTeam2 ?: 0) -> 1
+                else -> 0
+            }.toInt()
+        }
+    }
+
+    private fun getGoalDifferenceInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
+        return matchesRepository.getMatches().filter { match ->
+            (match.team1Id == team.id || match.team2Id == team.id) &&
+                    teams.any { it.id == match.team1Id || it.id == match.team2Id }
+        }.sumOf { match ->
+            when {
+                match.team1Id == team.id -> (match.resultTeam1 ?: 0) - (match.resultTeam2 ?: 0)
+                match.team2Id == team.id -> (match.resultTeam2 ?: 0) - (match.resultTeam1 ?: 0)
+                else -> 0
+            }
+        }
+    }
+
+    private fun getGoalsScoredInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
+        return matchesRepository.getMatches().filter { match ->
+            (match.team1Id == team.id || match.team2Id == team.id) &&
+                    teams.any { it.id == match.team1Id || it.id == match.team2Id }
+        }.sumOf { match ->
+            when {
+                match.team1Id == team.id -> match.resultTeam1 ?: 0
+                match.team2Id == team.id -> match.resultTeam2 ?: 0
+                else -> 0
+            }
         }
     }
 

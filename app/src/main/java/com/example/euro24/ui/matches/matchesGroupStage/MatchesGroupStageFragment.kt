@@ -77,10 +77,12 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
             }
 
             teamsInSelectedGroup.observe(viewLifecycleOwner) { teams ->
-                val teamItems = teams.mapIndexed { index, team ->
-                    GroupTableBindingItem(index + 1, team)
+                teams?.let {
+                    val teamItems = teams.mapIndexed { index, team ->
+                        GroupTableBindingItem(index + 1, team)
+                    }
+                    groupTableAdapter.submitList(teamItems)
                 }
-                groupTableAdapter.submitList(teamItems)
             }
         }
     }
