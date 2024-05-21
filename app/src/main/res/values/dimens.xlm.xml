@@ -10,7 +10,7 @@
     <dimen name="bottom_nav_text">16sp</dimen>
     <dimen name="dialog_button_text">40sp</dimen>
     <dimen name="toggle_button_upper_text">24sp</dimen>
-    <dimen name="toggle_button_lower_text">12sp</dimen>
+    <dimen name="toggle_button_lower_text">16sp</dimen>
     <dimen name="dropdown_title">24sp</dimen>
     <dimen name="dropdown_item">20sp</dimen>
 
