@@ -13,14 +13,9 @@ object DateUtils {
     val datePreTournament: Date? = formatter.parse("14/06/2024")  // real date: 14/06/2024
     val datePostTournament: Date? = formatter.parse("14/07/2024")   // real date: 14/07/2024
     val dateStartKnockout: Date? = formatter.parse("27/06/2024")  // real date: 27/06/2024
-    val dateEndKnockout: Date? = datePostTournament
-    val dateStartRoundOf16: Date? = dateStartKnockout
-    val dateEndRoundOf16: Date? = formatter.parse("02/07/2024")
-    val dateStartQuarterFinals: Date? = formatter.parse("05/07/2024")
-    val dateEndQuarterFinals: Date? = formatter.parse("06/07/2024")
-    val dateStartSemiFinals: Date? = formatter.parse("09/07/2024")
-    val dateEndSemiFinals: Date? = formatter.parse("10/07/2024")
-    val dateFinal: Date? = datePostTournament
+    val dateEndRoundOf16: Date? = formatter.parse("03/07/2024")
+    val dateEndQuarterFinals: Date? = formatter.parse("07/07/2024")
+    val dateEndSemiFinals: Date? = formatter.parse("11/07/2024")
 
     @JvmStatic
     fun formatDateShort(dateString: String): String {
@@ -44,5 +39,4 @@ object DateUtils {
         val date = inputFormat.parse(time)
         return date?.let { outputFormat.format(it) } ?: ""
     }
-
 }

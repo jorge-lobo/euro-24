@@ -1,60 +1,102 @@
 package com.example.euro24.ui.matches.matchesKnockout
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
+import com.example.euro24.databinding.FragmentMatchesKnockoutBinding
+import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.matches.MatchNarrowCardAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MatchesKnockoutFragment : BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MatchesKnockoutFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MatchesKnockoutFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentMatchesKnockoutBinding
+    private val mMatchesKnockoutViewModel by lazy { ViewModelProvider(this)[MatchesKnockoutViewModel::class.java] }
+    private val roundMatchesAdapter by lazy { MatchNarrowCardAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matches_knockout, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_matches_knockout,
+            container,
+            false
+        )
+        binding.viewModel = mMatchesKnockoutViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MatchesKnockoutFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MatchesKnockoutFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+        setupObservers()
+        setupListeners()
+        mMatchesKnockoutViewModel.checkDateCondition()
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvKnockoutMatches.apply {
+            adapter = roundMatchesAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun setupObservers() {
+        with(mMatchesKnockoutViewModel) {
+            matchesInSelectedRound.observe(viewLifecycleOwner) { matches ->
+                roundMatchesAdapter.submitList(matches)
             }
+
+            dateCondition.observe(viewLifecycleOwner) { condition ->
+                updateUI(condition)
+            }
+        }
+    }
+
+    private fun setupListeners() {
+        binding.buttonsContainer.setOnCheckedChangeListener { _, checkedId ->
+            val newCondition = when (checkedId) {
+                R.id.rb_matches_round_16 -> MatchesKnockoutViewModel.DateCondition.ROUND_OF_16
+                R.id.rb_matches_quarter_finals -> MatchesKnockoutViewModel.DateCondition.QUARTER_FINALS
+                R.id.rb_matches_semi_finals -> MatchesKnockoutViewModel.DateCondition.SEMI_FINALS
+                R.id.rb_matches_final -> MatchesKnockoutViewModel.DateCondition.FINAL
+                else -> return@setOnCheckedChangeListener
+            }
+            mMatchesKnockoutViewModel.filterMatchesByPhase(newCondition)
+        }
+    }
+
+    private fun updateUI(condition: MatchesKnockoutViewModel.DateCondition) {
+        with(binding) {
+            buttonsContainer.check(getRadioButtonId(condition))
+            textRoundTitle.setText(getTitleResId(condition))
+        }
+    }
+
+    private fun getRadioButtonId(condition: MatchesKnockoutViewModel.DateCondition): Int {
+        return when (condition) {
+            MatchesKnockoutViewModel.DateCondition.ROUND_OF_16 -> R.id.rb_matches_round_16
+            MatchesKnockoutViewModel.DateCondition.QUARTER_FINALS -> R.id.rb_matches_quarter_finals
+            MatchesKnockoutViewModel.DateCondition.SEMI_FINALS -> R.id.rb_matches_semi_finals
+            MatchesKnockoutViewModel.DateCondition.FINAL -> R.id.rb_matches_final
+        }
+    }
+
+    private fun getTitleResId(condition: MatchesKnockoutViewModel.DateCondition): Int {
+        return when (condition) {
+            MatchesKnockoutViewModel.DateCondition.ROUND_OF_16 -> R.string.matches_round_of_16
+            MatchesKnockoutViewModel.DateCondition.QUARTER_FINALS -> R.string.matches_quarter_finals
+            MatchesKnockoutViewModel.DateCondition.SEMI_FINALS -> R.string.matches_semi_finals
+            MatchesKnockoutViewModel.DateCondition.FINAL -> R.string.matches_final
+        }
     }
 }

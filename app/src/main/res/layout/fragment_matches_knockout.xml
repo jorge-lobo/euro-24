@@ -117,7 +117,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="-32dp"
             android:background="@drawable/background_container_default_color"
-            android:padding="@dimen/margin_normal">
+            android:paddingVertical="@dimen/margin_normal">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_knockout_matches"
