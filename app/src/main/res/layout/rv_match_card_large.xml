@@ -59,7 +59,6 @@
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
-                    android:text="@{match.team1}"
                     android:textColor="@color/match_card_text"
                     android:textSize="@dimen/match_large_team_name"
                     tools:text="Switzerland" />
@@ -257,7 +256,6 @@
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
-                    android:text="@{match.team2}"
                     android:textColor="@color/match_card_text"
                     android:textSize="@dimen/match_large_team_name"
                     tools:text="Switzerland" />

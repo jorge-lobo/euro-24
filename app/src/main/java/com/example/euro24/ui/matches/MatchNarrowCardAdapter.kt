@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
+import com.example.euro24.utils.ImagesResourceMap
 
-class MatchNarrowCardAdapter : RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
+class MatchNarrowCardAdapter(private val teamRepository: TeamRepository) :
+    RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
 
     private var items: List<MatchNarrowCardBindingItem> = emptyList()
 
@@ -38,17 +41,20 @@ class MatchNarrowCardAdapter : RecyclerView.Adapter<MatchNarrowCardAdapter.ViewH
             binding.match = item.match
 
             with(binding) {
-                itemImageTeam1FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team1 ?: ""
-                    )
-                )
+                val team1 = teamRepository.getTeamById(item.match.team1Id ?: 0)
+                val team2 = teamRepository.getTeamById(item.match.team2Id ?: 0)
 
-                itemImageTeam2FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team2 ?: ""
-                    )
-                )
+                itemTextTeam1NameNarrow.text = team1?.name ?: "Unknown"
+                itemTextTeam2NameNarrow.text = team2?.name ?: "Unknown"
+
+                val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam1FlagNarrow.setImageResource(team1FlagResId)
+
+                val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam2FlagNarrow.setImageResource(team2FlagResId)
+
 
                 itemTextPhaseNarrow.visibility = View.INVISIBLE
                 itemTextMatchCityNarrow.visibility = View.VISIBLE

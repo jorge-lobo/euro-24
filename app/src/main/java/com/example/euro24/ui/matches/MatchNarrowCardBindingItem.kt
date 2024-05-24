@@ -6,12 +6,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.data.matches.Match
+import com.example.euro24.data.teams.Team
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.utils.DateUtils
 import com.example.euro24.utils.ImagesResourceMap
 import com.mikepenz.fastadapter.items.AbstractItem
 import java.util.TimeZone
 
-class MatchNarrowCardBindingItem(val match: Match) : AbstractItem<MatchNarrowCardBindingItem.ViewHolder>() {
+class MatchNarrowCardBindingItem(val match: Match, private val teamRepository: TeamRepository) :
+    AbstractItem<MatchNarrowCardBindingItem.ViewHolder>() {
 
     private val defaultFlag = R.drawable.default_flag
 
@@ -29,17 +32,21 @@ class MatchNarrowCardBindingItem(val match: Match) : AbstractItem<MatchNarrowCar
         holder.phaseNarrow.text = match.phase
         holder.timeNarrow.text =
             DateUtils.convertToTimeZone(match.time ?: "", "HH:mm", TimeZone.getDefault())
-        holder.team1NameNarrow.text = match.team1   //need to change to team1Id
-        holder.team2NameNarrow.text = match.team2   //need to change to team2Id
+
+        val team1 = teamRepository.getTeamById(match.team1Id ?: 0)
+        val team2 = teamRepository.getTeamById(match.team2Id ?: 0)
+
+        holder.team1NameNarrow.text = team1?.name ?: "Unknown"
+        holder.team2NameNarrow.text = team2?.name ?: "Unknown"
         holder.team1ScoreNarrow.text = match.resultTeam1.toString()
         holder.team2ScoreNarrow.text = match.resultTeam2.toString()
         holder.team1PenaltiesNarrow.text = match.penaltiesTeam1.toString()
         holder.team2PenaltiesNarrow.text = match.penaltiesTeam2.toString()
 
-        val team1FlagResId = match.team1?.let { getTeamFlagResourceId(it) } ?: defaultFlag
+        val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team1FlagNarrow.setImageResource(team1FlagResId)
 
-        val team2FlagResId = match.team2?.let { getTeamFlagResourceId(it) } ?: defaultFlag
+        val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team2FlagNarrow.setImageResource(team2FlagResId)
     }
 
@@ -78,9 +85,5 @@ class MatchNarrowCardBindingItem(val match: Match) : AbstractItem<MatchNarrowCar
             view.findViewById(R.id.item_text_match_penalties_team2_narrow)
         var team1FlagNarrow: ImageView = view.findViewById(R.id.item_image_team1_flag_narrow)
         var team2FlagNarrow: ImageView = view.findViewById(R.id.item_image_team2_flag_narrow)
-    }
-
-    fun getTeamFlagResourceId(team: String): Int {
-        return ImagesResourceMap.flagResourceMapByName[team] ?: defaultFlag
     }
 }

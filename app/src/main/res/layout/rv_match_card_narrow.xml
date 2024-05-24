@@ -193,7 +193,6 @@
                         android:layout_toStartOf="@id/item_image_team1_flag_narrow"
                         android:fontFamily="@font/teko_semi_bold"
                         android:gravity="end"
-                        android:text="@{match.team1}"
                         android:textColor="@color/match_card_text"
                         android:textSize="@dimen/match_narrow_team_name"
                         tools:text="Switzerland" />
@@ -224,7 +223,6 @@
                         android:layout_toEndOf="@id/item_image_team2_flag_narrow"
                         android:fontFamily="@font/teko_semi_bold"
                         android:gravity="start"
-                        android:text="@{match.team2}"
                         android:textColor="@color/match_card_text"
                         android:textSize="@dimen/match_narrow_team_name"
                         tools:text="Netherlands" />

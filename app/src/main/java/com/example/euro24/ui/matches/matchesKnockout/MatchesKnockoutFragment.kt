@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentMatchesKnockoutBinding
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.MatchNarrowCardAdapter
@@ -16,7 +17,8 @@ class MatchesKnockoutFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMatchesKnockoutBinding
     private val mMatchesKnockoutViewModel by lazy { ViewModelProvider(this)[MatchesKnockoutViewModel::class.java] }
-    private val roundMatchesAdapter by lazy { MatchNarrowCardAdapter() }
+    private lateinit var teamRepository: TeamRepository
+    private lateinit var roundMatchesAdapter: MatchNarrowCardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,9 @@ class MatchesKnockoutFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        teamRepository = TeamRepository(requireContext())
+        roundMatchesAdapter = MatchNarrowCardAdapter(teamRepository)
 
         setupRecyclerView()
         setupObservers()

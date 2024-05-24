@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardLargeBinding
+import com.example.euro24.utils.ImagesResourceMap
 
-class MatchCardAdapter : RecyclerView.Adapter<MatchCardAdapter.ViewHolder>() {
+class MatchCardAdapter(private val teamRepository: TeamRepository) :
+    RecyclerView.Adapter<MatchCardAdapter.ViewHolder>() {
 
     private var items: List<MatchCardBindingItem> = emptyList()
 
@@ -38,17 +41,19 @@ class MatchCardAdapter : RecyclerView.Adapter<MatchCardAdapter.ViewHolder>() {
             binding.match = item.match
 
             with(binding) {
-                itemImageTeam1Flag.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team1 ?: ""
-                    )
-                )
+                val team1 = teamRepository.getTeamById(item.match.team1Id ?: 0)
+                val team2 = teamRepository.getTeamById(item.match.team2Id ?: 0)
 
-                itemImageTeam2Flag.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team2 ?: ""
-                    )
-                )
+                itemTextTeam1Name.text = team1?.name ?: "Unknown"
+                itemTextTeam2Name.text = team2?.name ?: "Unknown"
+
+                val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam1Flag.setImageResource(team1FlagResId)
+
+                val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam2Flag.setImageResource(team2FlagResId)
 
                 itemImageTvIcon.setImageResource(
                     item.getTvIconResourceId(

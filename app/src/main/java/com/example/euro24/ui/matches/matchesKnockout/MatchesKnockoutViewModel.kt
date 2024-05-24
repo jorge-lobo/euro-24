@@ -1,10 +1,13 @@
 package com.example.euro24.ui.matches.matchesKnockout
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.euro24.data.matches.MatchRepository
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.common.BaseViewModel
 import com.example.euro24.ui.matches.MatchNarrowCardBindingItem
 import com.example.euro24.utils.DateUtils
@@ -14,8 +17,11 @@ class MatchesKnockoutViewModel(application: Application) : BaseViewModel(applica
     LifecycleObserver {
 
     private val matchRepository: MatchRepository = MatchRepository(application)
+    private val teamRepository: TeamRepository = TeamRepository(application)
     val dateCondition = MutableLiveData<DateCondition>()
     val matchesInSelectedRound = MutableLiveData<List<MatchNarrowCardBindingItem>>()
+    private val sharedPreferences: SharedPreferences =
+        application.getSharedPreferences("group_rankings", Context.MODE_PRIVATE)
 
     enum class DateCondition {
         ROUND_OF_16,
@@ -44,7 +50,7 @@ class MatchesKnockoutViewModel(application: Application) : BaseViewModel(applica
             val filteredMatches = matchRepository.getMatches().filter { match ->
                 match.phase.equals(phase.toPhaseString(), ignoreCase = true)
             }
-            matchesInSelectedRound.postValue(filteredMatches.map { MatchNarrowCardBindingItem(it) })
+            matchesInSelectedRound.postValue(filteredMatches.map { MatchNarrowCardBindingItem(it, teamRepository) })
         }
     }
 
@@ -55,6 +61,12 @@ class MatchesKnockoutViewModel(application: Application) : BaseViewModel(applica
             DateCondition.SEMI_FINALS -> "Semi-finals"
             DateCondition.FINAL -> "Final"
         }
+    }
+
+    // Get group ranking from sharedPreferences to distribute the qualified teams to their respective match
+    fun getGroupRanking(groupName: String): List<String> {
+        val rankingString = sharedPreferences.getString(groupName, "")
+        return rankingString?.split(",") ?: emptyList()
     }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {

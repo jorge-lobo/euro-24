@@ -8,9 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
+import com.example.euro24.utils.ImagesResourceMap
 
-class VenueMatchesAdapter : RecyclerView.Adapter<VenueMatchesAdapter.ViewHolder>() {
+class VenueMatchesAdapter(private val teamRepository: TeamRepository) :
+    RecyclerView.Adapter<VenueMatchesAdapter.ViewHolder>() {
 
     private var items: List<VenueMatchesBindingItem> = emptyList()
 
@@ -33,36 +36,41 @@ class VenueMatchesAdapter : RecyclerView.Adapter<VenueMatchesAdapter.ViewHolder>
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: RvMatchCardNarrowBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: RvMatchCardNarrowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: VenueMatchesBindingItem) {
             binding.match = item.match
 
             with(binding) {
-                itemImageTeam1FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team1 ?: ""
-                    )
-                )
+                val team1 = teamRepository.getTeamById(item.match.team1Id ?: 0)
+                val team2 = teamRepository.getTeamById(item.match.team2Id ?: 0)
 
-                itemImageTeam2FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team2 ?: ""
-                    )
-                )
+                itemTextTeam1NameNarrow.text = team1?.name ?: "Unknown"
+                itemTextTeam2NameNarrow.text = team2?.name ?: "Unknown"
+
+                val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam1FlagNarrow.setImageResource(team1FlagResId)
+
+                val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam2FlagNarrow.setImageResource(team2FlagResId)
 
                 itemTextPhaseNarrow.visibility = View.VISIBLE
                 itemTextMatchCityNarrow.visibility = View.INVISIBLE
             }
 
             with(item.match) {
-                val scoreTeam1Narrow = binding.root.findViewById<TextView>(R.id.item_text_match_score_team1_narrow)
+                val scoreTeam1Narrow =
+                    binding.root.findViewById<TextView>(R.id.item_text_match_score_team1_narrow)
                 if (extraTimeTeam1 == null) {
                     scoreTeam1Narrow.text = resultTeam1.toString()
                 } else {
                     scoreTeam1Narrow.text = extraTimeTeam1.toString()
                 }
 
-                val scoreTeam2Narrow = binding.root.findViewById<TextView>(R.id.item_text_match_score_team2_narrow)
+                val scoreTeam2Narrow =
+                    binding.root.findViewById<TextView>(R.id.item_text_match_score_team2_narrow)
                 if (extraTimeTeam2 == null) {
                     scoreTeam2Narrow.text = resultTeam2.toString()
                 } else {

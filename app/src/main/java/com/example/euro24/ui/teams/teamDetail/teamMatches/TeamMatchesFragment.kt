@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentTeamMatchesBinding
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.MatchNarrowCardAdapter
@@ -17,7 +18,8 @@ class TeamMatchesFragment : BaseFragment() {
 
     private lateinit var binding: FragmentTeamMatchesBinding
     private val mTeamMatchesViewModel by lazy { ViewModelProvider(this)[TeamMatchesViewModel::class.java] }
-    private var teamMatchesAdapter = MatchNarrowCardAdapter()
+    private lateinit var teamRepository: TeamRepository
+    private lateinit var teamMatchesAdapter: MatchNarrowCardAdapter
 
     companion object {
         private const val ARG_TEAM_ID = "team_id"
@@ -45,17 +47,19 @@ class TeamMatchesFragment : BaseFragment() {
         binding.viewModel = mTeamMatchesViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        setupRecyclerView()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val teamId = arguments?.getInt(TeamMatchesFragment.ARG_TEAM_ID) ?: 0
+        teamRepository = TeamRepository(requireContext())
+        teamMatchesAdapter = MatchNarrowCardAdapter(teamRepository)
+
+        val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
         mTeamMatchesViewModel.initialize(teamId)
 
+        setupRecyclerView()
         setupObservers()
     }
 
@@ -70,7 +74,7 @@ class TeamMatchesFragment : BaseFragment() {
         with(mTeamMatchesViewModel) {
             sortedMatches.observe(viewLifecycleOwner) { matches ->
                 matches?.let {
-                    val matchCardNarrowItems = matches.map { MatchNarrowCardBindingItem(it) }
+                    val matchCardNarrowItems = matches.map { MatchNarrowCardBindingItem(it, teamRepository) }
                     teamMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }

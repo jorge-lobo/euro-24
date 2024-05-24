@@ -1,6 +1,8 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,7 +14,9 @@ import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.common.BaseViewModel
 import com.example.euro24.ui.matches.MatchNarrowCardBindingItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MatchesGroupStageViewModel(application: Application) : BaseViewModel(application),
     LifecycleObserver {
@@ -20,6 +24,7 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     private val groupRepository: GroupRepository = GroupRepository(application)
     private val teamRepository: TeamRepository = TeamRepository(application)
     private val matchRepository: MatchRepository = MatchRepository(application)
+    private val matches = matchRepository.getMatches()
 
     val sortedGroups = MutableLiveData<List<Group>>()
     val textDropdownTitle = MutableLiveData<String?>()
@@ -27,6 +32,8 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     val matchesInSelectedGroup = MutableLiveData<List<MatchNarrowCardBindingItem>>()
     val loadComplete = MutableLiveData<Boolean>().apply { value = false }
     private var initialLoadComplete = false
+    /*private val sharedPreferences: SharedPreferences =
+        application.getSharedPreferences("group_rankings", Context.MODE_PRIVATE)*/
 
     init {
         getGroups()
@@ -76,6 +83,11 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
             teamsInSelectedGroup.postValue(sortedTeams)
             matchesInSelectedGroup.postValue(groupMatches)
             loadComplete.postValue(true)
+
+            if (sortedTeams.all { it.played == 3 }) {
+                /*saveGroupRankings(group.groupName ?: "", sortedTeams)*/
+                updateMatchesJson(mapOf(group.groupName!! to sortedTeams))
+            }
         }
     }
 
@@ -102,12 +114,12 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun getGroupMatches(groupName: String): List<MatchNarrowCardBindingItem> {
-        return matchRepository.getMatches().filter { it.phase == groupName }
-            .map { MatchNarrowCardBindingItem(it) }
+        return matches.filter { it.phase == groupName }
+            .map { MatchNarrowCardBindingItem(it, teamRepository) }
     }
 
     private fun getPointsInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchRepository.getMatches().filter { match ->
+        return matches.filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
@@ -121,7 +133,7 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun getGoalDifferenceInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchRepository.getMatches().filter { match ->
+        return matches.filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
@@ -134,7 +146,7 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     }
 
     private fun getGoalsScoredInMatchesBetweenTeams(team: Team, teams: List<Team>): Int {
-        return matchRepository.getMatches().filter { match ->
+        return matches.filter { match ->
             (match.team1Id == team.id || match.team2Id == team.id) &&
                     teams.any { it.id == match.team1Id || it.id == match.team2Id }
         }.sumOf { match ->
@@ -145,6 +157,22 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
             }
         }
     }
+
+    private fun updateMatchesJson(sortedTeamsByGroup: Map<String, List<Team>>) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                matchRepository.updateRoundOf16Matches(sortedTeamsByGroup)
+            }
+        }
+    }
+
+    /*private fun saveGroupRankings(groupName: String, sortedTeams: List<Team>) {
+        val editor = sharedPreferences.edit()
+
+        val teamRankings = sortedTeams.joinToString(",") { it.id.toString() }
+        editor.putString(groupName, teamRankings)
+        editor.apply()
+    }*/
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
         handleError(message, validationErrors)
