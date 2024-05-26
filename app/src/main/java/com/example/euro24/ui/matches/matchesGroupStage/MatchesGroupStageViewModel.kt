@@ -1,8 +1,6 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -32,8 +30,6 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     val matchesInSelectedGroup = MutableLiveData<List<MatchNarrowCardBindingItem>>()
     val loadComplete = MutableLiveData<Boolean>().apply { value = false }
     private var initialLoadComplete = false
-    /*private val sharedPreferences: SharedPreferences =
-        application.getSharedPreferences("group_rankings", Context.MODE_PRIVATE)*/
 
     init {
         getGroups()
@@ -85,8 +81,8 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
             loadComplete.postValue(true)
 
             if (sortedTeams.all { it.played == 3 }) {
-                /*saveGroupRankings(group.groupName ?: "", sortedTeams)*/
-                updateMatchesJson(mapOf(group.groupName!! to sortedTeams))
+
+                updateAllGroupsRankings()
             }
         }
     }
@@ -158,6 +154,21 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
         }
     }
 
+    private fun updateAllGroupsRankings() {
+        viewModelScope.launch {
+            val allGroupsRankings = sortedGroups.value?.mapNotNull { group ->
+                val teamList = group.teamsId.mapNotNull { teamRepository.getTeamById(it) }
+                val groupTieBreaker = calculateGroupTieBreakers(teamList)
+                val sortedTeams = sortTeamsByTieBreaker(groupTieBreaker)
+                group.groupName?.let { it to sortedTeams }
+            }?.toMap()
+
+            if (allGroupsRankings != null) {
+                updateMatchesJson(allGroupsRankings)
+            }
+        }
+    }
+
     private fun updateMatchesJson(sortedTeamsByGroup: Map<String, List<Team>>) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -165,14 +176,6 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
             }
         }
     }
-
-    /*private fun saveGroupRankings(groupName: String, sortedTeams: List<Team>) {
-        val editor = sharedPreferences.edit()
-
-        val teamRankings = sortedTeams.joinToString(",") { it.id.toString() }
-        editor.putString(groupName, teamRankings)
-        editor.apply()
-    }*/
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
         handleError(message, validationErrors)
