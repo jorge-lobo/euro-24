@@ -20,8 +20,8 @@
 
     <Button
         android:id="@+id/button_cta_dialog"
-        android:layout_width="@dimen/dialog_button_w"
-        android:layout_height="@dimen/dialog_button_h"
+        android:layout_width="@dimen/dialog_cta_large_button_w"
+        android:layout_height="@dimen/dialog_cta_button_h"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_big"

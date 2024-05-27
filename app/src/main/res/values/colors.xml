@@ -7,6 +7,8 @@
     <color name="anthracite">#0C1114</color>
     <color name="anthracite50">#800C1114</color>
     <color name="quick_silver">#9EA3A6</color>
+    <color name="quick_silver50">#809EA3A6</color>
+    <color name="charcoal">#37444D</color>
     <color name="charcoal50">#8037444D</color>
     <color name="orange">#FF6600</color>
     <color name="pumpkin">#BF3900</color>
@@ -70,6 +72,32 @@
     <color name="dialog_close_button_bg">@color/quick_silver</color>
     <color name="dialog_close_button_icon">@color/white</color>
     <color name="dialog_icon_no_wifi">@color/white</color>
+
+    <!-- Match Editor -->
+    <color name="match_editor_background">@color/charcoal50</color>
+    <color name="match_editor_dialog_background">@color/charcoal</color>
+    <color name="match_editor_dialog_success_background">@color/orange</color>
+    <color name="match_editor_text">@color/white</color>
+    <color name="match_editor_score">@color/anthracite</color>
+    <color name="match_editor_score_container">@color/white</color>
+    <color name="match_editor_close_button_bg">@color/quick_silver</color>
+    <color name="match_editor_close_button_icon">@color/white</color>
+    <color name="match_editor_primary_cta_button_bg">@color/orange</color>
+    <color name="match_editor_secondary_cta_button_bg">@color/transparent</color>
+    <color name="match_editor_secondary_cta_button_stroke">@color/orange</color>
+    <color name="match_editor_cta_button_text">@color/white</color>
+    <color name="match_editor_inactive_cta_button_bg">@color/anthracite</color>
+    <color name="match_editor_inactive_cta_button_text">@color/quick_silver</color>
+    <color name="match_editor_broadcast_button_selected">@color/white</color>
+    <color name="match_editor_broadcast_button_normal">@color/white50</color>
+    <color name="match_editor_broadcast_button_delete_icon">@color/charcoal</color>
+    <color name="match_editor_score_picker_bg_active">@color/quick_silver50</color>
+    <color name="match_editor_score_picker_bg_inactive">@color/charcoal50</color>
+    <color name="match_editor_score_picker_icon_active">@color/quick_silver</color>
+    <color name="match_editor_score_picker_icon_inactive">@color/charcoal</color>
+    <color name="match_editor_icon_warning">@color/quick_silver</color>
+    <color name="match_editor_icon_success">@color/white</color>
+    <color name="match_editor_icon_failure">@color/white</color>
 
     <!-- Buttons -->
     <color name="button_corner_bg">@color/charcoal50</color>
