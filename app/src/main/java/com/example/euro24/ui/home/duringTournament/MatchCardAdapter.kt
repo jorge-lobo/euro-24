@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardLargeBinding
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragment
 import com.example.euro24.utils.ImagesResourceMap
 
-class MatchCardAdapter(private val teamRepository: TeamRepository) :
+class MatchCardAdapter(
+    private val teamRepository: TeamRepository,
+    private val duringTournamentFragment: DuringTournamentFragment
+) :
     RecyclerView.Adapter<MatchCardAdapter.ViewHolder>() {
 
     private var items: List<MatchCardBindingItem> = emptyList()
+    private val defaultFlag = R.drawable.default_flag
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -36,7 +42,30 @@ class MatchCardAdapter(private val teamRepository: TeamRepository) :
     }
 
     inner class ViewHolder(private val binding: RvMatchCardLargeBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        init {
+            binding.root.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val activity = v?.context as? AppCompatActivity
+            if (activity != null) {
+                val fragmentManager = activity.supportFragmentManager
+                val fragment = MatchEditorFragment.newInstance(
+                    items[absoluteAdapterPosition].match.id ?: return
+                )
+
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.match_editor_fragment_container, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+
+                duringTournamentFragment.showMatchEditorFragmentContainer()
+            }
+        }
+
         fun bind(item: MatchCardBindingItem) {
             binding.match = item.match
 
@@ -48,11 +77,11 @@ class MatchCardAdapter(private val teamRepository: TeamRepository) :
                 itemTextTeam2Name.text = team2?.name ?: "Unknown"
 
                 val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam1Flag.setImageResource(team1FlagResId)
 
                 val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam2Flag.setImageResource(team2FlagResId)
 
                 itemImageTvIcon.setImageResource(

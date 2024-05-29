@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dialog_score_picker"
+    android:layout_height="@dimen/dialog_score_picker">
+
+    <Button
+        android:id="@+id/decrease_button"
+        android:layout_width="@dimen/dialog_score_picker"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_score_picker_decrease"
+        android:enabled="false"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/decrease_icon"
+        android:layout_width="@dimen/dialog_score_picker"
+        android:layout_height="@dimen/dialog_score_picker"
+        android:contentDescription="@string/description_button_icon"
+        android:padding="@dimen/margin_small"
+        android:src="@drawable/icon_decrease"
+        app:tint="@color/match_editor_score_picker_icon_inactive" />
+
+</RelativeLayout>

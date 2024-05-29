@@ -71,7 +71,7 @@
                 android:id="@+id/broadcasters_buttons_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dialog_broadcast_button_h"
-                android:layout_below="@id/button_close"
+                android:layout_below="@id/label_broadcast_selector"
                 android:layout_marginHorizontal="@dimen/margin_big"
                 android:layout_marginTop="@dimen/margin_large">
 
@@ -176,7 +176,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="@dimen/margin_big"
                     android:background="@drawable/background_rb_delete"
-                    android:checked="false"
+                    android:clickable="false"
                     android:contentDescription="@string/description_tv_icon"
                     android:gravity="center"
                     android:padding="@dimen/margin_small"
@@ -189,12 +189,13 @@
             <LinearLayout
                 android:id="@+id/team1_editor_container"
                 android:layout_width="128dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_cta_save"
                 android:layout_below="@id/broadcasters_buttons_container"
                 android:layout_alignParentStart="true"
+                android:layout_marginVertical="@dimen/margin_big"
                 android:layout_marginStart="@dimen/margin_big"
-                android:layout_marginTop="@dimen/margin_big"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
@@ -208,238 +209,84 @@
                     android:id="@+id/editor_text_team1_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.team1Name}"
                     android:textColor="@color/match_editor_text"
                     android:textSize="@dimen/match_large_team_name"
                     tools:text="Switzerland" />
 
-                <RelativeLayout
-                    android:id="@+id/team1_result_picker_container"
+                <include
+                    android:id="@+id/team1_result_picker_score"
+                    layout="@layout/score_picker"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:layout_marginTop="@dimen/radius_medium">
+                    android:layout_height="@dimen/dialog_score_picker" />
 
-                    <Button
-                        android:id="@+id/team1_result_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team1_result_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
-
-                    <FrameLayout
-                        android:id="@+id/team1_result_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team1_result_decrease_button"
-                        android:background="@color/match_editor_score_container">
-
-                        <TextView
-                            android:id="@+id/text_team1_result_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team1_result_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team1_result_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team1_result_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team1_result_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/label_extra_time_team1"
+                <LinearLayout
+                    android:id="@+id/team1_extra_time_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:fontFamily="@font/teko_regular"
-                    android:text="@string/match_editor_label_after_extra_time"
-                    android:textColor="@color/match_editor_text"
-                    android:textSize="@dimen/common_label"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <RelativeLayout
-                    android:id="@+id/team1_extra_time_picker_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
-                    <Button
-                        android:id="@+id/team1_extra_time_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
+                    <TextView
+                        android:id="@+id/label_extra_time_team1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_extra_time"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
 
-                    <ImageView
-                        android:id="@+id/team1_extra_time_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
+                    <include
+                        android:id="@+id/team1_extra_time_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
 
-                    <FrameLayout
-                        android:id="@+id/team1_extra_time_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team1_extra_time_decrease_button"
-                        android:background="@color/match_editor_score_container">
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/text_team1_extra_time_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team1_extra_time_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team1_extra_time_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team1_extra_time_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team1_extra_time_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/label_penalties_team1"
+                <LinearLayout
+                    android:id="@+id/team1_penalties_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:fontFamily="@font/teko_regular"
-                    android:text="@string/match_editor_label_after_penalties"
-                    android:textColor="@color/match_editor_text"
-                    android:textSize="@dimen/common_label"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <RelativeLayout
-                    android:id="@+id/team1_penalties_picker_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
-                    <Button
-                        android:id="@+id/team1_penalties_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
+                    <TextView
+                        android:id="@+id/label_penalties_team1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_penalties"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
 
-                    <ImageView
-                        android:id="@+id/team1_penalties_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
+                    <include
+                        android:id="@+id/team1_penalties_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
 
-                    <FrameLayout
-                        android:id="@+id/team1_penalties_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team1_penalties_decrease_button"
-                        android:background="@color/match_editor_score_container">
-
-                        <TextView
-                            android:id="@+id/text_team1_penalties_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team1_penalties_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team1_penalties_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team1_penalties_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team1_penalties_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/team2_editor_container"
                 android:layout_width="128dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_cta_save"
                 android:layout_below="@id/broadcasters_buttons_container"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/margin_big"
+                android:layout_marginVertical="@dimen/margin_big"
                 android:layout_marginEnd="@dimen/margin_big"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
@@ -453,226 +300,71 @@
                     android:id="@+id/editor_text_team2_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
                     android:fontFamily="@font/teko_semi_bold"
                     android:gravity="center_horizontal"
+                    android:text="@{viewModel.team2Name}"
                     android:textColor="@color/match_editor_text"
                     android:textSize="@dimen/match_large_team_name"
                     tools:text="Netherlands" />
 
-                <RelativeLayout
-                    android:id="@+id/team2_result_picker_container"
+                <include
+                    android:id="@+id/team2_result_picker_score"
+                    layout="@layout/score_picker"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:layout_marginTop="@dimen/radius_medium">
+                    android:layout_height="@dimen/dialog_score_picker" />
 
-                    <Button
-                        android:id="@+id/team2_result_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team2_result_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
-
-                    <FrameLayout
-                        android:id="@+id/team2_result_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team2_result_decrease_button"
-                        android:background="@color/match_editor_score_container">
-
-                        <TextView
-                            android:id="@+id/text_team2_result_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team2_result_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team2_result_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team2_result_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team2_result_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/label_extra_time_team2"
+                <LinearLayout
+                    android:id="@+id/team2_extra_time_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:fontFamily="@font/teko_regular"
-                    android:text="@string/match_editor_label_after_extra_time"
-                    android:textColor="@color/match_editor_text"
-                    android:textSize="@dimen/common_label"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <RelativeLayout
-                    android:id="@+id/team2_extra_time_picker_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
-                    <Button
-                        android:id="@+id/team2_extra_time_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
+                    <TextView
+                        android:id="@+id/label_extra_time_team2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_extra_time"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
 
-                    <ImageView
-                        android:id="@+id/team2_extra_time_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
+                    <include
+                        android:id="@+id/team2_extra_time_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
 
-                    <FrameLayout
-                        android:id="@+id/team2_extra_time_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team2_extra_time_decrease_button"
-                        android:background="@color/match_editor_score_container">
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/text_team2_extra_time_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team2_extra_time_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team2_extra_time_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team2_extra_time_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team2_extra_time_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/label_penalties_team2"
+                <LinearLayout
+                    android:id="@+id/team2_penalties_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:fontFamily="@font/teko_regular"
-                    android:text="@string/match_editor_label_after_penalties"
-                    android:textColor="@color/match_editor_text"
-                    android:textSize="@dimen/common_label"
-                    android:visibility="invisible"
-                    tools:visibility="visible" />
-
-                <RelativeLayout
-                    android:id="@+id/team2_penalties_picker_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dialog_score_picker"
-                    android:visibility="invisible"
+                    android:orientation="vertical"
+                    android:visibility="visible"
                     tools:visibility="visible">
 
-                    <Button
-                        android:id="@+id/team2_penalties_decrease_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background_score_picker_decrease"
-                        android:enabled="false"
-                        android:gravity="center" />
+                    <TextView
+                        android:id="@+id/label_penalties_team2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_penalties"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
 
-                    <ImageView
-                        android:id="@+id/team2_penalties_decrease_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_decrease"
-                        app:tint="@color/match_editor_score_picker_icon_inactive" />
+                    <include
+                        android:id="@+id/team2_penalties_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
 
-                    <FrameLayout
-                        android:id="@+id/team2_penalties_container"
-                        android:layout_width="@dimen/match_editor_score_container_w"
-                        android:layout_height="@dimen/match_editor_score_container_h"
-                        android:layout_toEndOf="@id/team2_penalties_decrease_button"
-                        android:background="@color/match_editor_score_container">
-
-                        <TextView
-                            android:id="@+id/text_team2_penalties_editor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/teko_semi_bold"
-                            android:gravity="center"
-                            android:textColor="@color/match_editor_score"
-                            android:textSize="@dimen/match_editor_score"
-                            tools:text="2" />
-
-                    </FrameLayout>
-
-                    <Button
-                        android:id="@+id/team2_penalties_increase_button"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/team2_penalties_container"
-                        android:background="@drawable/background_score_picker_increase"
-                        android:enabled="true"
-                        android:gravity="center" />
-
-                    <ImageView
-                        android:id="@+id/team2_penalties_increase_icon"
-                        android:layout_width="@dimen/dialog_score_picker"
-                        android:layout_height="@dimen/dialog_score_picker"
-                        android:layout_toEndOf="@id/team2_penalties_container"
-                        android:contentDescription="@string/description_button_icon"
-                        android:padding="@dimen/margin_small"
-                        android:src="@drawable/icon_increase"
-                        app:tint="@color/match_editor_score_picker_icon_active" />
-
-                </RelativeLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

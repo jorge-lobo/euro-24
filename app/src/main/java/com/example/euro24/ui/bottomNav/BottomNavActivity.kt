@@ -109,7 +109,7 @@ class BottomNavActivity : AppCompatActivity(),
         }
     }
 
-    private fun openFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+    fun openFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .apply {
@@ -121,6 +121,7 @@ class BottomNavActivity : AppCompatActivity(),
             .commit()
 
         hideVenueDetailFragmentContainer()
+        hideMatchEditorFragmentContainer()
         updateUIVisibility(fragment)
 
         if (!isSelectingItemManually) {
@@ -128,9 +129,15 @@ class BottomNavActivity : AppCompatActivity(),
         }
     }
 
-    private fun hideVenueDetailFragmentContainer() {
+    private fun showFragmentContainer() {
         binding.apply {
             fragmentContainer.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideVenueDetailFragmentContainer() {
+        showFragmentContainer()
+        binding.apply {
             venueDetailFragmentContainer.visibility = View.INVISIBLE
 
             wordMark.headerLogo.setColorFilter(
@@ -139,6 +146,14 @@ class BottomNavActivity : AppCompatActivity(),
                     R.color.common_header_logo
                 )
             )
+        }
+    }
+
+    fun hideMatchEditorFragmentContainer() {
+        showFragmentContainer()
+        binding.apply {
+            matchEditorFragmentContainer.visibility = View.INVISIBLE
+            bottomNav.visibility = View.VISIBLE
         }
     }
 

@@ -6,6 +6,6 @@
         android:bottomRightRadius="@dimen/radius_medium"
         android:topLeftRadius="@dimen/radius_medium"
         android:topRightRadius="@dimen/radius_extra_small" />
-    <solid android:color="@color/broadcast_button_selector_background" />
+    <solid android:color="@color/delete_button_selector_background" />
 
 </shape>
