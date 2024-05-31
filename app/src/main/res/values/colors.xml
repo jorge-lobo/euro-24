@@ -87,7 +87,7 @@
     <color name="match_editor_secondary_cta_button_stroke">@color/orange</color>
     <color name="match_editor_cta_button_text">@color/white</color>
     <color name="match_editor_inactive_cta_button_bg">@color/anthracite</color>
-    <color name="match_editor_inactive_cta_button_text">@color/quick_silver</color>
+    <color name="match_editor_inactive_cta_button_text">@color/charcoal</color>
     <color name="match_editor_broadcast_button_selected">@color/white</color>
     <color name="match_editor_broadcast_button_normal">@color/white50</color>
     <color name="match_editor_broadcast_button_delete_icon">@color/charcoal</color>
