@@ -60,6 +60,26 @@ class MatchEditorConfirmationViewModel(application: Application) : BaseViewModel
             team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
     }
 
+    fun saveMatchResults(
+        matchId: Int,
+        team1Score: Int,
+        team2Score: Int,
+        team1ExtraTime: Int,
+        team2ExtraTime: Int,
+        team1Penalties: Int,
+        team2Penalties: Int
+    ) {
+        matchRepository.updateMatchResults(
+            matchId,
+            team1Score,
+            team2Score,
+            team1ExtraTime,
+            team2ExtraTime,
+            team1Penalties,
+            team2Penalties
+        )
+    }
+
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
         handleError(message, validationErrors)

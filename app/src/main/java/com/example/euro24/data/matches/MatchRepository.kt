@@ -2,6 +2,7 @@ package com.example.euro24.data.matches
 
 import android.content.Context
 import com.example.euro24.data.teams.Team
+import com.example.euro24.utils.DateUtils
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
@@ -14,6 +15,7 @@ class MatchRepository(private val context: Context) {
     private val gson = GsonBuilder()
         .serializeNulls()
         .setPrettyPrinting()
+        .registerTypeAdapter(Match::class.java, MatchTypeAdapter())
         .create()
 
     init {
@@ -51,8 +53,49 @@ class MatchRepository(private val context: Context) {
         return matches.find { it.id == id }?.copy()
     }
 
+    fun updateMatchResults(
+        matchId: Int,
+        team1Score: Int,
+        team2Score: Int,
+        team1ExtraTime: Int,
+        team2ExtraTime: Int,
+        team1Penalties: Int,
+        team2Penalties: Int
+    ) {
+        val match = getMatchById(matchId)
+        if (match != null) {
+            if (DateUtils.currentDate.before(DateUtils.dateStartKnockout)) {
+                match.resultTeam1 = team1Score
+                match.resultTeam2 = team2Score
+            } else {
+                match.resultTeam1 = team1Score
+                match.resultTeam2 = team2Score
+                if (team1Score == team2Score) {
+                    match.extraTimeTeam1 = team1ExtraTime
+                    match.extraTimeTeam2 = team2ExtraTime
+                    if (team1ExtraTime == team2ExtraTime) {
+                        match.penaltiesTeam1 = team1Penalties
+                        match.penaltiesTeam2 = team2Penalties
+                    }
+                }
+            }
+            saveMatch(match)
+        }
+    }
+
+    private fun saveMatch(updatedMatch: Match) {
+        val matchIndex = matches.indexOfFirst { it.id == updatedMatch.id }
+        if (matchIndex != -1) {
+            matches[matchIndex] = updatedMatch
+        } else {
+            matches.add(updatedMatch)
+        }
+
+        saveMatchesToJson(matches)
+    }
+
     private fun saveMatchesToJson(matches: List<Match>) {
-        val jsonString = gson.toJson(mapOf("matches" to matches))
+        val jsonString = gson.toJson(matches)
         val file = File(context.filesDir, "matches_test.json") // change to "matches.json"
         file.writeText(jsonString)
     }

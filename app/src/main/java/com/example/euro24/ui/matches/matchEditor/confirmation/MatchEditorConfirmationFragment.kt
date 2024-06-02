@@ -149,6 +149,7 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         buttonYes.setOnClickListener {
             if (isSave) {
                 setupSaveMatch()
+                openHomeFragment()
             } else {
                 openHomeFragment()
             }
@@ -203,7 +204,23 @@ class MatchEditorConfirmationFragment : BaseFragment() {
     }
 
     private fun setupSaveMatch() {
+        val matchId = arguments?.getInt(ARG_MATCH_ID) ?: return
+        val team1Score = arguments?.getInt(ARG_TEAM1_SCORE) ?: return
+        val team2Score = arguments?.getInt(ARG_TEAM2_SCORE) ?: return
+        val team1ExtraTime = arguments?.getInt(ARG_TEAM1_EXTRA_TIME) ?: return
+        val team2ExtraTime = arguments?.getInt(ARG_TEAM2_EXTRA_TIME) ?: return
+        val team1Penalties = arguments?.getInt(ARG_TEAM1_PENALTIES) ?: return
+        val team2Penalties = arguments?.getInt(ARG_TEAM2_PENALTIES) ?: return
 
+        mMatchEditorConfirmationViewModel.saveMatchResults(
+            matchId,
+            team1Score,
+            team2Score,
+            team1ExtraTime,
+            team2ExtraTime,
+            team1Penalties,
+            team2Penalties
+        )
     }
 
     private fun returnToEditor(matchId: Int) {
@@ -245,5 +262,4 @@ class MatchEditorConfirmationFragment : BaseFragment() {
             textTeam2PenaltiesSave.visibility = View.VISIBLE
         }
     }
-
 }
