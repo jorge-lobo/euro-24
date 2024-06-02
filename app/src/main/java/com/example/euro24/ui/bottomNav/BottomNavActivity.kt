@@ -121,7 +121,6 @@ class BottomNavActivity : AppCompatActivity(),
             .commit()
 
         hideVenueDetailFragmentContainer()
-        hideMatchEditorFragmentContainer()
         updateUIVisibility(fragment)
 
         if (!isSelectingItemManually) {

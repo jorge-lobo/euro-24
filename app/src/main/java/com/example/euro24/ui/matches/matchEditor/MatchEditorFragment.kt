@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -14,9 +15,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentMatchEditorBinding
-import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
-import com.example.euro24.ui.home.HomeFragment
+import com.example.euro24.ui.matches.matchEditor.confirmation.MatchEditorConfirmationFragment
 import com.example.euro24.utils.Utils
 
 class MatchEditorFragment : BaseFragment() {
@@ -196,7 +196,18 @@ class MatchEditorFragment : BaseFragment() {
 
     private fun setupListeners() {
         buttonClose.setOnClickListener {
-            openHomeFragment()
+            openConfirmationFragment(
+                isSave = false,
+                matchId = matchId,
+                team1Id = mMatchEditorViewModel.team1Id.value ?: 0,
+                team2Id = mMatchEditorViewModel.team2Id.value ?: 0,
+                team1Score = mMatchEditorViewModel.team1Score.value ?: 0,
+                team2Score = mMatchEditorViewModel.team2Score.value ?: 0,
+                team1ExtraTime = mMatchEditorViewModel.team1ExtraTime.value ?: 0,
+                team2ExtraTime = mMatchEditorViewModel.team2ExtraTime.value ?: 0,
+                team1Penalties = mMatchEditorViewModel.team1Penalties.value ?: 0,
+                team2Penalties = mMatchEditorViewModel.team2Penalties.value ?: 0
+            )
         }
 
         buttonSave.setOnClickListener {
@@ -295,11 +306,34 @@ class MatchEditorFragment : BaseFragment() {
         }
     }
 
-    private fun openHomeFragment() {
-        (activity as? BottomNavActivity)?.apply {
-            openFragment(HomeFragment())
-            hideMatchEditorFragmentContainer()
-        }
+    private fun openConfirmationFragment(
+        isSave: Boolean,
+        matchId: Int,
+        team1Id: Int,
+        team2Id: Int,
+        team1Score: Int,
+        team2Score: Int,
+        team1ExtraTime: Int,
+        team2ExtraTime: Int,
+        team1Penalties: Int,
+        team2Penalties: Int
+    ) {
+        val fragment = MatchEditorConfirmationFragment.newInstance(
+            isSave,
+            matchId,
+            team1Id,
+            team2Id,
+            team1Score,
+            team2Score,
+            team1ExtraTime,
+            team2ExtraTime,
+            team1Penalties,
+            team2Penalties
+        )
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.confirmation_fragment_container, fragment)
+            .commit()
+        hideEditorContainer()
     }
 
     private fun updateScore(textView: TextView, score: Int) {
@@ -408,9 +442,26 @@ class MatchEditorFragment : BaseFragment() {
 
     private fun saveMatch() {
         Utils.showToast(requireContext(), "Match saved successfully!")
+        openConfirmationFragment(
+            isSave = true,
+            matchId = matchId,
+            team1Id = mMatchEditorViewModel.team1Id.value ?: 0,
+            team2Id = mMatchEditorViewModel.team2Id.value ?: 0,
+            team1Score = mMatchEditorViewModel.team1Score.value ?: 0,
+            team2Score = mMatchEditorViewModel.team2Score.value ?: 0,
+            team1ExtraTime = mMatchEditorViewModel.team1ExtraTime.value ?: 0,
+            team2ExtraTime = mMatchEditorViewModel.team2ExtraTime.value ?: 0,
+            team1Penalties = mMatchEditorViewModel.team1Penalties.value ?: 0,
+            team2Penalties = mMatchEditorViewModel.team2Penalties.value ?: 0
+        )
     }
 
     private fun showErrorMessage() {
         Utils.showToast(requireContext(), "Penalties scores cannot be equal!")
+    }
+
+    private fun hideEditorContainer() {
+        val editorContainer = view?.findViewById<RelativeLayout>(R.id.editor_container)
+        editorContainer?.visibility = View.INVISIBLE
     }
 }

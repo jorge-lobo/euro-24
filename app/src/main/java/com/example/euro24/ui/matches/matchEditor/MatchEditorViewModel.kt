@@ -21,6 +21,8 @@ class MatchEditorViewModel(application: Application) : BaseViewModel(application
     private val teamRepository: TeamRepository = TeamRepository(application)
     private val defaultFlag = R.drawable.default_flag
 
+    var team1Id = MutableLiveData<Int>().apply { value = 0 }
+    var team2Id = MutableLiveData<Int>().apply { value = 0 }
     var team1Name = MutableLiveData<String>().apply { value = "" }
     var team2Name = MutableLiveData<String>().apply { value = "" }
     var team1Score = MutableLiveData<Int>().apply { value = -1 }

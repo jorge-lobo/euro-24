@@ -14,8 +14,8 @@
     <dimen name="dropdown_title">24sp</dimen>
     <dimen name="dropdown_item">20sp</dimen>
 
-    <dimen name="internet_connection_title">32sp</dimen>
-    <dimen name="internet_connection_message">20sp</dimen>
+    <dimen name="dialog_title">32sp</dimen>
+    <dimen name="dialog_message">20sp</dimen>
 
     <dimen name="match_editor_team_name">24sp</dimen>
     <dimen name="match_editor_score">32sp</dimen>
