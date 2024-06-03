@@ -96,8 +96,6 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         checkArguments()
         setupObservers()
         setupListeners()
-
-
     }
 
     private fun setupViews() {
@@ -164,15 +162,6 @@ class MatchEditorConfirmationFragment : BaseFragment() {
     private fun checkArguments() {
         arguments?.let {
             isSave = it.getBoolean(ARG_IS_SAVE)
-            val matchId = it.getInt(ARG_MATCH_ID)
-            val team1Id = it.getInt(ARG_TEAM1_ID)
-            val team2Id = it.getInt(ARG_TEAM2_ID)
-            val team1Score = it.getInt(ARG_TEAM1_SCORE)
-            val team2Score = it.getInt(ARG_TEAM2_SCORE)
-            val team1ExtraTime = it.getInt(ARG_TEAM1_EXTRA_TIME)
-            val team2ExtraTime = it.getInt(ARG_TEAM2_EXTRA_TIME)
-            val team1Penalties = it.getInt(ARG_TEAM1_PENALTIES)
-            val team2Penalties = it.getInt(ARG_TEAM2_PENALTIES)
 
             if (isSave) {
                 setupSaveUI()
@@ -212,7 +201,8 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         val team1Penalties = arguments?.getInt(ARG_TEAM1_PENALTIES) ?: return
         val team2Penalties = arguments?.getInt(ARG_TEAM2_PENALTIES) ?: return
 
-        mMatchEditorConfirmationViewModel.saveMatchResults(
+        with(mMatchEditorConfirmationViewModel) {
+        saveMatchResults(
             matchId,
             team1Score,
             team2Score,
@@ -221,6 +211,8 @@ class MatchEditorConfirmationFragment : BaseFragment() {
             team1Penalties,
             team2Penalties
         )
+            saveTeamStats(matchId)
+        }
     }
 
     private fun returnToEditor(matchId: Int) {

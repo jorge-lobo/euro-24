@@ -168,7 +168,7 @@
                 android:layout_toStartOf="@id/table_text_points"
                 android:fontFamily="@font/teko_regular"
                 android:gravity="center_horizontal"
-                android:text="@{team.goalDifference.toString()}"
+                android:text="@{team.formattedGoalDifference}"
                 android:textColor="@color/matches_white_box_text"
                 android:textSize="@dimen/group_table_text"
                 tools:text="0" />

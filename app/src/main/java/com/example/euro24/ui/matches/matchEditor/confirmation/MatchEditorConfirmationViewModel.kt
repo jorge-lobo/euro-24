@@ -9,6 +9,7 @@ import com.example.euro24.data.matches.Match
 import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.common.BaseViewModel
+import com.example.euro24.ui.matches.matchesGroupStage.GroupStageManager
 import com.example.euro24.utils.ImagesResourceMap
 import kotlinx.coroutines.launch
 
@@ -80,6 +81,19 @@ class MatchEditorConfirmationViewModel(application: Application) : BaseViewModel
         )
     }
 
+    fun saveTeamStats(matchId: Int) {
+        viewModelScope.launch {
+            val match = matchRepository.getMatchById(matchId)
+            match?.let {
+                val team1 = teamRepository.getTeamById(it.team1Id ?: 0)
+                val team2 = teamRepository.getTeamById(it.team2Id ?: 0)
+
+                if (team1 != null && team2 != null) {
+                    GroupStageManager(matchRepository, teamRepository).setupMatch(it, team1, team2)
+                }
+            }
+        }
+    }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
         handleError(message, validationErrors)

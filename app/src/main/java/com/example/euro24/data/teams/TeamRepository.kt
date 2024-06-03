@@ -13,6 +13,7 @@ class TeamRepository(private val context: Context) {
     private val gson = GsonBuilder()
         .serializeNulls()
         .setPrettyPrinting()
+        .registerTypeAdapter(Team::class.java, TeamTypeAdapter())
         .create()
 
     init {
@@ -50,10 +51,17 @@ class TeamRepository(private val context: Context) {
         return teams.find { it.id == id }?.copy()
     }
 
-    fun saveTeamsToJson(teams: List<Team>) {
-        val jsonString = gson.toJson(mapOf("teams" to teams))
+    private fun saveTeamsToJson(teams: List<Team>) {
+        val jsonString = gson.toJson(teams)
         val file = File(context.filesDir, "teams_test.json") // change to "teams.json"
         file.writeText(jsonString)
     }
 
+    fun updateTeam(team: Team) {
+        val index = teams.indexOfFirst { it.id == team.id }
+        if (index != -1) {
+            teams[index] = team
+            saveTeamsToJson(teams)
+        }
+    }
 }
