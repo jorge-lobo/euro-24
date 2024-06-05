@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.ui.matches.matchesGroupStage.GroupStageManager
+import com.example.euro24.ui.matches.matchesKnockout.KnockoutStageManager
 import com.example.euro24.utils.DateUtils
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -20,6 +21,7 @@ class MatchRepository(private val context: Context) {
         .setPrettyPrinting()
         .registerTypeAdapter(Match::class.java, MatchTypeAdapter())
         .create()
+    private val knockoutStageManager = KnockoutStageManager(this)
 
     init {
         loadMatchesFromInternalStorage()
@@ -56,7 +58,7 @@ class MatchRepository(private val context: Context) {
         return matches.find { it.id == id }?.copy()
     }
 
-    fun updateMatchResults(
+    /*fun updateMatchResults(
         matchId: Int,
         team1Score: Int,
         team2Score: Int,
@@ -84,9 +86,37 @@ class MatchRepository(private val context: Context) {
             }
             saveMatch(match)
         }
+    }*/
+
+    val currentDate = DateUtils.formatter.parse("28/06/2024")
+    fun updateMatchResults(
+        matchId: Int,
+        team1Score: Int,
+        team2Score: Int,
+        team1ExtraTime: Int,
+        team2ExtraTime: Int,
+        team1Penalties: Int,
+        team2Penalties: Int
+    ) {
+        if (/*DateUtils.*/currentDate.before(DateUtils.dateStartKnockout)) {
+            val match = getMatchById(matchId)
+            match?.resultTeam1 = team1Score
+            match?.resultTeam2 = team2Score
+            saveMatch(match!!)
+        } else {
+            knockoutStageManager.updateKnockoutMatchResults(
+                matchId,
+                team1Score,
+                team2Score,
+                team1ExtraTime,
+                team2ExtraTime,
+                team1Penalties,
+                team2Penalties
+            )
+        }
     }
 
-    private fun saveMatch(updatedMatch: Match) {
+    fun saveMatch(updatedMatch: Match) {
         val matchIndex = matches.indexOfFirst { it.id == updatedMatch.id }
         if (matchIndex != -1) {
             matches[matchIndex] = updatedMatch
