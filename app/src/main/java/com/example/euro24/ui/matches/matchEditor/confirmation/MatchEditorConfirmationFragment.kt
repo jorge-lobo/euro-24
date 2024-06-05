@@ -14,6 +14,7 @@ import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.home.HomeFragment
 import com.example.euro24.ui.matches.matchEditor.MatchEditorFragment
+import com.example.euro24.utils.DateUtils
 
 class MatchEditorConfirmationFragment : BaseFragment() {
 
@@ -201,17 +202,22 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         val team1Penalties = arguments?.getInt(ARG_TEAM1_PENALTIES) ?: return
         val team2Penalties = arguments?.getInt(ARG_TEAM2_PENALTIES) ?: return
 
+        /*val currentDate = DateUtils.currentDate*/
+        val currentDate = DateUtils.formatter.parse("28/06/2024")
+
         with(mMatchEditorConfirmationViewModel) {
-        saveMatchResults(
-            matchId,
-            team1Score,
-            team2Score,
-            team1ExtraTime,
-            team2ExtraTime,
-            team1Penalties,
-            team2Penalties
-        )
-            saveTeamStats(matchId)
+            saveMatchResults(
+                matchId,
+                team1Score,
+                team2Score,
+                team1ExtraTime,
+                team2ExtraTime,
+                team1Penalties,
+                team2Penalties
+            )
+            if (currentDate.before(DateUtils.dateStartKnockout)) {
+                saveTeamStats(matchId)
+            }
         }
     }
 

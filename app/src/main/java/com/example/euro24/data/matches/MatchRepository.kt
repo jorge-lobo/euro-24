@@ -2,6 +2,8 @@ package com.example.euro24.data.matches
 
 import android.content.Context
 import com.example.euro24.data.teams.Team
+import com.example.euro24.data.teams.TeamRepository
+import com.example.euro24.ui.matches.matchesGroupStage.GroupStageManager
 import com.example.euro24.utils.DateUtils
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -11,6 +13,7 @@ import java.lang.reflect.Type
 
 class MatchRepository(private val context: Context) {
 
+    private val teamRepository = TeamRepository(context)
     private val matches = mutableListOf<Match>()
     private val gson = GsonBuilder()
         .serializeNulls()
@@ -101,6 +104,8 @@ class MatchRepository(private val context: Context) {
     }
 
     fun updateRoundOf16Matches(groupRankings: Map<String, List<Team>>) {
+        val groupStageManager = GroupStageManager(this, teamRepository)
+        val bestThirdPlacedTeams = groupStageManager.getBestThirdPlacedTeams(groupRankings)
         groupRankings.takeIf { it.isNotEmpty() }?.let { updateMatchesWithPlaceholders(it) }
 
         val roundOf16Matches = listOf(
@@ -122,7 +127,63 @@ class MatchRepository(private val context: Context) {
             }
         }
 
+        val thirdPlaceGroups = bestThirdPlacedTeams.mapNotNull { team ->
+            when (team.id) {
+                in 1..4 -> "A"
+                in 5..8 -> "B"
+                in 9..12 -> "C"
+                in 13..16 -> "D"
+                in 17..20 -> "E"
+                in 21..24 -> "F"
+                else -> null
+            }
+        }
+
+        val roundOf16MatchIds = listOf(39, 40, 43, 41)
+
+        val groupCombinations = thirdPlaceGroups.sorted().joinToString("")
+        val placementMap = getPlacementMapForThirdPlaceTeams(groupCombinations)
+
+        placementMap.forEachIndexed { index, group ->
+            val teamId = bestThirdPlacedTeams.firstOrNull { it.id in getGroupRangeForGroup(group) }?.id
+            val match = matches.find { it.id == roundOf16MatchIds[index] }
+            match?.team2Id = teamId ?: 0
+        }
+
         saveMatchesToJson(matches)
+    }
+
+    private fun getPlacementMapForThirdPlaceTeams(groupCombination: String): List<String> {
+        val placements = mapOf(
+            "ABCD" to listOf("A", "D", "B", "C"),
+            "ABCE" to listOf("A", "E", "B", "C"),
+            "ABCF" to listOf("A", "F", "B", "C"),
+            "ABDE" to listOf("D", "E", "A", "B"),
+            "ABDF" to listOf("D", "F", "A", "B"),
+            "ABEF" to listOf("E", "F", "B", "A"),
+            "ACDE" to listOf("E", "D", "C", "A"),
+            "ACDF" to listOf("F", "D", "C", "A"),
+            "ACEF" to listOf("E", "F", "C", "A"),
+            "ADEF" to listOf("E", "F", "D", "A"),
+            "BCDE" to listOf("E", "D", "B", "C"),
+            "BCDF" to listOf("F", "D", "C", "B"),
+            "BCEF" to listOf("F", "E", "C", "B"),
+            "BDEF" to listOf("F", "E", "D", "B"),
+            "CDEF" to listOf("F", "E", "D", "C")
+        )
+        return placements[groupCombination] ?: listOf()
+    }
+
+    private fun getGroupRangeForGroup(group: String): IntRange {
+        return when (group) {
+            "A" -> 1..4
+            "B" -> 5..8
+            "C" -> 9..12
+            "D" -> 13..16
+            "E" -> 17..20
+            "F" -> 21..24
+            else -> IntRange.EMPTY
+        }
     }
 
     private fun getTeamIdByPlaceholder(

@@ -121,4 +121,12 @@ class GroupStageManager(matchRepository: MatchRepository, private val teamReposi
                 .thenByDescending { it.team.goalsFor }
         ).map { it.team }
     }
+
+    fun getBestThirdPlacedTeams(groupRankings: Map<String, List<Team>>): List<Team> {
+        val thirdPlacedTeams = groupRankings.values.mapNotNull { it.getOrNull(2) }
+        return thirdPlacedTeams.sortedWith(compareByDescending<Team> { it.points }
+            .thenByDescending { it.goalDifference }
+            .thenByDescending { it.goalsFor })
+            .take(4)
+    }
 }
