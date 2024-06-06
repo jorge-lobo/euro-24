@@ -156,6 +156,14 @@ class BottomNavActivity : AppCompatActivity(),
         }
     }
 
+    fun showMatchEditorFragmentContainer() {
+        binding.apply {
+            matchEditorFragmentContainer.visibility = View.VISIBLE
+            fragmentContainer.visibility = View.INVISIBLE
+            bottomNav.visibility = View.INVISIBLE
+        }
+    }
+
     private fun updateBottomNavState(fragment: Fragment) {
         binding.bottomNav.selectedItemId = when (fragment) {
             is HomeFragment -> fragmentHome

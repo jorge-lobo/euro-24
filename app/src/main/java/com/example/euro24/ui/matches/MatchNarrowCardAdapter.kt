@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragment
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragmentContainer
 import com.example.euro24.utils.ImagesResourceMap
 
-class MatchNarrowCardAdapter(private val teamRepository: TeamRepository) :
+class MatchNarrowCardAdapter(
+    private val teamRepository: TeamRepository,
+    private val parentFragment: MatchEditorFragmentContainer
+) :
     RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
 
     private var items: List<MatchNarrowCardBindingItem> = emptyList()
@@ -36,7 +42,30 @@ class MatchNarrowCardAdapter(private val teamRepository: TeamRepository) :
     }
 
     inner class ViewHolder(private val binding: RvMatchCardNarrowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        init {
+            binding.root.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val activity = v?.context as? AppCompatActivity
+            if (activity != null) {
+                val fragmentManager = activity.supportFragmentManager
+                val fragment = MatchEditorFragment.newInstance(
+                    items[absoluteAdapterPosition].match.id ?: return
+                )
+
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.match_editor_fragment_container, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+
+                parentFragment.showMatchEditorFragmentContainer()
+            }
+        }
+
         fun bind(item: MatchNarrowCardBindingItem) {
             binding.match = item.match
 

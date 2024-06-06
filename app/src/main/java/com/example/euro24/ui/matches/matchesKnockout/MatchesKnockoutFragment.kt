@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentMatchesKnockoutBinding
+import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.MatchNarrowCardAdapter
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragmentContainer
 
-class MatchesKnockoutFragment : BaseFragment() {
+class MatchesKnockoutFragment : BaseFragment(), MatchEditorFragmentContainer {
 
     private lateinit var binding: FragmentMatchesKnockoutBinding
     private val mMatchesKnockoutViewModel by lazy { ViewModelProvider(this)[MatchesKnockoutViewModel::class.java] }
@@ -40,12 +42,16 @@ class MatchesKnockoutFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         teamRepository = TeamRepository(requireContext())
-        roundMatchesAdapter = MatchNarrowCardAdapter(teamRepository)
+        roundMatchesAdapter = MatchNarrowCardAdapter(teamRepository, this)
 
         setupRecyclerView()
         setupObservers()
         setupListeners()
         mMatchesKnockoutViewModel.checkDateCondition()
+    }
+
+    override fun showMatchEditorFragmentContainer() {
+        (requireActivity() as BottomNavActivity).showMatchEditorFragmentContainer()
     }
 
     private fun setupRecyclerView() {

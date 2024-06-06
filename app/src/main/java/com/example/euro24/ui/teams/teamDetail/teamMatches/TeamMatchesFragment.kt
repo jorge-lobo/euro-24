@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentTeamMatchesBinding
+import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.MatchNarrowCardAdapter
 import com.example.euro24.ui.matches.MatchNarrowCardBindingItem
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragmentContainer
 
-class TeamMatchesFragment : BaseFragment() {
+class TeamMatchesFragment : BaseFragment(), MatchEditorFragmentContainer {
 
     private lateinit var binding: FragmentTeamMatchesBinding
     private val mTeamMatchesViewModel by lazy { ViewModelProvider(this)[TeamMatchesViewModel::class.java] }
@@ -54,13 +56,17 @@ class TeamMatchesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         teamRepository = TeamRepository(requireContext())
-        teamMatchesAdapter = MatchNarrowCardAdapter(teamRepository)
+        teamMatchesAdapter = MatchNarrowCardAdapter(teamRepository, this)
 
         val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
         mTeamMatchesViewModel.initialize(teamId)
 
         setupRecyclerView()
         setupObservers()
+    }
+
+    override fun showMatchEditorFragmentContainer() {
+        (requireActivity() as BottomNavActivity).showMatchEditorFragmentContainer()
     }
 
     private fun setupRecyclerView() {
@@ -74,11 +80,11 @@ class TeamMatchesFragment : BaseFragment() {
         with(mTeamMatchesViewModel) {
             sortedMatches.observe(viewLifecycleOwner) { matches ->
                 matches?.let {
-                    val matchCardNarrowItems = matches.map { MatchNarrowCardBindingItem(it, teamRepository) }
+                    val matchCardNarrowItems =
+                        matches.map { MatchNarrowCardBindingItem(it, teamRepository) }
                     teamMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }
         }
     }
-
 }

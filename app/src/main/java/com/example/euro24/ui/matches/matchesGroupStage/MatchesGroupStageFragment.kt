@@ -1,7 +1,6 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +12,13 @@ import com.example.euro24.R
 import com.example.euro24.data.groups.Group
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentMatchesGroupStageBinding
+import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.MatchNarrowCardAdapter
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragmentContainer
 
-class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickListener {
+class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickListener,
+    MatchEditorFragmentContainer {
 
     private lateinit var binding: FragmentMatchesGroupStageBinding
     private val mMatchesGroupStageViewModel by lazy { ViewModelProvider(this)[MatchesGroupStageViewModel::class.java] }
@@ -48,7 +50,7 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
         teamRepository = TeamRepository(requireContext())
         groupListAdapter = GroupListAdapter()
         groupTableAdapter = GroupTableAdapter()
-        groupMatchesAdapter = MatchNarrowCardAdapter(teamRepository)
+        groupMatchesAdapter = MatchNarrowCardAdapter(teamRepository, this)
 
         setupProgressBar()
         setupRecyclerViews()
@@ -63,6 +65,10 @@ class MatchesGroupStageFragment : BaseFragment(), GroupListAdapter.OnItemClickLi
     override fun onItemClick(group: Group) {
         updateDropdownUI(group)
         mMatchesGroupStageViewModel.loadGroupData(group)
+    }
+
+    override fun showMatchEditorFragmentContainer() {
+        (requireActivity() as BottomNavActivity).showMatchEditorFragmentContainer()
     }
 
     private fun setupProgressBar() {
