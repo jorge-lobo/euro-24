@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/calendar_item_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_item_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_small"
+            android:fontFamily="@font/teko_regular"
+            android:gravity="center"
+            android:textColor="@color/calendar_day_inactive"
+            android:textSize="@dimen/calendar_day"
+            tools:text="22" />
+
+    </RelativeLayout>
+
+</layout>

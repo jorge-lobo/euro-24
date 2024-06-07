@@ -10,7 +10,7 @@
         <item name="android:button">@null</item>
     </style>
 
-    <style name="CustomDateTextAppearance">
+    <!--<style name="CustomDateTextAppearance">
         <item name="android:textColor">@color/calendar_day_active</item>
         <item name="android:textSize">@dimen/calendar_day</item>
         <item name="font">@font/teko_regular</item>
@@ -20,6 +20,6 @@
         <item name="android:textColor">@color/calendar_weekday_text</item>
         <item name="android:textSize">@dimen/calendar_weekday</item>
         <item name="font">@font/teko_semi_bold</item>
-    </style>
+    </style>-->
 
 </resources>
