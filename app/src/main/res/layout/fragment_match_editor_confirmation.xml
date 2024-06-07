@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.matches.matchEditor.confirmation.MatchEditorConfirmationViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/dialog_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:padding="@dimen/margin_normal"
+        tools:context=".ui.matches.matchEditor.confirmation.MatchEditorConfirmationFragment">
+
+        <RelativeLayout
+            android:id="@+id/dialog_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_h"
+            android:background="@drawable/background_dialog_base"
+            android:padding="@dimen/margin_big">
+
+            <TextView
+                android:id="@+id/text_dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_horizontal"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/dialog_title"
+                tools:text="Confirmation cancel" />
+
+            <RelativeLayout
+                android:id="@+id/dialog_cancel_confirmation_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/buttons_container"
+                android:layout_below="@id/text_dialog_title"
+                android:paddingVertical="@dimen/margin_big"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/image_warning"
+                    android:layout_width="@dimen/icon_big"
+                    android:layout_height="@dimen/icon_big"
+                    android:layout_above="@id/text_cancel_confirmation_message_top"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/description_icon"
+                    android:src="@drawable/icon_warning"
+                    app:tint="@color/match_editor_icon_warning" />
+
+                <TextView
+                    android:id="@+id/text_cancel_confirmation_message_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/text_cancel_confirmation_message_bottom"
+                    android:layout_marginTop="64dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/match_editor_message_confirm_cancel_top"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/dialog_message" />
+
+                <TextView
+                    android:id="@+id/text_cancel_confirmation_message_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_big"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/match_editor_message_confirm_cancel_bottom"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/dialog_message" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dialog_save_confirmation_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/buttons_container"
+                android:layout_below="@id/text_dialog_title"
+                android:paddingVertical="@dimen/margin_big"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/score_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/text_team1_penalties_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:fontFamily="@font/teko_regular"
+                        android:gravity="start"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_extra"
+                        android:visibility="invisible"
+                        tools:text="10" />
+
+                    <TextView
+                        android:id="@+id/text_team1_score_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:gravity="end"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_score"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/text_score_divider_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_extra_small"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_card_score_divider"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_score" />
+
+                    <TextView
+                        android:id="@+id/text_team2_score_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:gravity="start"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_score"
+                        tools:text="0" />
+
+                    <TextView
+                        android:id="@+id/text_team2_penalties_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:fontFamily="@font/teko_regular"
+                        android:gravity="start"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_extra"
+                        android:visibility="invisible"
+                        tools:text="11" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_extra_message_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/score_container"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-16dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/match_card_text"
+                    android:textSize="@dimen/match_large_extra"
+                    android:visibility="invisible"
+                    tools:text="after extra time" />
+
+                <RelativeLayout
+                    android:id="@+id/team1_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/score_container"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/score_container"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/image_team1_flag_save"
+                        android:layout_width="@dimen/flag_medium_w"
+                        android:layout_height="@dimen/flag_medium_h"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="@string/description_flag"
+                        android:src="@drawable/default_flag" />
+
+                    <TextView
+                        android:id="@+id/text_team1_name_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/image_team1_flag_save"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.team1Name}"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_team_name"
+                        tools:text="Switzerland" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/team2_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/score_container"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/score_container"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/image_team2_flag_save"
+                        android:layout_width="@dimen/flag_medium_w"
+                        android:layout_height="@dimen/flag_medium_h"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="@string/description_flag"
+                        android:src="@drawable/default_flag" />
+
+                    <TextView
+                        android:id="@+id/text_team2_name_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/image_team2_flag_save"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_large"
+                        android:fontFamily="@font/teko_semi_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@{viewModel.team2Name}"
+                        android:textColor="@color/match_card_text"
+                        android:textSize="@dimen/match_large_team_name"
+                        tools:text="Switzerland" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/text_save_confirmation_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_big"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="center_horizontal"
+                    android:text="@string/match_editor_message_confirm_changes"
+                    android:textColor="@color/dialog_text"
+                    android:textSize="@dimen/dialog_message" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/buttons_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dialog_cta_button_h"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:id="@+id/button_cta_dialog_yes"
+                    android:layout_width="@dimen/dialog_cta_small_button_w"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/background_button_cta_dialog"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center"
+                    android:text="@string/match_editor_button_yes"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dialog_cta_button_text"
+                    android:textSize="@dimen/dialog_button_text" />
+
+                <Button
+                    android:id="@+id/button_cta_dialog_no"
+                    android:layout_width="@dimen/dialog_cta_small_button_w"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/background_button_cta_dialog_secondary"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center"
+                    android:text="@string/match_editor_button_no"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dialog_cta_button_text"
+                    android:textSize="@dimen/dialog_button_text" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

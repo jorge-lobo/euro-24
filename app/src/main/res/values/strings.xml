@@ -13,6 +13,7 @@
     <string name="title_teams">Teams</string>
     <string name="title_host_cities">Host Cities</string>
     <string name="title_past_winners">Past Winners</string>
+    <string name="title_edit_match">Edit Match</string>
 
     <!-- Dialogs -->
     <string name="dialog_title_connection_issue">Connection Issue!</string>
@@ -51,9 +52,9 @@
     <string name="table_position">#</string>
     <string name="table_team">Team</string>
     <string name="table_played">P</string>
-    <string name="table_wins">W</string>
-    <string name="table_draws">D</string>
-    <string name="table_loses">L</string>
+    <string name="table_won">W</string>
+    <string name="table_drawn">D</string>
+    <string name="table_lost">L</string>
     <string name="table_goals">Goals</string>
     <string name="table_goal_difference">Gd</string>
     <string name="table_points">Pts</string>
@@ -128,6 +129,25 @@
     <string name="host_leipzig">Leipzig</string>
     <string name="host_munich">Munich</string>
     <string name="host_stuttgart">Stuttgart</string>
+
+    <!-- Match Editor -->
+    <string name="match_editor_main_title">Edit Match</string>
+    <string name="match_editor_label_select_broadcaster">Select broadcaster</string>
+    <string name="match_editor_label_after_extra_time">After extra time</string>
+    <string name="match_editor_label_after_penalties">After penalties</string>
+    <string name="match_editor_title_confirm_changes">Confirmation changes</string>
+    <string name="match_editor_title_confirm_cancel">Confirmation cancel</string>
+    <string name="match_editor_title_success">Well done!</string>
+    <string name="match_editor_title_failure">Oh no!</string>
+    <string name="match_editor_message_confirm_changes">Are you sure you want to continue?</string>
+    <string name="match_editor_message_confirm_cancel_top">Are you sure you want to close without saving?</string>
+    <string name="match_editor_message_confirm_cancel_bottom">The modifications will be deleted!</string>
+    <string name="match_editor_message_success">Match saved successfully!</string>
+    <string name="match_editor_message_failure">Something wrong happened!</string>
+    <string name="match_editor_button_save">Save</string>
+    <string name="match_editor_button_yes">Yes</string>
+    <string name="match_editor_button_no">No</string>
+    <string name="match_editor_button_try_again">Try again</string>
 
     <!-- Teams -->
     <string name="team_alb">Albania</string>

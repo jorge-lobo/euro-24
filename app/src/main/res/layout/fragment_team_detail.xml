@@ -115,7 +115,7 @@
             android:layout_below="@id/team_name_container"
             android:layout_marginTop="-32dp"
             android:layout_marginBottom="@dimen/margin_normal"
-            android:background="@drawable/background_container_team_details" />
+            android:background="@drawable/background_container_default_color" />
 
     </RelativeLayout>
 

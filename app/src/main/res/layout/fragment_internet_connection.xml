@@ -39,7 +39,7 @@
             android:gravity="center_horizontal"
             android:text="@string/dialog_title_connection_issue"
             android:textColor="@color/dialog_text"
-            android:textSize="@dimen/internet_connection_title" />
+            android:textSize="@dimen/dialog_title" />
 
         <TextView
             android:id="@+id/text_internet_connection_message"
@@ -54,7 +54,7 @@
             android:paddingHorizontal="@dimen/margin_big"
             android:text="@string/dialog_message_connection"
             android:textColor="@color/dialog_text"
-            android:textSize="@dimen/internet_connection_message" />
+            android:textSize="@dimen/dialog_message" />
 
     </RelativeLayout>
 

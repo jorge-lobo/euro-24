@@ -28,6 +28,7 @@ class BottomNavActivity : AppCompatActivity(),
     private lateinit var binding: ActivityBottomNavBinding
     private val fragmentStack: Stack<Fragment> = Stack()
     private var isSelectingItemManually = false
+    private var isCalendarButtonClicked = false
 
     private val fragmentHome = R.id.nav_home
     private val fragmentMatches = R.id.nav_matches
@@ -90,7 +91,9 @@ class BottomNavActivity : AppCompatActivity(),
             }
 
             buttonCalendar.buttonCalendar.setOnClickListener {
+                isCalendarButtonClicked = true
                 openFragment(CalendarFragment())
+                isCalendarButtonClicked = false
             }
         }
     }
@@ -109,7 +112,7 @@ class BottomNavActivity : AppCompatActivity(),
         }
     }
 
-    private fun openFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+    fun openFragment(fragment: Fragment, addToBackStack: Boolean = true) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .apply {
@@ -123,14 +126,20 @@ class BottomNavActivity : AppCompatActivity(),
         hideVenueDetailFragmentContainer()
         updateUIVisibility(fragment)
 
-        if (!isSelectingItemManually) {
+        if (!isSelectingItemManually && !isCalendarButtonClicked) {
             updateBottomNavState(fragment)
         }
     }
 
-    private fun hideVenueDetailFragmentContainer() {
+    private fun showFragmentContainer() {
         binding.apply {
             fragmentContainer.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideVenueDetailFragmentContainer() {
+        showFragmentContainer()
+        binding.apply {
             venueDetailFragmentContainer.visibility = View.INVISIBLE
 
             wordMark.headerLogo.setColorFilter(
@@ -139,6 +148,22 @@ class BottomNavActivity : AppCompatActivity(),
                     R.color.common_header_logo
                 )
             )
+        }
+    }
+
+    fun hideMatchEditorFragmentContainer() {
+        showFragmentContainer()
+        binding.apply {
+            matchEditorFragmentContainer.visibility = View.INVISIBLE
+            bottomNav.visibility = View.VISIBLE
+        }
+    }
+
+    fun showMatchEditorFragmentContainer() {
+        binding.apply {
+            matchEditorFragmentContainer.visibility = View.VISIBLE
+            fragmentContainer.visibility = View.INVISIBLE
+            bottomNav.visibility = View.INVISIBLE
         }
     }
 

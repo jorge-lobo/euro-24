@@ -25,7 +25,7 @@ class DuringTournamentViewModel(application: Application) : BaseViewModel(applic
         isLoading.value = true
 
         /*val date = DateUtils.currentDate*/
-        val date = "26/06/2024"
+        val date = "29/06/2024"
 
         noDataAvailable.value = false
 

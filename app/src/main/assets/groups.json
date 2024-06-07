@@ -1,0 +1,88 @@
+{
+  "groups": [
+    {
+      "id": 1,
+      "groupName": "Group A",
+      "team1": "Germany",
+      "team2": "Scotland",
+      "team3": "Hungary",
+      "team4": "Switzerland",
+      "teamsId": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 2,
+      "groupName": "Group B",
+      "team1": "Spain",
+      "team2": "Croatia",
+      "team3": "Italy",
+      "team4": "Albania",
+      "teamsId": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 3,
+      "groupName": "Group C",
+      "team1": "Slovenia",
+      "team2": "Denmark",
+      "team3": "Serbia",
+      "team4": "England",
+      "teamsId": [
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": 4,
+      "groupName": "Group D",
+      "team1": "Poland",
+      "team2": "Netherlands",
+      "team3": "Austria",
+      "team4": "France",
+      "teamsId": [
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": 5,
+      "groupName": "Group E",
+      "team1": "Belgium",
+      "team2": "Slovakia",
+      "team3": "Romania",
+      "team4": "Ukraine",
+      "teamsId": [
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": 6,
+      "groupName": "Group F",
+      "team1": "Türkiye",
+      "team2": "Georgia",
+      "team3": "Portugal",
+      "team4": "Czechia",
+      "teamsId": [
+        21,
+        22,
+        23,
+        24
+      ]
+    }
+  ]
+}

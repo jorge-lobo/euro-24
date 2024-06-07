@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.matches.matchEditor.MatchEditorViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/margin_normal"
+        tools:background="@color/common_background_color"
+        tools:context=".ui.pastFinals.PastFinalsFragment">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center_horizontal"
+            android:text="@string/title_edit_match"
+            android:textAllCaps="true"
+            android:textColor="@color/common_text_title"
+            android:textSize="@dimen/common_title" />
+
+        <RelativeLayout
+            android:id="@+id/editor_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_title"
+            android:background="@drawable/background_match_editor"
+            android:visibility="visible">
+
+            <ImageButton
+                android:id="@+id/button_close"
+                android:layout_width="@dimen/corner_button"
+                android:layout_height="@dimen/corner_button"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/background_button_right_corner"
+                android:backgroundTint="@color/dialog_close_button_bg"
+                android:contentDescription="@string/description_button_icon"
+                android:src="@drawable/icon_close"
+                app:tint="@color/dialog_close_button_icon" />
+
+            <!-- <TextView
+                 android:id="@+id/label_broadcast_selector"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentStart="true"
+                 android:layout_alignParentTop="true"
+                 android:layout_marginStart="@dimen/margin_big"
+                 android:layout_marginTop="@dimen/margin_big"
+                 android:layout_toStartOf="@id/button_close"
+                 android:fontFamily="@font/teko_regular"
+                 android:text="@string/match_editor_label_select_broadcaster"
+                 android:textColor="@color/match_editor_text"
+                 android:textSize="@dimen/common_label" />
+
+             <RelativeLayout
+                 android:id="@+id/broadcasters_buttons_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/dialog_broadcast_button_h"
+                 android:layout_below="@id/label_broadcast_selector"
+                 android:layout_marginHorizontal="@dimen/margin_big"
+                 android:layout_marginTop="@dimen/margin_large">
+
+                 <RadioGroup
+                     android:id="@+id/rb_buttons_container"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_alignParentStart="true"
+                     android:orientation="horizontal">
+
+                     <FrameLayout
+                         android:id="@+id/rb_tv_rtp_container"
+                         android:layout_width="@dimen/dialog_broadcast_button_w"
+                         android:layout_height="match_parent">
+
+                         <RadioButton
+                             android:id="@+id/rb_tv_rtp_button"
+                             style="@style/RadioButtonNoButton"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@drawable/background_rb_rtp"
+                             android:checked="false" />
+
+                         <ImageView
+                             android:id="@+id/rb_tv_rtp_icon"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:contentDescription="@string/description_tv_icon"
+                             android:gravity="center"
+                             android:padding="@dimen/margin_extra_small"
+                             android:scaleType="fitCenter"
+                             android:src="@drawable/tv_rtp" />
+
+                     </FrameLayout>
+
+                     <com.google.android.material.divider.MaterialDivider
+                         android:layout_width="1dp"
+                         android:layout_height="match_parent"
+                         android:background="@color/quick_silver50" />
+
+                     <FrameLayout
+                         android:id="@+id/rb_tv_sic_container"
+                         android:layout_width="@dimen/dialog_broadcast_button_w"
+                         android:layout_height="match_parent">
+
+                         <RadioButton
+                             android:id="@+id/rb_tv_sic_button"
+                             style="@style/RadioButtonNoButton"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@drawable/background_rb_sic"
+                             android:checked="false" />
+
+                         <ImageView
+                             android:id="@+id/rb_tv_sic_icon"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:contentDescription="@string/description_tv_icon"
+                             android:gravity="center"
+                             android:padding="@dimen/margin_extra_small"
+                             android:scaleType="fitCenter"
+                             android:src="@drawable/tv_sic" />
+
+                     </FrameLayout>
+
+                     <com.google.android.material.divider.MaterialDivider
+                         android:layout_width="1dp"
+                         android:layout_height="match_parent"
+                         android:background="@color/quick_silver50" />
+
+                     <FrameLayout
+                         android:id="@+id/rb_tv_tvi_container"
+                         android:layout_width="@dimen/dialog_broadcast_button_w"
+                         android:layout_height="match_parent">
+
+                         <RadioButton
+                             android:id="@+id/rb_tv_tvi_button"
+                             style="@style/RadioButtonNoButton"
+                             android:layout_width="@dimen/dialog_broadcast_button_w"
+                             android:layout_height="match_parent"
+                             android:background="@drawable/background_rb_tvi"
+                             android:checked="false" />
+
+                         <ImageView
+                             android:id="@+id/rb_tv_tvi_icon"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:contentDescription="@string/description_tv_icon"
+                             android:gravity="center"
+                             android:padding="@dimen/margin_extra_small"
+                             android:scaleType="fitCenter"
+                             android:src="@drawable/tv_tvi" />
+
+                     </FrameLayout>
+
+                 </RadioGroup>
+
+                 <ImageButton
+                     android:id="@+id/rb_delete"
+                     android:layout_width="@dimen/dialog_broadcast_button_w"
+                     android:layout_height="match_parent"
+                     android:layout_alignParentEnd="true"
+                     android:layout_marginStart="@dimen/margin_big"
+                     android:background="@drawable/background_rb_delete"
+                     android:clickable="false"
+                     android:contentDescription="@string/description_tv_icon"
+                     android:gravity="center"
+                     android:padding="@dimen/margin_small"
+                     android:scaleType="fitCenter"
+                     android:src="@drawable/icon_delete"
+                     app:tint="@color/match_editor_broadcast_button_delete_icon" />
+
+             </RelativeLayout>-->
+
+            <LinearLayout
+                android:id="@+id/team1_editor_container"
+                android:layout_width="128dp"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_cta_save"
+                android:layout_below="@id/button_close"
+                android:layout_alignParentStart="true"
+                android:layout_marginVertical="64dp"
+                android:layout_marginStart="@dimen/margin_big"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/editor_image_team1_flag"
+                    android:layout_width="@dimen/flag_medium_w"
+                    android:layout_height="@dimen/flag_medium_h"
+                    android:contentDescription="@string/description_flag"
+                    android:src="@drawable/default_flag" />
+
+                <TextView
+                    android:id="@+id/editor_text_team1_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.team1Name}"
+                    android:textColor="@color/match_editor_text"
+                    android:textSize="@dimen/match_large_team_name"
+                    tools:text="Switzerland" />
+
+                <include
+                    android:id="@+id/team1_result_picker_score"
+                    layout="@layout/score_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dialog_score_picker" />
+
+                <LinearLayout
+                    android:id="@+id/team1_extra_time_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/label_extra_time_team1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_extra_time"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <include
+                        android:id="@+id/team1_extra_time_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/team1_penalties_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/label_penalties_team1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_penalties"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <include
+                        android:id="@+id/team1_penalties_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/team2_editor_container"
+                android:layout_width="128dp"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_cta_save"
+                android:layout_below="@id/button_close"
+                android:layout_alignParentEnd="true"
+                android:layout_marginVertical="64dp"
+                android:layout_marginEnd="@dimen/margin_big"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/editor_image_team2_flag"
+                    android:layout_width="@dimen/flag_medium_w"
+                    android:layout_height="@dimen/flag_medium_h"
+                    android:contentDescription="@string/description_flag"
+                    android:src="@drawable/default_flag" />
+
+                <TextView
+                    android:id="@+id/editor_text_team2_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_semi_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.team2Name}"
+                    android:textColor="@color/match_editor_text"
+                    android:textSize="@dimen/match_large_team_name"
+                    tools:text="Netherlands" />
+
+                <include
+                    android:id="@+id/team2_result_picker_score"
+                    layout="@layout/score_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dialog_score_picker" />
+
+                <LinearLayout
+                    android:id="@+id/team2_extra_time_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/label_extra_time_team2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_extra_time"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <include
+                        android:id="@+id/team2_extra_time_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/team2_penalties_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/label_penalties_team2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/teko_regular"
+                        android:text="@string/match_editor_label_after_penalties"
+                        android:textColor="@color/match_editor_text"
+                        android:textSize="@dimen/common_label" />
+
+                    <include
+                        android:id="@+id/team2_penalties_picker_score"
+                        layout="@layout/score_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dialog_score_picker" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_cta_save"
+                android:layout_width="@dimen/dialog_cta_medium_button_w"
+                android:layout_height="@dimen/dialog_cta_button_h"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_big"
+                android:background="@drawable/background_button_cta_dialog"
+                android:enabled="false"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center"
+                android:text="@string/match_editor_button_save"
+                android:textAllCaps="true"
+                android:textColor="@color/cta_button_selector_text"
+                android:textSize="@dimen/dialog_button_text" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/confirmation_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+    </RelativeLayout>
+
+</layout>

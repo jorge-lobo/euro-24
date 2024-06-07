@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="128dp"
+    android:layout_height="@dimen/dialog_score_picker">
+
+    <include
+        android:id="@+id/button_decrease_score"
+        layout="@layout/picker_button_decrease"
+        android:layout_width="@dimen/dialog_score_picker"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:id="@+id/result_container"
+        android:layout_width="@dimen/match_editor_score_container_w"
+        android:layout_height="@dimen/match_editor_score_container_h"
+        android:layout_toEndOf="@id/button_decrease_score"
+        android:background="@color/match_editor_score_container">
+
+        <TextView
+            android:id="@+id/text_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center"
+            android:textColor="@color/match_editor_score"
+            android:textSize="@dimen/match_editor_score"
+            tools:text="0" />
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/button_increase_score"
+        layout="@layout/picker_button_increase"
+        android:layout_width="@dimen/dialog_score_picker"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/result_container" />
+
+</RelativeLayout>

@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.matches.MatchesFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.matches.MatchesViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingTop="@dimen/margin_normal"
+        tools:background="@color/common_background_color"
+        tools:context=".ui.matches.MatchesFragment">
 
-</FrameLayout>
+
+        <RadioGroup
+            android:id="@+id/buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toggle_button_upper_h"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_matches_group_stage"
+                style="@style/RadioButtonNoButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center"
+                android:text="@string/matches_group_stage"
+                android:textAllCaps="true"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="@dimen/toggle_button_upper_text" />
+
+            <RadioButton
+                android:id="@+id/rb_matches_knockout"
+                style="@style/RadioButtonNoButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center"
+                android:text="@string/matches_knockout"
+                android:textAllCaps="true"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="@dimen/toggle_button_upper_text" />
+
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/matches_stage_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/buttons_container"
+            android:layout_marginBottom="@dimen/margin_normal" />
+
+    </RelativeLayout>
+
+</layout>

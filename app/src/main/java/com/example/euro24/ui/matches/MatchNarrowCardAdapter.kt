@@ -1,17 +1,26 @@
-package com.example.euro24.ui.teams.teamDetail.teamMatches
+package com.example.euro24.ui.matches
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragment
+import com.example.euro24.ui.matches.matchEditor.MatchEditorFragmentContainer
+import com.example.euro24.utils.ImagesResourceMap
 
-class TeamMatchesAdapter : RecyclerView.Adapter<TeamMatchesAdapter.ViewHolder>() {
+class MatchNarrowCardAdapter(
+    private val teamRepository: TeamRepository,
+    private val parentFragment: MatchEditorFragmentContainer
+) :
+    RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
 
-    private var items: List<TeamMatchesBindingItem> = emptyList()
+    private var items: List<MatchNarrowCardBindingItem> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,28 +36,54 @@ class TeamMatchesAdapter : RecyclerView.Adapter<TeamMatchesAdapter.ViewHolder>()
     override fun getItemCount(): Int = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun submitList(newItems: List<TeamMatchesBindingItem>) {
+    fun submitList(newItems: List<MatchNarrowCardBindingItem>) {
         items = newItems
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(private val binding: RvMatchCardNarrowBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TeamMatchesBindingItem) {
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        init {
+            binding.root.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val activity = v?.context as? AppCompatActivity
+            if (activity != null) {
+                val fragmentManager = activity.supportFragmentManager
+                val fragment = MatchEditorFragment.newInstance(
+                    items[absoluteAdapterPosition].match.id ?: return
+                )
+
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.match_editor_fragment_container, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+
+                parentFragment.showMatchEditorFragmentContainer()
+            }
+        }
+
+        fun bind(item: MatchNarrowCardBindingItem) {
             binding.match = item.match
 
             with(binding) {
-                itemImageTeam1FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team1 ?: ""
-                    )
-                )
+                val team1 = teamRepository.getTeamById(item.match.team1Id ?: 0)
+                val team2 = teamRepository.getTeamById(item.match.team2Id ?: 0)
 
-                itemImageTeam2FlagNarrow.setImageResource(
-                    item.getTeamFlagResourceId(
-                        item.match.team2 ?: ""
-                    )
-                )
+                itemTextTeam1NameNarrow.text = team1?.name ?: "Unknown"
+                itemTextTeam2NameNarrow.text = team2?.name ?: "Unknown"
+
+                val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam1FlagNarrow.setImageResource(team1FlagResId)
+
+                val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
+                    ?: R.drawable.default_flag
+                itemImageTeam2FlagNarrow.setImageResource(team2FlagResId)
+
 
                 itemTextPhaseNarrow.visibility = View.INVISIBLE
                 itemTextMatchCityNarrow.visibility = View.VISIBLE

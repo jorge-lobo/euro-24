@@ -65,4 +65,11 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
+    <FrameLayout
+        android:id="@+id/match_editor_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/word_mark"
+        android:visibility="gone" />
+
 </RelativeLayout>

@@ -10,14 +10,16 @@
     <dimen name="bottom_nav_text">16sp</dimen>
     <dimen name="dialog_button_text">40sp</dimen>
     <dimen name="toggle_button_upper_text">24sp</dimen>
-    <dimen name="toggle_button_lower_text">12sp</dimen>
+    <dimen name="toggle_button_lower_text">16sp</dimen>
     <dimen name="dropdown_title">24sp</dimen>
-    <dimen name="dropdown_item">12sp</dimen>
+    <dimen name="dropdown_item">20sp</dimen>
 
-    <dimen name="internet_connection_title">32sp</dimen>
-    <dimen name="internet_connection_message">20sp</dimen>
-    <dimen name="edit_match_team_name">24sp</dimen>
-    <dimen name="edit_match_score">40sp</dimen>
+    <dimen name="dialog_title">32sp</dimen>
+    <dimen name="dialog_message">20sp</dimen>
+
+    <dimen name="match_editor_team_name">24sp</dimen>
+    <dimen name="match_editor_score">32sp</dimen>
+    <dimen name="match_editor_titles">32sp</dimen>
 
     <dimen name="main_countdown_days">192sp</dimen>
     <dimen name="main_countdown_text">64sp</dimen>
@@ -84,6 +86,7 @@
     <!-- Icons -->
     <dimen name="icon_small">16dp</dimen>
     <dimen name="icon_medium">24dp</dimen>
+    <dimen name="icon_large">48dp</dimen>
     <dimen name="icon_big">64dp</dimen>
     <dimen name="icon_bottom_nav">32dp</dimen>
 
@@ -111,10 +114,14 @@
     <dimen name="logo_word_mark_w">128dp</dimen>
 
     <!-- Buttons -->
-    <dimen name="dialog_button_w">256dp</dimen>
-    <dimen name="dialog_button_h">64dp</dimen>
+    <dimen name="dialog_cta_large_button_w">256dp</dimen>
+    <dimen name="dialog_cta_medium_button_w">160dp</dimen>
+    <dimen name="dialog_cta_small_button_w">112dp</dimen>
+    <dimen name="dialog_cta_button_h">64dp</dimen>
+    <dimen name="dialog_broadcast_button_w">64dp</dimen>
+    <dimen name="dialog_broadcast_button_h">40dp</dimen>
+    <dimen name="dialog_score_picker">40dp</dimen>
     <dimen name="corner_button">64dp</dimen>
-    <dimen name="edit_score_button">24dp</dimen>
     <dimen name="toggle_button_upper_h">32dp</dimen>
     <dimen name="toggle_button_lower_h">24dp</dimen>
 
@@ -125,6 +132,8 @@
     <dimen name="dropdown_open_h">168dp</dimen>
     <dimen name="match_card_large_h">128dp</dimen>
     <dimen name="match_card_narrow_h">64dp</dimen>
+    <dimen name="match_editor_score_container_w">48dp</dimen>
+    <dimen name="match_editor_score_container_h">40dp</dimen>
 
     <!-- Player Card -->
     <dimen name="player_card_h">48dp</dimen>

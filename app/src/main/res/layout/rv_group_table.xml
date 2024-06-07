@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="team"
+            type="com.example.euro24.data.teams.Team" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/item_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/table_text_position"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@{String.valueOf(position)}"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_horizontal"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/table_text_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_toStartOf="@id/table_text_played"
+                android:layout_toEndOf="@id/table_text_position"
+                android:fontFamily="@font/teko_semi_bold"
+                android:text="@{team.name}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="@string/team_sui" />
+
+            <TextView
+                android:id="@+id/table_text_played"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/table_text_won"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{team.played.toString()}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/table_text_won"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/table_text_drawn"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{team.won.toString()}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/table_text_drawn"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/table_text_lost"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{team.drawn.toString()}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/table_text_lost"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/goals_container"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{team.lost.toString()}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+            <RelativeLayout
+                android:id="@+id/goals_container"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/table_text_goal_difference"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/table_text_goals_for"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/table_text_goals_divider"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="end"
+                    android:text="@{team.goalsFor.toString()}"
+                    android:textColor="@color/matches_white_box_text"
+                    android:textSize="@dimen/group_table_text"
+                    tools:text="0" />
+
+                <TextView
+                    android:id="@+id/table_text_goals_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_extra_small"
+                    android:layout_toStartOf="@id/table_text_goals_against"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/match_card_score_divider"
+                    android:textColor="@color/matches_white_box_text"
+                    android:textSize="@dimen/group_table_text" />
+
+                <TextView
+                    android:id="@+id/table_text_goals_against"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/teko_regular"
+                    android:gravity="start"
+                    android:text="@{team.goalsAgainst.toString()}"
+                    android:textColor="@color/matches_white_box_text"
+                    android:textSize="@dimen/group_table_text"
+                    tools:text="0" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/table_text_goal_difference"
+                android:layout_width="16dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:layout_toStartOf="@id/table_text_points"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:text="@{team.formattedGoalDifference}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/table_text_points"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_horizontal"
+                android:text="@{team.points.toString()}"
+                android:textColor="@color/matches_white_box_text"
+                android:textSize="@dimen/group_table_text"
+                tools:text="0" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

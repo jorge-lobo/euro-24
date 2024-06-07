@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.euro24.R
+import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentVenueDetailBinding
 import com.example.euro24.ui.common.BaseFragment
 
@@ -16,7 +17,8 @@ class VenueDetailFragment : BaseFragment() {
 
     private lateinit var binding: FragmentVenueDetailBinding
     private val mVenueDetailViewModel by lazy { ViewModelProvider(this)[VenueDetailViewModel::class.java] }
-    private val venueMatchesAdapter = VenueMatchesAdapter()
+    private lateinit var teamRepository: TeamRepository
+    private lateinit var venueMatchesAdapter: VenueMatchesAdapter
 
     companion object {
         private const val ARG_VENUE_ID = "venue_id"
@@ -44,9 +46,6 @@ class VenueDetailFragment : BaseFragment() {
         binding.viewModel = mVenueDetailViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        setupViews()
-        setupRecyclerView()
-
         return binding.root
     }
 
@@ -56,6 +55,11 @@ class VenueDetailFragment : BaseFragment() {
         val venueId = arguments?.getInt(ARG_VENUE_ID) ?: 0
         mVenueDetailViewModel.initialize(venueId)
 
+        teamRepository = TeamRepository(requireContext())
+        venueMatchesAdapter = VenueMatchesAdapter(teamRepository)
+
+        setupViews()
+        setupRecyclerView()
         setupObservers()
     }
 
@@ -88,7 +92,7 @@ class VenueDetailFragment : BaseFragment() {
 
             sortedMatches.observe(viewLifecycleOwner) { matches ->
                 matches?.let {
-                    val matchCardNarrowItems = matches.map { VenueMatchesBindingItem(it) }
+                    val matchCardNarrowItems = matches.map { VenueMatchesBindingItem(it, teamRepository) }
                     venueMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }

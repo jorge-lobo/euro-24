@@ -7,6 +7,8 @@
     <color name="anthracite">#0C1114</color>
     <color name="anthracite50">#800C1114</color>
     <color name="quick_silver">#9EA3A6</color>
+    <color name="quick_silver50">#809EA3A6</color>
+    <color name="charcoal">#37444D</color>
     <color name="charcoal50">#8037444D</color>
     <color name="orange">#FF6600</color>
     <color name="pumpkin">#BF3900</color>
@@ -16,6 +18,7 @@
     <color name="common_text_title">@color/white</color>
     <color name="common_container_large_white_bg">@color/white</color>
     <color name="common_container_large_orange_bg">@color/orange</color>
+    <color name="common_progress_bar">@color/orange</color>
 
     <!-- Header Logo -->
     <color name="common_header_logo">@color/white</color>
@@ -23,6 +26,19 @@
 
     <!-- Home Fragment -->
     <color name="home_fragment_text">@color/white</color>
+
+    <!-- Matches Fragment -->
+    <color name="matches_btn_text_normal">@color/white</color>
+    <color name="matches_btn_text_active">@color/orange</color>
+    <color name="matches_default_background_text">@color/white</color>
+    <color name="matches_white_box_text">@color/anthracite</color>
+    <color name="matches_orange_box_text">@color/white</color>
+    <color name="matches_table_labels">@color/quick_silver</color>
+    <color name="matches_dropdown_background">@color/orange</color>
+    <color name="matches_dropdown_text">@color/white</color>
+    <color name="matches_dropdown_arrow">@color/white</color>
+    <color name="matches_btn_small_text_normal">@color/anthracite</color>
+    <color name="matches_btn_small_text_active">@color/orange</color>
 
     <!-- Team Detail Fragment -->
     <color name="team_btn_text_normal">@color/white</color>
@@ -56,6 +72,41 @@
     <color name="dialog_close_button_bg">@color/quick_silver</color>
     <color name="dialog_close_button_icon">@color/white</color>
     <color name="dialog_icon_no_wifi">@color/white</color>
+
+    <!-- Match Editor -->
+    <color name="match_editor_background">@color/charcoal50</color>
+    <color name="match_editor_dialog_background">@color/charcoal</color>
+    <color name="match_editor_dialog_success_background">@color/orange</color>
+    <color name="match_editor_text">@color/white</color>
+    <color name="match_editor_score">@color/anthracite</color>
+    <color name="match_editor_score_container">@color/white</color>
+    <color name="match_editor_close_button_bg">@color/quick_silver</color>
+    <color name="match_editor_close_button_icon">@color/white</color>
+    <color name="match_editor_primary_cta_button_bg">@color/orange</color>
+    <color name="match_editor_secondary_cta_button_bg">@color/transparent</color>
+    <color name="match_editor_secondary_cta_button_stroke">@color/orange</color>
+    <color name="match_editor_cta_button_text">@color/white</color>
+    <color name="match_editor_inactive_cta_button_bg">@color/anthracite</color>
+    <color name="match_editor_inactive_cta_button_text">@color/charcoal</color>
+    <color name="match_editor_broadcast_button_selected">@color/white</color>
+    <color name="match_editor_broadcast_button_normal">@color/white50</color>
+    <color name="match_editor_broadcast_button_delete_icon">@color/charcoal</color>
+    <color name="match_editor_score_picker_bg_active">@color/quick_silver50</color>
+    <color name="match_editor_score_picker_bg_inactive">@color/charcoal50</color>
+    <color name="match_editor_score_picker_icon_active">@color/quick_silver</color>
+    <color name="match_editor_score_picker_icon_inactive">@color/charcoal</color>
+    <color name="match_editor_icon_warning">@color/quick_silver</color>
+    <color name="match_editor_icon_success">@color/white</color>
+    <color name="match_editor_icon_failure">@color/white</color>
+    
+    <color name="calendar_month_text">@color/anthracite</color>
+    <color name="calendar_weekday_text">@color/anthracite</color>
+    <color name="calendar_day_active">@color/anthracite</color>
+    <color name="calendar_day_inactive">@color/charcoal</color>
+    <color name="calendar_day_semi_transparent">@color/quick_silver</color>
+    <color name="calendar_current_day">@color/orange</color>
+    <color name="calendar_arrows">@color/transparent</color>
+
 
     <!-- Buttons -->
     <color name="button_corner_bg">@color/charcoal50</color>
