@@ -28,6 +28,7 @@ class BottomNavActivity : AppCompatActivity(),
     private lateinit var binding: ActivityBottomNavBinding
     private val fragmentStack: Stack<Fragment> = Stack()
     private var isSelectingItemManually = false
+    private var isCalendarButtonClicked = false
 
     private val fragmentHome = R.id.nav_home
     private val fragmentMatches = R.id.nav_matches
@@ -90,7 +91,9 @@ class BottomNavActivity : AppCompatActivity(),
             }
 
             buttonCalendar.buttonCalendar.setOnClickListener {
+                isCalendarButtonClicked = true
                 openFragment(CalendarFragment())
+                isCalendarButtonClicked = false
             }
         }
     }
@@ -123,7 +126,7 @@ class BottomNavActivity : AppCompatActivity(),
         hideVenueDetailFragmentContainer()
         updateUIVisibility(fragment)
 
-        if (!isSelectingItemManually) {
+        if (!isSelectingItemManually && !isCalendarButtonClicked) {
             updateBottomNavState(fragment)
         }
     }

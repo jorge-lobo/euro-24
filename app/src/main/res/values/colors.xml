@@ -98,6 +98,15 @@
     <color name="match_editor_icon_warning">@color/quick_silver</color>
     <color name="match_editor_icon_success">@color/white</color>
     <color name="match_editor_icon_failure">@color/white</color>
+    
+    <color name="calendar_month_text">@color/anthracite</color>
+    <color name="calendar_weekday_text">@color/anthracite</color>
+    <color name="calendar_day_active">@color/anthracite</color>
+    <color name="calendar_day_inactive">@color/charcoal</color>
+    <color name="calendar_day_semi_transparent">@color/quick_silver</color>
+    <color name="calendar_current_day">@color/orange</color>
+    <color name="calendar_arrows">@color/transparent</color>
+
 
     <!-- Buttons -->
     <color name="button_corner_bg">@color/charcoal50</color>
