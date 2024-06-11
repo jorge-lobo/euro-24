@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.matches.calendar.selectedDay.SelectedDayFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.euro24.ui.matches.calendar.selectedDay.SelectedDayViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/selected_day_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".ui.matches.calendar.selectedDay.SelectedDayFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/text_no_matches_message_selected_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/teko_semi_bold"
+            android:gravity="center"
+            android:paddingHorizontal="64dp"
+            android:text="@string/main_no_matches"
+            android:textColor="@color/home_fragment_text"
+            android:textSize="@dimen/main_no_matches_message"
+            android:visibility="@{viewModel.noDataAvailable ? View.VISIBLE : View.INVISIBLE}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_match_cards_selected_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/rv_match_card_large" />
+
+    </RelativeLayout>
+
+</layout>

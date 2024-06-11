@@ -13,6 +13,7 @@ import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.FragmentDuringTournamentBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.matches.calendar.selectedDay.SelectedDayFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DuringTournamentFragment : BaseFragment() {
@@ -55,7 +56,7 @@ class DuringTournamentFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         teamRepository = TeamRepository(requireContext())
-        matchCardAdapter = MatchCardAdapter(teamRepository, this)
+        matchCardAdapter = MatchCardAdapter(teamRepository, this, SelectedDayFragment())
 
         setupRecyclerView()
         setupObservers()

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentCalendarBinding
 import com.example.euro24.ui.common.BaseFragment
+import com.example.euro24.ui.matches.calendar.selectedDay.SelectedDayFragment
 import com.example.euro24.utils.Utils
 import java.util.Calendar
 
@@ -74,14 +75,21 @@ class CalendarFragment : BaseFragment() {
 
         gridView.setOnItemClickListener { _, view, position, _ ->
             val day = days[position]
+            val selectedMonth: String = when (month) {
+                5 -> "June"
+                6 -> "July"
+                else -> ""
+            }
+
             if (day != null && view.isEnabled) {
-                Utils.showToast(requireContext(), "selected day: $day")
+                Utils.showToast(requireContext(), "selected day: $day, $selectedMonth")
+                openSelectedDayFragment(day, month)
             }
         }
     }
 
     private fun adjustGridViewHeight(gridView: GridView) {
-           val listAdapter = gridView.adapter ?: return
+        val listAdapter = gridView.adapter ?: return
 
         var totalHeight = 0
         var rowHeight: Int
@@ -104,6 +112,14 @@ class CalendarFragment : BaseFragment() {
         params.height = totalHeight + gridView.verticalSpacing * ((items / numColumns) - 1)
         gridView.layoutParams = params
         gridView.requestLayout()
+    }
+
+    private fun openSelectedDayFragment(day: Int, month: Int) {
+        val fragment = SelectedDayFragment.newInstance(day, month)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

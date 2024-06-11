@@ -58,36 +58,6 @@ class MatchRepository(private val context: Context) {
         return matches.find { it.id == id }?.copy()
     }
 
-    /*fun updateMatchResults(
-        matchId: Int,
-        team1Score: Int,
-        team2Score: Int,
-        team1ExtraTime: Int,
-        team2ExtraTime: Int,
-        team1Penalties: Int,
-        team2Penalties: Int
-    ) {
-        val match = getMatchById(matchId)
-        if (match != null) {
-            if (DateUtils.currentDate.before(DateUtils.dateStartKnockout)) {
-                match.resultTeam1 = team1Score
-                match.resultTeam2 = team2Score
-            } else {
-                match.resultTeam1 = team1Score
-                match.resultTeam2 = team2Score
-                if (team1Score == team2Score) {
-                    match.extraTimeTeam1 = team1ExtraTime
-                    match.extraTimeTeam2 = team2ExtraTime
-                    if (team1ExtraTime == team2ExtraTime) {
-                        match.penaltiesTeam1 = team1Penalties
-                        match.penaltiesTeam2 = team2Penalties
-                    }
-                }
-            }
-            saveMatch(match)
-        }
-    }*/
-
     val currentDate = DateUtils.formatter.parse("28/06/2024")
     fun updateMatchResults(
         matchId: Int,
