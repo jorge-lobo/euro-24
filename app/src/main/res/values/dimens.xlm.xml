@@ -29,9 +29,9 @@
 
     <dimen name="group_table_text">16sp</dimen>
 
-    <dimen name="calendar_mouth">32sp</dimen>
-    <dimen name="calendar_weekday">24sp</dimen>
-    <dimen name="calendar_day">24sp</dimen>
+    <dimen name="calendar_month">32sp</dimen>
+    <dimen name="calendar_weekday">20sp</dimen>
+    <dimen name="calendar_day">20sp</dimen>
 
     <dimen name="team_grid_name">16sp</dimen>
 

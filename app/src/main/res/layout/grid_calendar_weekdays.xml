@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/text_sunday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_sunday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_monday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_monday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_tuesday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_tuesday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_wednesday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_wednesday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_thursday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_thursday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_friday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_friday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+    <TextView
+        android:id="@+id/text_saturday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/teko_semi_bold"
+        android:gravity="center_horizontal"
+        android:text="@string/calendar_saturday"
+        android:textColor="@color/calendar_weekday_text"
+        android:textSize="@dimen/calendar_weekday" />
+
+</LinearLayout>
