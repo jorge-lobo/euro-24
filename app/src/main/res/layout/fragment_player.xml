@@ -466,16 +466,25 @@
                 android:layout_marginBottom="@dimen/margin_normal"
                 android:paddingHorizontal="@dimen/margin_normal">
 
-                <ImageView
-                    android:id="@+id/image_club_crest"
+                <FrameLayout
                     android:layout_width="@dimen/club_crest"
                     android:layout_height="@dimen/club_crest"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:contentDescription="@string/description_team_crest"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/default_image" />
+                    android:background="@drawable/background_club_crest"
+                    android:padding="2dp"
+                    android:id="@+id/club_crest_container">
+
+                    <ImageView
+                        android:id="@+id/image_club_crest"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/description_team_crest"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/default_image" />
+
+                </FrameLayout>
 
                 <RelativeLayout
                     android:id="@+id/club_info_container"
@@ -483,7 +492,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_big"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:layout_toEndOf="@id/image_club_crest">
+                    android:layout_toEndOf="@id/club_crest_container">
 
                     <TextView
                         android:id="@+id/text_player_club_name"
