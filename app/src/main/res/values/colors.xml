@@ -67,6 +67,7 @@
 
     <!-- Dialog -->
     <color name="dialog_background">@color/charcoal50</color>
+    <color name="dialog_success_background">@color/orange</color>
     <color name="dialog_text">@color/white</color>
     <color name="dialog_cta_button_bg">@color/orange</color>
     <color name="dialog_cta_button_text">@color/white</color>

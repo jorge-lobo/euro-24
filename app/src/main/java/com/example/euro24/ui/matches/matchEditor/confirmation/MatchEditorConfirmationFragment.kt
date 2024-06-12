@@ -148,7 +148,7 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         buttonYes.setOnClickListener {
             if (isSave) {
                 setupSaveMatch()
-                openHomeFragment()
+                openSavingMatchFragment()
             } else {
                 openHomeFragment()
             }
@@ -190,6 +190,17 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         (activity as? BottomNavActivity)?.apply {
             openFragment(HomeFragment())
             hideMatchEditorFragmentContainer()
+        }
+    }
+
+    private fun openSavingMatchFragment() {
+        val isSuccess = true
+        val savingMatchFragment = SavingMatchFragment.newInstance(isSuccess)
+
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.match_editor_fragment_container, savingMatchFragment)
+            addToBackStack(null)
+            commit()
         }
     }
 
