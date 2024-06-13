@@ -54,6 +54,7 @@
     <color name="player_white_box_text">@color/anthracite</color>
     <color name="player_number_container">@color/orange</color>
     <color name="player_banner_background">@color/white</color>
+    <color name="player_club_crest_background">@color/quick_silver</color>
 
     <!-- Past Finals Fragment -->
     <color name="historic_labels">@color/anthracite</color>
@@ -66,6 +67,7 @@
 
     <!-- Dialog -->
     <color name="dialog_background">@color/charcoal50</color>
+    <color name="dialog_success_background">@color/orange</color>
     <color name="dialog_text">@color/white</color>
     <color name="dialog_cta_button_bg">@color/orange</color>
     <color name="dialog_cta_button_text">@color/white</color>

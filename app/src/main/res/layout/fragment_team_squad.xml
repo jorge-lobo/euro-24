@@ -26,98 +26,121 @@
             tools:background="@color/common_background_color"
             tools:context=".ui.teams.teamDetail.teamSquad.TeamSquadFragment">
 
-            <TextView
-                android:id="@+id/label_forwards"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/teko_regular"
-                android:text="@string/team_squad_forwards"
-                android:textAllCaps="true"
-                android:textColor="@color/team_default_background_text"
-                android:textSize="@dimen/team_label_position" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_squad_forwards"
+            <RelativeLayout
+                android:id="@+id/squad_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_forwards"
-                android:layout_marginTop="@dimen/margin_extra_small" />
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                tools:visibility="visible">
 
-            <TextView
-                android:id="@+id/label_midfielders"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_squad_forwards"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:fontFamily="@font/teko_regular"
-                android:text="@string/team_squad_midfielders"
-                android:textAllCaps="true"
-                android:textColor="@color/team_default_background_text"
-                android:textSize="@dimen/team_label_position" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_squad_midfielders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_midfielders"
-                android:layout_marginTop="@dimen/margin_extra_small" />
+                <TextView
+                    android:id="@+id/label_forwards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/team_squad_forwards"
+                    android:textAllCaps="true"
+                    android:textColor="@color/team_default_background_text"
+                    android:textSize="@dimen/team_label_position" />
 
-            <TextView
-                android:id="@+id/label_defenders"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_squad_midfielders"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:fontFamily="@font/teko_regular"
-                android:text="@string/team_squad_defenders"
-                android:textAllCaps="true"
-                android:textColor="@color/team_default_background_text"
-                android:textSize="@dimen/team_label_position" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_squad_forwards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_forwards"
+                    android:layout_marginTop="@dimen/margin_extra_small" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_squad_defenders"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_defenders"
-                android:layout_marginTop="@dimen/margin_extra_small" />
+                <TextView
+                    android:id="@+id/label_midfielders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_squad_forwards"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/team_squad_midfielders"
+                    android:textAllCaps="true"
+                    android:textColor="@color/team_default_background_text"
+                    android:textSize="@dimen/team_label_position" />
 
-            <TextView
-                android:id="@+id/label_goalkeepers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_squad_defenders"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:fontFamily="@font/teko_regular"
-                android:text="@string/team_squad_goalkeepers"
-                android:textAllCaps="true"
-                android:textColor="@color/team_default_background_text"
-                android:textSize="@dimen/team_label_position" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_squad_midfielders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_midfielders"
+                    android:layout_marginTop="@dimen/margin_extra_small" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_squad_goalkeepers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_goalkeepers"
-                android:layout_marginTop="@dimen/margin_extra_small" />
+                <TextView
+                    android:id="@+id/label_defenders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_squad_midfielders"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/team_squad_defenders"
+                    android:textAllCaps="true"
+                    android:textColor="@color/team_default_background_text"
+                    android:textSize="@dimen/team_label_position" />
 
-            <TextView
-                android:id="@+id/label_head_manager"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_squad_goalkeepers"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:fontFamily="@font/teko_regular"
-                android:text="@string/team_squad_head_manager"
-                android:textAllCaps="true"
-                android:textColor="@color/team_default_background_text"
-                android:textSize="@dimen/team_label_position" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_squad_defenders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_defenders"
+                    android:layout_marginTop="@dimen/margin_extra_small" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_squad_head_manager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/label_head_manager"
-                android:layout_marginTop="@dimen/margin_extra_small" />
+                <TextView
+                    android:id="@+id/label_goalkeepers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_squad_defenders"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/team_squad_goalkeepers"
+                    android:textAllCaps="true"
+                    android:textColor="@color/team_default_background_text"
+                    android:textSize="@dimen/team_label_position" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_squad_goalkeepers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_goalkeepers"
+                    android:layout_marginTop="@dimen/margin_extra_small" />
+
+                <TextView
+                    android:id="@+id/label_head_manager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_squad_goalkeepers"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="@string/team_squad_head_manager"
+                    android:textAllCaps="true"
+                    android:textColor="@color/team_default_background_text"
+                    android:textSize="@dimen/team_label_position" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_squad_head_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/label_head_manager"
+                    android:layout_marginTop="@dimen/margin_extra_small" />
+
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/loading_squad"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="200dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/common_progress_bar"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </RelativeLayout>
 

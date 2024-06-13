@@ -25,12 +25,12 @@ class TeamMatchesViewModel(application: Application) : BaseViewModel(application
 
     private fun getTeamMatches(teamId: Int) {
         isLoading.value = true
-
         noDataAvailable.value = false
 
         viewModelScope.launch {
             try {
-                val matchResult = matchRepository.getMatches().filter { it.team1Id == teamId || it.team2Id == teamId }
+                val matchResult = matchRepository.getMatches()
+                    .filter { it.team1Id == teamId || it.team2Id == teamId }
                 handleMatchesResult(matchResult)
             } catch (e: Exception) {
                 onError(e.message)

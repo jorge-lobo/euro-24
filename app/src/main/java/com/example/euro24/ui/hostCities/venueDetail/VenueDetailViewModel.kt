@@ -20,6 +20,8 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
     private val venueRepository: VenueRepository = VenueRepository(application)
     private val matchRepository: MatchRepository = MatchRepository(application)
 
+    private val defaultImage = R.drawable.default_image
+
     var hostCityNameEnglish = MutableLiveData<String>().apply { value = "" }
     var hostCityNameGerman = MutableLiveData<String>().apply { value = "" }
     var hostCityState = MutableLiveData<String>().apply { value = "" }
@@ -57,11 +59,13 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
                     stadiumCapacity.value = numberFormat.format(venue.capacity)
 
                     val hostCityImageResourceId =
-                        ImagesResourceMap.cityImageResourceMap[venueId] ?: R.drawable.default_image
+                        ImagesResourceMap.cityImageResourceMap[venueId] ?: defaultImage
                     val stadiumImageResourceId =
-                        ImagesResourceMap.stadiumImageResourceMap[venueId] ?: R.drawable.default_image
+                        ImagesResourceMap.stadiumImageResourceMap[venueId]
+                            ?: defaultImage
 
-                    this@VenueDetailViewModel.hostCityImageResourceId.value = hostCityImageResourceId
+                    this@VenueDetailViewModel.hostCityImageResourceId.value =
+                        hostCityImageResourceId
                     this@VenueDetailViewModel.stadiumImageResourceId.value = stadiumImageResourceId
                 } else {
                     onError("Venue not found")
@@ -76,7 +80,6 @@ class VenueDetailViewModel(application: Application) : BaseViewModel(application
 
     private fun getVenueFixtures(venueId: Int) {
         isLoading.value = true
-
         noDataAvailable.value = false
 
         viewModelScope.launch {

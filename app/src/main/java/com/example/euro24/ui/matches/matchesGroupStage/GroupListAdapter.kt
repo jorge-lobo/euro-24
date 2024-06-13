@@ -29,7 +29,6 @@ class GroupListAdapter : RecyclerView.Adapter<GroupListAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(newItems: List<GroupListBindingItem>) {
         items = newItems

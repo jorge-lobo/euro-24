@@ -39,10 +39,14 @@ class InternetConnectionFragment : BaseFragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupViews()
         setupListeners()
-
-        return binding.root
     }
 
     override fun onAttach(context: Context) {

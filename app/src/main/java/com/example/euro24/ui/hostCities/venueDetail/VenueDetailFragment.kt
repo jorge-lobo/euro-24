@@ -92,11 +92,11 @@ class VenueDetailFragment : BaseFragment() {
 
             sortedMatches.observe(viewLifecycleOwner) { matches ->
                 matches?.let {
-                    val matchCardNarrowItems = matches.map { VenueMatchesBindingItem(it, teamRepository) }
+                    val matchCardNarrowItems =
+                        matches.map { VenueMatchesBindingItem(it, teamRepository) }
                     venueMatchesAdapter.submitList(matchCardNarrowItems)
                 }
             }
         }
     }
-
 }

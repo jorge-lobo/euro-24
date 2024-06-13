@@ -30,10 +30,14 @@ class PastFinalsFragment : BaseFragment() {
         binding.viewModel = mPastFinalsViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         setupObservers()
-
-        return binding.root
     }
 
     private fun setupRecyclerView() {
@@ -53,5 +57,4 @@ class PastFinalsFragment : BaseFragment() {
             }
         }
     }
-
 }

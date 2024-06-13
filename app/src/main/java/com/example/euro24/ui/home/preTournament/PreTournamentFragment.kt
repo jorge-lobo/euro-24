@@ -15,14 +15,12 @@ class PreTournamentFragment : BaseFragment() {
 
     private lateinit var binding: FragmentPreTournamentBinding
     private lateinit var mPreTournamentViewModel: PreTournamentViewModel
-
     private lateinit var textNumberDays: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_pre_tournament,
@@ -30,12 +28,15 @@ class PreTournamentFragment : BaseFragment() {
             false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-
         mPreTournamentViewModel = ViewModelProvider(this)[PreTournamentViewModel::class.java]
 
-        setupViews()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupViews()
     }
 
     private fun setupViews() {
@@ -44,5 +45,4 @@ class PreTournamentFragment : BaseFragment() {
         val daysToTournament = mPreTournamentViewModel.countDaysToTournament()
         textNumberDays.text = daysToTournament.toString()
     }
-
 }

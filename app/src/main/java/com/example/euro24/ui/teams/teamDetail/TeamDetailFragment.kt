@@ -73,7 +73,6 @@ class TeamDetailFragment : BaseFragment() {
             teamFlagResourceId.observe(viewLifecycleOwner) { resourceId ->
                 binding.imageTeamFlagHeader.setImageResource(resourceId)
             }
-
         }
     }
 

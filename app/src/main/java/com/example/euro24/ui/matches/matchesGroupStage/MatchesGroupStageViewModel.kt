@@ -1,8 +1,6 @@
 package com.example.euro24.ui.matches.matchesGroupStage
 
 import android.app.Application
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -23,7 +21,8 @@ class MatchesGroupStageViewModel(application: Application) : BaseViewModel(appli
     private val groupRepository: GroupRepository = GroupRepository(application)
     private val teamRepository: TeamRepository = TeamRepository(application)
     private val matchRepository: MatchRepository = MatchRepository(application)
-    private val groupStageManager: GroupStageManager = GroupStageManager(matchRepository, teamRepository)
+    private val groupStageManager: GroupStageManager =
+        GroupStageManager(matchRepository, teamRepository)
     private val matches = matchRepository.getMatches()
 
     val sortedGroups = MutableLiveData<List<Group>>()

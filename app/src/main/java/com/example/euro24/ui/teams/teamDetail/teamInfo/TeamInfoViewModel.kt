@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class TeamInfoViewModel(application: Application) : BaseViewModel(application), LifecycleObserver {
 
     private val teamRepository: TeamRepository = TeamRepository(application)
+    private val defaultImage = R.drawable.default_image
 
     var teamNicknameOg = MutableLiveData<String>().apply { value = "" }
     var teamNicknameEng = MutableLiveData<String>().apply { value = "" }
@@ -49,8 +50,10 @@ class TeamInfoViewModel(application: Application) : BaseViewModel(application), 
                     teamDateQualification.value = team.qualificationDate
                     teamQualifiedAs.value = team.qualifiedAs
 
-                    val teamPhotoResourceId = ImagesResourceMap.teamImageResourceMapById[teamId] ?: R.drawable.default_image
-                    val teamCrestResourceId = ImagesResourceMap.crestResourceMapById[teamId] ?: R.drawable.default_image
+                    val teamPhotoResourceId =
+                        ImagesResourceMap.teamImageResourceMapById[teamId] ?: defaultImage
+                    val teamCrestResourceId =
+                        ImagesResourceMap.crestResourceMapById[teamId] ?: defaultImage
 
                     this@TeamInfoViewModel.teamPhotoResourceId.value = teamPhotoResourceId
                     this@TeamInfoViewModel.teamCrestResourceId.value = teamCrestResourceId

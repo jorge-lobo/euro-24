@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardNarrowBinding
@@ -16,6 +15,7 @@ class VenueMatchesAdapter(private val teamRepository: TeamRepository) :
     RecyclerView.Adapter<VenueMatchesAdapter.ViewHolder>() {
 
     private var items: List<VenueMatchesBindingItem> = emptyList()
+    private val defaultFlag = R.drawable.default_flag
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -49,11 +49,11 @@ class VenueMatchesAdapter(private val teamRepository: TeamRepository) :
                 itemTextTeam2NameNarrow.text = team2?.name ?: "Unknown"
 
                 val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam1FlagNarrow.setImageResource(team1FlagResId)
 
                 val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam2FlagNarrow.setImageResource(team2FlagResId)
 
                 itemTextPhaseNarrow.visibility = View.VISIBLE

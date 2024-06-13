@@ -7,7 +7,8 @@ import com.example.euro24.R
 import com.example.euro24.data.teams.Team
 import com.mikepenz.fastadapter.items.AbstractItem
 
-class GroupTableBindingItem(val position: Int, val team: Team) : AbstractItem<GroupTableBindingItem.ViewHolder>() {
+class GroupTableBindingItem(val position: Int, val team: Team) :
+    AbstractItem<GroupTableBindingItem.ViewHolder>() {
 
     override val type: Int
         get() = R.id.fastadapter_id

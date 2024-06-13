@@ -148,7 +148,7 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         buttonYes.setOnClickListener {
             if (isSave) {
                 setupSaveMatch()
-                openHomeFragment()
+                openSavingMatchFragment()
             } else {
                 openHomeFragment()
             }
@@ -193,6 +193,17 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         }
     }
 
+    private fun openSavingMatchFragment() {
+        val isSuccess = true
+        val savingMatchFragment = SavingMatchFragment.newInstance(isSuccess)
+
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.match_editor_fragment_container, savingMatchFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
+
     private fun setupSaveMatch() {
         val matchId = arguments?.getInt(ARG_MATCH_ID) ?: return
         val team1Score = arguments?.getInt(ARG_TEAM1_SCORE) ?: return
@@ -202,8 +213,7 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         val team1Penalties = arguments?.getInt(ARG_TEAM1_PENALTIES) ?: return
         val team2Penalties = arguments?.getInt(ARG_TEAM2_PENALTIES) ?: return
 
-        /*val currentDate = DateUtils.currentDate*/
-        val currentDate = DateUtils.formatter.parse("28/06/2024")
+        val currentDate = DateUtils.currentDate
 
         with(mMatchEditorConfirmationViewModel) {
             saveMatchResults(

@@ -16,6 +16,7 @@ class MatchCardBindingItem(val match: Match, private val teamRepository: TeamRep
     AbstractItem<MatchCardBindingItem.ViewHolder>() {
 
     private val defaultFlag = R.drawable.default_flag
+    private val defaultTv = R.drawable.default_tv
 
     override val type: Int
         get() = R.id.fastadapter_id
@@ -41,14 +42,16 @@ class MatchCardBindingItem(val match: Match, private val teamRepository: TeamRep
         holder.team1Penalties.text = match.penaltiesTeam1.toString()
         holder.team2Penalties.text = match.penaltiesTeam2.toString()
 
-        val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team1FlagResId =
+            team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team1Flag.setImageResource(team1FlagResId)
 
-        val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team2FlagResId =
+            team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team2Flag.setImageResource(team2FlagResId)
 
         val tvIconResId = match.broadcastPT?.let { getTvIconResourceId(it) }
-        holder.tvIcon.setImageResource(tvIconResId ?: R.drawable.default_tv)
+        holder.tvIcon.setImageResource(tvIconResId ?: defaultTv)
     }
 
     override fun unbindView(holder: ViewHolder) {
@@ -87,6 +90,6 @@ class MatchCardBindingItem(val match: Match, private val teamRepository: TeamRep
     }
 
     fun getTvIconResourceId(broadcastPT: String): Int {
-        return ImagesResourceMap.tvIconResourceMap[broadcastPT] ?: R.drawable.default_tv
+        return ImagesResourceMap.tvIconResourceMap[broadcastPT] ?: defaultTv
     }
 }

@@ -441,7 +441,6 @@ class MatchEditorFragment : BaseFragment() {
     }
 
     private fun saveMatch() {
-        Utils.showToast(requireContext(), "Match saved successfully!")
         openConfirmationFragment(
             isSave = true,
             matchId = matchId,

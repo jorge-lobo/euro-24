@@ -34,8 +34,4 @@ class PastFinalRepository(private val context: Context) {
     fun getPastFinals(): List<PastFinal> {
         return pastFinals.toList()
     }
-
-    fun getPastFinalById(id: Int): PastFinal? {
-        return pastFinals.find { it.id == id }?.copy()
-    }
 }

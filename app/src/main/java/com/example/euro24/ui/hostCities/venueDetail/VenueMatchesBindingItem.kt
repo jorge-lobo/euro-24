@@ -42,10 +42,12 @@ class VenueMatchesBindingItem(val match: Match, private val teamRepository: Team
         holder.team1PenaltiesNarrow.text = match.penaltiesTeam1.toString()
         holder.team2PenaltiesNarrow.text = match.penaltiesTeam2.toString()
 
-        val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team1FlagResId =
+            team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team1FlagNarrow.setImageResource(team1FlagResId)
 
-        val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team2FlagResId =
+            team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team2FlagNarrow.setImageResource(team2FlagResId)
     }
 
@@ -85,8 +87,4 @@ class VenueMatchesBindingItem(val match: Match, private val teamRepository: Team
         var team1FlagNarrow: ImageView = view.findViewById(R.id.item_image_team1_flag_narrow)
         var team2FlagNarrow: ImageView = view.findViewById(R.id.item_image_team2_flag_narrow)
     }
-
-    /*fun getTeamFlagResourceId(team: String): Int {
-        return ImagesResourceMap.flagResourceMapByName[team] ?: defaultFlag
-    }*/
 }

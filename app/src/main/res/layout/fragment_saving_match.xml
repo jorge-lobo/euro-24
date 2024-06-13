@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/dialog_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:gravity="center"
+        android:padding="@dimen/margin_big">
+
+        <RelativeLayout
+            android:id="@+id/dialog_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_h"
+            android:background="@drawable/background_dialog_base"
+            android:padding="@dimen/margin_big">
+
+            <TextView
+                android:id="@+id/text_save_match_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center_horizontal"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/dialog_title"
+                tools:text="Well done!" />
+
+            <ImageView
+                android:id="@+id/image_icon"
+                android:layout_width="@dimen/icon_big"
+                android:layout_height="@dimen/icon_big"
+                android:layout_above="@id/text_save_match_message"
+                android:layout_below="@id/text_save_match_title"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/description_icon"
+                android:src="@drawable/default_image"
+                app:tint="@color/match_editor_icon_success" />
+
+            <TextView
+                android:id="@+id/text_save_match_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/button_try_again"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_big"
+                android:fontFamily="@font/teko_regular"
+                android:gravity="center_horizontal"
+                android:textColor="@color/dialog_text"
+                android:textSize="@dimen/dialog_message"
+                tools:text="@string/match_editor_message_success" />
+
+            <Button
+                android:id="@+id/button_try_again"
+                android:layout_width="@dimen/dialog_cta_large_button_w"
+                android:layout_height="@dimen/dialog_cta_button_h"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/background_button_cta_dialog"
+                android:fontFamily="@font/teko_semi_bold"
+                android:gravity="center"
+                android:text="@string/match_editor_button_try_again"
+                android:textAllCaps="true"
+                android:textColor="@color/dialog_cta_button_text"
+                android:textSize="@dimen/dialog_button_text"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

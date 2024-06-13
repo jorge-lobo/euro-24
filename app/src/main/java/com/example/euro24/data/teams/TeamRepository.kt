@@ -35,7 +35,7 @@ class TeamRepository(private val context: Context) {
     }
 
     private fun loadTeamsFileContent(): String {
-        val file = File(context.filesDir, "teams_test.json") // change to "teams.json"
+        val file = File(context.filesDir, "teams.json")
         return if (file.exists()) {
             file.readText()
         } else {
@@ -53,7 +53,7 @@ class TeamRepository(private val context: Context) {
 
     private fun saveTeamsToJson(teams: List<Team>) {
         val jsonString = gson.toJson(teams)
-        val file = File(context.filesDir, "teams_test.json") // change to "teams.json"
+        val file = File(context.filesDir, "teams.json")
         file.writeText(jsonString)
     }
 

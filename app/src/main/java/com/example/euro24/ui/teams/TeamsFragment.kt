@@ -15,7 +15,7 @@ import com.example.euro24.ui.teams.teamDetail.TeamDetailFragment
 class TeamsFragment : BaseFragment(), TeamGridAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentTeamsBinding
-    private val mTeamsViewModel by lazy { ViewModelProvider(this) [TeamsViewModel::class.java] }
+    private val mTeamsViewModel by lazy { ViewModelProvider(this)[TeamsViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

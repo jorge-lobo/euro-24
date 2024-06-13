@@ -75,7 +75,8 @@ class HomeFragment : BaseFragment(), InternetConnectionFragment.InternetConnecti
     }
 
     private fun setupConnectivity() {
-        val connectivityManager = requireActivity().getSystemService(ConnectivityManager::class.java)
+        val connectivityManager =
+            requireActivity().getSystemService(ConnectivityManager::class.java)
         connectivityManager?.registerNetworkCallback(
             NetworkRequest.Builder()
                 .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
@@ -104,7 +105,8 @@ class HomeFragment : BaseFragment(), InternetConnectionFragment.InternetConnecti
 
     private fun unregisterNetworkCallback() {
         if (mHomeViewModel.isNetworkCallbackRegistered) {
-            val connectivityManager = requireActivity().getSystemService(ConnectivityManager::class.java)
+            val connectivityManager =
+                requireActivity().getSystemService(ConnectivityManager::class.java)
             connectivityManager?.unregisterNetworkCallback(networkCallback)
             mHomeViewModel.isNetworkCallbackRegistered = false
         }
@@ -127,8 +129,13 @@ class HomeFragment : BaseFragment(), InternetConnectionFragment.InternetConnecti
             dateCondition.observe(viewLifecycleOwner) { condition ->
                 when (condition!!) {
                     HomeViewModel.DateCondition.PRE_TOURNAMENT -> openFragment(PreTournamentFragment())
-                    HomeViewModel.DateCondition.DURING_TOURNAMENT -> openFragment(DuringTournamentFragment())
-                    HomeViewModel.DateCondition.POST_TOURNAMENT -> openFragment(PostTournamentFragment())
+                    HomeViewModel.DateCondition.DURING_TOURNAMENT -> openFragment(
+                        DuringTournamentFragment()
+                    )
+
+                    HomeViewModel.DateCondition.POST_TOURNAMENT -> openFragment(
+                        PostTournamentFragment()
+                    )
                 }
             }
         }

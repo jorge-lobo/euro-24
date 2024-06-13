@@ -21,6 +21,7 @@ class TeamSquadViewModel(application: Application) : BaseViewModel(application),
     val defenders = MutableLiveData<List<Player>>()
     val goalkeepers = MutableLiveData<List<Player>>()
     val headManager = MutableLiveData<Manager>()
+    val loadComplete = MutableLiveData<Boolean>().apply { value = false }
 
     fun initialize(teamId: Int) {
         getTeamSquad(teamId)
@@ -42,6 +43,7 @@ class TeamSquadViewModel(application: Application) : BaseViewModel(application),
                 isRefreshing.value = false
             }
         }
+        loadComplete.postValue(true)
     }
 
     private fun getHeadManager(teamId: Int) {

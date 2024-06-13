@@ -46,7 +46,12 @@ class MatchesKnockoutViewModel(application: Application) : BaseViewModel(applica
             val filteredMatches = matchRepository.getMatches().filter { match ->
                 match.phase.equals(phase.toPhaseString(), ignoreCase = true)
             }
-            matchesInSelectedRound.postValue(filteredMatches.map { MatchNarrowCardBindingItem(it, teamRepository) })
+            matchesInSelectedRound.postValue(filteredMatches.map {
+                MatchNarrowCardBindingItem(
+                    it,
+                    teamRepository
+                )
+            })
         }
     }
 

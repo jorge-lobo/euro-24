@@ -45,7 +45,6 @@ class TeamMatchesFragment : BaseFragment(), MatchEditorFragmentContainer {
             container,
             false
         )
-
         binding.viewModel = mTeamMatchesViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 

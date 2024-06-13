@@ -120,8 +120,8 @@ class MatchEditorViewModel(application: Application) : BaseViewModel(application
         checkSaveButtonState()
 
         if (nextScoreType == ScoreType.EXTRA_TIME) {
-            team1ExtraTime.value = team1Score.value ?: - 1
-            team2ExtraTime.value = team2Score.value ?: - 1
+            team1ExtraTime.value = team1Score.value ?: -1
+            team2ExtraTime.value = team2Score.value ?: -1
         }
     }
 
@@ -138,7 +138,8 @@ class MatchEditorViewModel(application: Application) : BaseViewModel(application
             }
         }
 
-        listOf(team1ExtraTime to team1ExtraTimeDecreaseButtonEnabled,
+        listOf(
+            team1ExtraTime to team1ExtraTimeDecreaseButtonEnabled,
             team2ExtraTime to team2ExtraTimeDecreaseButtonEnabled
         ).forEach { (score, button) ->
             score.observeForever { value ->
@@ -182,10 +183,9 @@ class MatchEditorViewModel(application: Application) : BaseViewModel(application
     }
 
     fun checkDateCondition() {
-        /*val date = DateUtils.currentDate*/
-        val date = DateUtils.formatter.parse("28/06/2024")
+        val date = DateUtils.currentDate
         dateCondition.value =
-            if (date != null && date.before(DateUtils.dateStartKnockout)) DateCondition.GROUP_STAGE else DateCondition.KNOCKOUT
+            if (date.before(DateUtils.dateStartKnockout)) DateCondition.GROUP_STAGE else DateCondition.KNOCKOUT
     }
 
     fun changeScore(team: Int, type: ScoreType, increase: Boolean) {

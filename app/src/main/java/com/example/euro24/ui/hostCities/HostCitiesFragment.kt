@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.data.venues.Venue
 import com.example.euro24.databinding.FragmentHostCitiesBinding
-import com.example.euro24.ui.bottomNav.BottomNavActivity
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.hostCities.venueDetail.VenueDetailFragment
 
@@ -79,5 +78,4 @@ class HostCitiesFragment : BaseFragment(), HostCityGridAdapter.OnItemClickListen
             )
         }
     }
-
 }

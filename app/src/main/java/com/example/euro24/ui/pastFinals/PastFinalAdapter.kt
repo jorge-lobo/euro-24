@@ -33,7 +33,6 @@ class PastFinalAdapter : RecyclerView.Adapter<PastFinalAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PastFinalBindingItem) {
             binding.pastFinal = item.pastFinal
-
         }
     }
 }

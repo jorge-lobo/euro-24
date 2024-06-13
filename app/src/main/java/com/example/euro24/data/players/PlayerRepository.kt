@@ -15,7 +15,7 @@ class PlayerRepository(private val context: Context) {
     }
 
     private fun loadPlayersFromJson() {
-        val jsonString = JSONLoader(context).loadJSONFromAsset("players_test.json")
+        val jsonString = JSONLoader(context).loadJSONFromAsset("players.json")
 
         val jsonObject = JSONParser<JsonObject>().deserialize(
             jsonString,
@@ -38,5 +38,4 @@ class PlayerRepository(private val context: Context) {
     fun getPlayerById(id: Int): Player? {
         return players.find { it.id == id }?.copy()
     }
-
 }
