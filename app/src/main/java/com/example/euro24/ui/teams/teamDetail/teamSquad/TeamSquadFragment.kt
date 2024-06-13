@@ -60,9 +60,14 @@ class TeamSquadFragment : BaseFragment() {
         val teamId = arguments?.getInt(ARG_TEAM_ID) ?: 0
         mTeamSquadViewModel.initialize(teamId)
 
+        setupProgressBar()
         setupObservers()
         initializeAdapters()
         setupRecyclerViews()
+    }
+
+    private fun setupProgressBar() {
+        binding.loadingSquad.visibility = View.VISIBLE
     }
 
     private fun setupRecyclerViews() {
@@ -131,6 +136,12 @@ class TeamSquadFragment : BaseFragment() {
                     headManagerAdapter.submitList(managerList)
                 }
             }
+
+            loadComplete.observe(viewLifecycleOwner) { isComplete ->
+                if (isComplete == true) {
+                    showUI()
+                }
+            }
         }
     }
 
@@ -142,5 +153,12 @@ class TeamSquadFragment : BaseFragment() {
         defendersAdapter = TeamSquadAdapter(fragmentStack, teamId)
         goalkeepersAdapter = TeamSquadAdapter(fragmentStack, teamId)
         headManagerAdapter = TeamSquadAdapter(fragmentStack, teamId)
+    }
+
+    private fun showUI() {
+        with(binding) {
+            squadContainer.visibility = View.VISIBLE
+            loadingSquad.visibility = View.GONE
+        }
     }
 }
