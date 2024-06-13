@@ -6,7 +6,10 @@ import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 
-class GroupStageManager(matchRepository: MatchRepository, private val teamRepository: TeamRepository) {
+class GroupStageManager(
+    matchRepository: MatchRepository,
+    private val teamRepository: TeamRepository
+) {
 
     private val matches = matchRepository.getMatches()
 
@@ -25,10 +28,12 @@ class GroupStageManager(matchRepository: MatchRepository, private val teamReposi
                 team1.addWin(victoryPoints)
                 team2.addLoss()
             }
+
             resultTeam1 < resultTeam2 -> {
                 team1.addLoss()
                 team2.addWin(victoryPoints)
             }
+
             else -> {
                 team1.addDraw(drawPoints)
                 team2.addDraw(drawPoints)

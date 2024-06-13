@@ -34,5 +34,4 @@ class ManagerRepository(private val context: Context) {
     fun getManagerByTeamId(teamId: Int): Manager? {
         return managers.find { it.id == teamId }?.copy()
     }
-
 }

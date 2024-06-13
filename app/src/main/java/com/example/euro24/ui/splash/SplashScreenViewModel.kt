@@ -8,8 +8,8 @@ import java.io.FileOutputStream
 class SplashScreenViewModel(application: Application) : BaseViewModel(application) {
 
     fun uploadJsonToInternalStorage() {
-        uploadFile("matches_test.json")
-        uploadFile("teams_test.json")
+        uploadFile("matches.json")
+        uploadFile("teams.json")
     }
 
     private fun uploadFile(filename: String) {

@@ -2,7 +2,6 @@ package com.example.euro24.ui.matches.matchesKnockout
 
 import com.example.euro24.data.matches.Match
 import com.example.euro24.data.matches.MatchRepository
-import com.example.euro24.data.teams.Team
 
 class KnockoutStageManager(private val matchRepository: MatchRepository) {
 
@@ -39,7 +38,6 @@ class KnockoutStageManager(private val matchRepository: MatchRepository) {
         }
     }
 
-    // Determina o vencedor de um jogo baseado nos resultados
     private fun determineWinner(match: Match): Int? {
         return when {
             match.resultTeam1!! > match.resultTeam2!! -> match.team1Id

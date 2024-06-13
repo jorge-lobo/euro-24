@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.data.matches.Match
-import com.example.euro24.data.teams.Team
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.utils.DateUtils
 import com.example.euro24.utils.ImagesResourceMap
@@ -43,10 +42,12 @@ class MatchNarrowCardBindingItem(val match: Match, private val teamRepository: T
         holder.team1PenaltiesNarrow.text = match.penaltiesTeam1.toString()
         holder.team2PenaltiesNarrow.text = match.penaltiesTeam2.toString()
 
-        val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team1FlagResId =
+            team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team1FlagNarrow.setImageResource(team1FlagResId)
 
-        val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
+        val team2FlagResId =
+            team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] } ?: defaultFlag
         holder.team2FlagNarrow.setImageResource(team2FlagResId)
     }
 

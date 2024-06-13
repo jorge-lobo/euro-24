@@ -34,5 +34,4 @@ class GroupRepository(private val context: Context) {
     fun getGroups(): List<Group> {
         return groups.toList()
     }
-
 }

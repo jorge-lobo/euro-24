@@ -11,7 +11,7 @@ import com.example.euro24.ui.common.BaseViewModel
 class TeamsViewModel(application: Application) : BaseViewModel(application),
     LifecycleObserver {
 
-        private val teamRepository: TeamRepository = TeamRepository(application)
+    private val teamRepository: TeamRepository = TeamRepository(application)
 
     private val _teams = MutableLiveData<List<Team>>()
     val teams: LiveData<List<Team>> get() = _teams

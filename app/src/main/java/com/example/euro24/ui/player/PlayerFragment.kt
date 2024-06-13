@@ -51,7 +51,6 @@ class PlayerFragment : BaseFragment() {
             container,
             false
         )
-
         binding.viewModel = mPlayerViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 

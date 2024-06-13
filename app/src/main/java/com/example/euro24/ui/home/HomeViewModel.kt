@@ -36,6 +36,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     init {
         registerNetworkCallback()
     }
+
     private fun registerNetworkCallback() {
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)

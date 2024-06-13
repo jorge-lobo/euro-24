@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentCalendarBinding
 import com.example.euro24.ui.common.BaseFragment
@@ -17,7 +16,6 @@ import java.util.Calendar
 class CalendarFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCalendarBinding
-    private val mCalendarViewModel by lazy { ViewModelProvider(this)[CalendarViewModel::class.java] }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -121,5 +119,4 @@ class CalendarFragment : BaseFragment() {
             .addToBackStack(null)
             .commit()
     }
-
 }

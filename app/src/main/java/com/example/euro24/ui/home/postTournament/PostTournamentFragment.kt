@@ -7,17 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.euro24.R
 import com.example.euro24.databinding.FragmentPostTournamentBinding
 import com.example.euro24.ui.common.BaseFragment
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PostTournamentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PostTournamentFragment : BaseFragment() {
 
     private lateinit var binding: FragmentPostTournamentBinding
@@ -29,7 +23,7 @@ class PostTournamentFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_post_tournament,
@@ -37,22 +31,21 @@ class PostTournamentFragment : BaseFragment() {
             false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-
         mPostTournamentViewModel = ViewModelProvider(this)[PostTournamentViewModel::class.java]
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupViews()
         setupObservers()
-
-        return binding.root
     }
 
     private fun setupViews() {
         textChampionName = binding.textChampionName
         imageChampionFlag = binding.imageChampionFlag
-
-        // Only for testing
-        imageChampionFlag.setImageResource(R.drawable.flag_portugal)
-        // Only for testing
     }
 
     private fun setupObservers() {
@@ -62,5 +55,4 @@ class PostTournamentFragment : BaseFragment() {
             }
         }
     }
-
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.euro24.data.matches.Match
 import com.example.euro24.data.matches.MatchRepository
 import com.example.euro24.ui.common.BaseViewModel
+import com.example.euro24.utils.DateUtils
 import kotlinx.coroutines.launch
 
 class DuringTournamentViewModel(application: Application) : BaseViewModel(application),
@@ -24,8 +25,7 @@ class DuringTournamentViewModel(application: Application) : BaseViewModel(applic
     private fun getMatches() {
         isLoading.value = true
 
-        /*val date = DateUtils.currentDate*/
-        val date = "29/06/2024"
+        val date = DateUtils.currentDate
 
         noDataAvailable.value = false
 

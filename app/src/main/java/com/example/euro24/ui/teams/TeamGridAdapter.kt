@@ -55,5 +55,4 @@ class TeamGridAdapter(
         val imageView: ImageView = itemView.findViewById(R.id.image_grid_team_flag)
         val textView: TextView = itemView.findViewById(R.id.text_grid_team_name)
     }
-
 }

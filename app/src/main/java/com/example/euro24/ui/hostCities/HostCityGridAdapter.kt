@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -65,5 +64,4 @@ class HostCityGridAdapter(
         val imageView: ImageView = itemView.findViewById(R.id.image_host_city)
         val textView: TextView = itemView.findViewById(R.id.text_host_city_name)
     }
-
 }

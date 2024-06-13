@@ -9,9 +9,10 @@ import com.example.euro24.data.pastFinals.PastFinalRepository
 import com.example.euro24.ui.common.BaseViewModel
 import kotlinx.coroutines.launch
 
-class PastFinalsViewModel(application: Application) : BaseViewModel(application), LifecycleObserver {
+class PastFinalsViewModel(application: Application) : BaseViewModel(application),
+    LifecycleObserver {
 
-private val pastFinalRepository = PastFinalRepository(application)
+    private val pastFinalRepository = PastFinalRepository(application)
 
     private var pastFinals = MutableLiveData<List<PastFinal>?>()
     val sortedFinals = MutableLiveData<List<PastFinal>?>()

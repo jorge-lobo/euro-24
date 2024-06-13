@@ -213,8 +213,7 @@ class MatchEditorConfirmationFragment : BaseFragment() {
         val team1Penalties = arguments?.getInt(ARG_TEAM1_PENALTIES) ?: return
         val team2Penalties = arguments?.getInt(ARG_TEAM2_PENALTIES) ?: return
 
-        /*val currentDate = DateUtils.currentDate*/
-        val currentDate = DateUtils.formatter.parse("28/06/2024")
+        val currentDate = DateUtils.currentDate
 
         with(mMatchEditorConfirmationViewModel) {
             saveMatchResults(

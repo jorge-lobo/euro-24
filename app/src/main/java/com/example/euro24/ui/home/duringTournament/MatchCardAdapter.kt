@@ -10,14 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.euro24.R
 import com.example.euro24.data.teams.TeamRepository
 import com.example.euro24.databinding.RvMatchCardLargeBinding
-import com.example.euro24.ui.matches.calendar.selectedDay.SelectedDayFragment
 import com.example.euro24.ui.matches.matchEditor.MatchEditorFragment
 import com.example.euro24.utils.ImagesResourceMap
 
 class MatchCardAdapter(
     private val teamRepository: TeamRepository,
-    private val duringTournamentFragment: DuringTournamentFragment,
-    private val selectedDayFragment: SelectedDayFragment
+    private val duringTournamentFragment: DuringTournamentFragment
 ) :
     RecyclerView.Adapter<MatchCardAdapter.ViewHolder>() {
 

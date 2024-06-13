@@ -10,27 +10,12 @@ import com.mikepenz.fastadapter.items.AbstractItem
 class PastFinalBindingItem(val pastFinal: PastFinal) :
     AbstractItem<PastFinalBindingItem.ViewHolder>() {
 
-    /**
-     * defines the type defining this item. must be unique, preferably an id
-     *
-     * @return the type
-     */
     override val type: Int
         get() = R.id.fastadapter_id
 
-    /**
-     * defines the layout which will be used for this item in the list
-     *
-     * @return the layout for this item
-     */
     override val layoutRes: Int
         get() = R.layout.rv_past_finals
 
-    /**
-     * binds the data of this item onto the viewHolder
-     *
-     * @param holder the viewHolder of this item
-     */
     override fun bindView(holder: ViewHolder, payloads: List<Any>) {
         super.bindView(holder, payloads)
 
@@ -53,9 +38,6 @@ class PastFinalBindingItem(val pastFinal: PastFinal) :
         return ViewHolder(v)
     }
 
-    /**
-     * our ViewHolder
-     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var year: TextView = view.findViewById(R.id.item_text_year)
         var host: TextView = view.findViewById(R.id.item_text_host)

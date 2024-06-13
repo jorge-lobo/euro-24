@@ -10,9 +10,9 @@ object DateUtils {
 
     @SuppressLint("ConstantLocale")
     val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    val datePreTournament: Date? = formatter.parse("14/05/2024")  // real date: 14/06/2024
-    val datePostTournament: Date? = formatter.parse("14/07/2024")   // real date: 14/07/2024
-    val dateStartKnockout: Date? = formatter.parse("27/06/2024")  // real date: 27/06/2024
+    val datePreTournament: Date? = formatter.parse("14/06/2024")
+    val datePostTournament: Date? = formatter.parse("14/07/2024")
+    val dateStartKnockout: Date? = formatter.parse("27/06/2024")
     val dateEndRoundOf16: Date? = formatter.parse("03/07/2024")
     val dateEndQuarterFinals: Date? = formatter.parse("07/07/2024")
     val dateEndSemiFinals: Date? = formatter.parse("11/07/2024")

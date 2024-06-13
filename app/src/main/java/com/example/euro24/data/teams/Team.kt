@@ -28,7 +28,7 @@ data class Team(
     @SerializedName("points") var points: Int? = null,
     @SerializedName("crestUrl") var crestUrl: String? = null,
     @SerializedName("squadList") var squadList: ArrayList<Int> = arrayListOf()
-){
+) {
     val formattedGoalDifference: String
         get() = if (goalDifference!! > 0) "+$goalDifference" else goalDifference.toString()
 }

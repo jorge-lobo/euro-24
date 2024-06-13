@@ -42,7 +42,7 @@ class MatchRepository(private val context: Context) {
     }
 
     private fun loadMatchesFileContent(): String {
-        val file = File(context.filesDir, "matches_test.json") // change to "matches.json"
+        val file = File(context.filesDir, "matches.json")
         return if (file.exists()) {
             file.readText()
         } else {
@@ -58,7 +58,6 @@ class MatchRepository(private val context: Context) {
         return matches.find { it.id == id }?.copy()
     }
 
-    val currentDate = DateUtils.formatter.parse("28/06/2024")
     fun updateMatchResults(
         matchId: Int,
         team1Score: Int,
@@ -68,7 +67,7 @@ class MatchRepository(private val context: Context) {
         team1Penalties: Int,
         team2Penalties: Int
     ) {
-        if (/*DateUtils.*/currentDate.before(DateUtils.dateStartKnockout)) {
+        if (DateUtils.currentDate.before(DateUtils.dateStartKnockout)) {
             val match = getMatchById(matchId)
             match?.resultTeam1 = team1Score
             match?.resultTeam2 = team2Score
@@ -99,7 +98,7 @@ class MatchRepository(private val context: Context) {
 
     private fun saveMatchesToJson(matches: List<Match>) {
         val jsonString = gson.toJson(matches)
-        val file = File(context.filesDir, "matches_test.json") // change to "matches.json"
+        val file = File(context.filesDir, "matches.json")
         file.writeText(jsonString)
     }
 
@@ -145,7 +144,8 @@ class MatchRepository(private val context: Context) {
         val placementMap = getPlacementMapForThirdPlaceTeams(groupCombinations)
 
         placementMap.forEachIndexed { index, group ->
-            val teamId = bestThirdPlacedTeams.firstOrNull { it.id in getGroupRangeForGroup(group) }?.id
+            val teamId =
+                bestThirdPlacedTeams.firstOrNull { it.id in getGroupRangeForGroup(group) }?.id
             val match = matches.find { it.id == roundOf16MatchIds[index] }
             match?.team2Id = teamId ?: 0
         }

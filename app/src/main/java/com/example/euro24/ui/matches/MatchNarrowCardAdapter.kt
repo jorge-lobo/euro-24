@@ -21,6 +21,7 @@ class MatchNarrowCardAdapter(
     RecyclerView.Adapter<MatchNarrowCardAdapter.ViewHolder>() {
 
     private var items: List<MatchNarrowCardBindingItem> = emptyList()
+    private val defaultFlag = R.drawable.default_flag
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -77,13 +78,12 @@ class MatchNarrowCardAdapter(
                 itemTextTeam2NameNarrow.text = team2?.name ?: "Unknown"
 
                 val team1FlagResId = team1?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam1FlagNarrow.setImageResource(team1FlagResId)
 
                 val team2FlagResId = team2?.id?.let { ImagesResourceMap.flagResourceMapById[it] }
-                    ?: R.drawable.default_flag
+                    ?: defaultFlag
                 itemImageTeam2FlagNarrow.setImageResource(team2FlagResId)
-
 
                 itemTextPhaseNarrow.visibility = View.INVISIBLE
                 itemTextMatchCityNarrow.visibility = View.VISIBLE

@@ -30,14 +30,13 @@ class TeamInfoFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_team_info,
             container,
             false
         )
-
         binding.viewModel = mTeamInfoViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -53,15 +52,14 @@ class TeamInfoFragment : BaseFragment() {
         setupObservers()
     }
 
-    private fun setupObservers(){
+    private fun setupObservers() {
         with(mTeamInfoViewModel) {
             teamPhotoResourceId.observe(viewLifecycleOwner) { resourceId ->
                 binding.imageTeamPhoto.setImageResource(resourceId)
             }
-            teamCrestResourceId.observe(viewLifecycleOwner) {resourceId ->
+            teamCrestResourceId.observe(viewLifecycleOwner) { resourceId ->
                 binding.imageTeamCrest.setImageResource(resourceId)
             }
         }
     }
-
 }

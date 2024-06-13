@@ -14,7 +14,6 @@ import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.home.duringTournament.DuringTournamentFragment
 import com.example.euro24.ui.home.duringTournament.MatchCardAdapter
 import com.example.euro24.ui.home.duringTournament.MatchCardBindingItem
-import com.example.euro24.utils.DateUtils
 
 class SelectedDayFragment : BaseFragment() {
 
@@ -58,7 +57,7 @@ class SelectedDayFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         teamRepository = TeamRepository(requireContext())
-        matchCardAdapter = MatchCardAdapter(teamRepository, DuringTournamentFragment(), this)
+        matchCardAdapter = MatchCardAdapter(teamRepository, DuringTournamentFragment())
 
         val day = arguments?.getInt(ARG_DAY)
         val month = arguments?.getInt(ARG_MONTH)
