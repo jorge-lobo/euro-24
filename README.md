@@ -45,20 +45,20 @@ Euro24 App is an Android application developed using Kotlin and the MVVM archite
 ## Screenshots
 
 <div align="center">
-    <img src="screenshots/home_screen.jpg" width="200" hspace="10">
-    <img src="screenshots/matches_group_stage.jpg" width="200" hspace="10">
-    <img src="screenshots/matches_knockout.jpg" width="200" hspace="10">
-    <img src="screenshots/schedule.jpg" width="200" hspace="10"><br><br>
-    <img src="screenshots/matches_selected_day.jpg" width="200" hspace="10">
-    <img src="screenshots/teams.jpg" width="200" hspace="10">
-    <img src="screenshots/team_info.jpg" width="200" hspace="10">
-    <img src="screenshots/team_matches.jpg" width="200" hspace="10"><br><br>
-    <img src="screenshots/team_squad.jpg" width="200" hspace="10">
-    <img src="screenshots/player.jpg" width="200" hspace="10">
-    <img src="screenshots/host_cities.jpg" width="200" hspace="10">
-    <img src="screenshots/venue_info.jpg" width="200" hspace="10"><br><br>
-    <img src="screenshots/venue_fixtures.jpg" width="200" hspace="10">
-    <img src="screenshots/past_winners.jpg" width="200" hspace="10">
+    <img src="screenshots/home_screen.jpg" width="150" hspace="10">
+    <img src="screenshots/matches_group_stage.jpg" width="150" hspace="10">
+    <img src="screenshots/matches_knockout.jpg" width="150" hspace="10">
+    <img src="screenshots/schedule.jpg" width="150" hspace="10"><br><br>
+    <img src="screenshots/matches_selected_day.jpg" width="150" hspace="10">
+    <img src="screenshots/teams.jpg" width="150" hspace="10">
+    <img src="screenshots/team_info.jpg" width="150" hspace="10">
+    <img src="screenshots/team_matches.jpg" width="150" hspace="10"><br><br>
+    <img src="screenshots/team_squad.jpg" width="150" hspace="10">
+    <img src="screenshots/player.jpg" width="150" hspace="10">
+    <img src="screenshots/host_cities.jpg" width="150" hspace="10">
+    <img src="screenshots/venue_info.jpg" width="150" hspace="10"><br><br>
+    <img src="screenshots/venue_fixtures.jpg" width="150" hspace="10">
+    <img src="screenshots/past_winners.jpg" width="150" hspace="10">
 </div>
 
 ## Contact
