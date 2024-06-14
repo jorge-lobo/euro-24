@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/teko_regular"
-                        android:text="@{match.time}"
+                        android:text="@{DateUtils.convertToTimeZone(match.time, `HH:mm`, TimeZone.getDefault())}"
                         android:textColor="@color/match_card_text"
                         android:textSize="@dimen/match_narrow_time"
                         tools:text="18:00" />
