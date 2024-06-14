@@ -10,7 +10,6 @@ import com.example.euro24.R
 import com.example.euro24.databinding.FragmentCalendarBinding
 import com.example.euro24.ui.common.BaseFragment
 import com.example.euro24.ui.matches.calendar.selectedDay.SelectedDayFragment
-import com.example.euro24.utils.Utils
 import java.util.Calendar
 
 class CalendarFragment : BaseFragment() {
@@ -73,14 +72,8 @@ class CalendarFragment : BaseFragment() {
 
         gridView.setOnItemClickListener { _, view, position, _ ->
             val day = days[position]
-            val selectedMonth: String = when (month) {
-                5 -> "June"
-                6 -> "July"
-                else -> ""
-            }
 
             if (day != null && view.isEnabled) {
-                Utils.showToast(requireContext(), "selected day: $day, $selectedMonth")
                 openSelectedDayFragment(day, month)
             }
         }

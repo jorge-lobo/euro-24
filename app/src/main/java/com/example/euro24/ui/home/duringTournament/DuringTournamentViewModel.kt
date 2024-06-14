@@ -24,14 +24,13 @@ class DuringTournamentViewModel(application: Application) : BaseViewModel(applic
 
     private fun getMatches() {
         isLoading.value = true
-
-        val date = DateUtils.currentDate
-
         noDataAvailable.value = false
+
+        val currentDateString = DateUtils.formatter.format(DateUtils.currentDate)
 
         viewModelScope.launch {
             try {
-                val result = matchesRepository.getMatches().filter { it.date == date.toString() }
+                val result = matchesRepository.getMatches().filter { it.date == currentDateString }
                 handleMatchesResult(result)
             } catch (e: Exception) {
                 onError(e.message)
