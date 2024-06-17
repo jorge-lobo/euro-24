@@ -62,7 +62,7 @@ class GroupStageManager(
 
     private fun Team.addDraw(points: Int) {
         drawn = (drawn ?: 0) + 1
-        this.drawn = (this.drawn ?: 0) + points
+        this.points = (this.points ?: 0) + points
     }
 
     fun calculateGroupTieBreakers(teamList: List<Team>): List<GroupTieBreaker> {
