@@ -10,13 +10,8 @@ class PostTournamentViewModel(application: Application) : BaseViewModel(applicat
 
     private val matchesRepository = MatchRepository(application)
 
-    private val _team1Result = MutableLiveData<Int>()
-    private val _team2Result = MutableLiveData<Int>()
-    private val _championName = MutableLiveData<String?>()
-
-    private val team1Result: LiveData<Int> get() = _team1Result
-    private val team2Result: LiveData<Int> get() = _team2Result
-    val championName: LiveData<String?> get() = _championName
+    private val _championId = MutableLiveData<Int?>()
+    val championId: LiveData<Int?> get() = _championId
 
     init {
         getChampion()
@@ -26,15 +21,14 @@ class PostTournamentViewModel(application: Application) : BaseViewModel(applicat
         val matchId = 51
         val match = matchesRepository.getMatchById(matchId)
 
-        val isTeam1Champion = (team1Result.value ?: 0) > (team2Result.value ?: 0)
-
-        val championName = if (isTeam1Champion) {
-            match?.team1
-        } else {
-            match?.team2
+        match?.let {
+            val championId = if ((it.resultTeam1 ?: 0) > (it.resultTeam2 ?: 0)) {
+                it.team1Id
+            } else {
+                it.team2Id
+            }
+            _championId.postValue(championId)
         }
-
-        _championName.postValue(championName)
     }
 
     override fun onError(message: String?, validationErrors: Map<String, ArrayList<String>>?) {
